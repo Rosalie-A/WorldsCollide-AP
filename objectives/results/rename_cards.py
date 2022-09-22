@@ -8,7 +8,7 @@ class Field(field_result.Result):
         src = []
         for _ in range(RENAME_CARD_COUNT):
             src += [
-                field.AddItem(item_name_id["Rename Card"]),
+                field.AddItem(item_name_id["ArchplgoItem"]),
             ]
         return src
 
@@ -17,11 +17,11 @@ class Battle(battle_result.Result):
         src = []
         for _ in range(RENAME_CARD_COUNT):
             src += [
-                battle_result.AddItem(item_name_id["Rename Card"]),
+                battle_result.AddItem(item_name_id["ArchplgoItem"]),
             ]
         return src
 
 class Result(ObjectiveResult):
-    NAME = "Rename Cards"
+    NAME = "ArchplgoItems"
     def __init__(self):
         super().__init__(Field, Battle)

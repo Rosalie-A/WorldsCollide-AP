@@ -1,3 +1,5 @@
+import bsdiff4
+
 class ROM():
     SHORT_PTR_SIZE = 2  # short ptr (16-bit)
     LONG_PTR_SIZE = 3   # long ptr  (24-bit)
@@ -22,6 +24,11 @@ class ROM():
     def write(self, file_name):
         with open(file_name, "wb") as out_file:
             out_file.write(bytearray(self.data))
+
+    def write_patch(self, base_rom, modified_rom):
+        patch = bsdiff4.diff(base_rom, bytes(self.data))
+        with open(modified_rom, "wb") as output_patch:
+            output_patch.write(bytearray(patch))
 
     def get_bits(self, address, mask):
         return self.data[address] & mask

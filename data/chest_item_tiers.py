@@ -99,7 +99,7 @@ tiers = [
         name_id["Sniper Sight"],
         name_id["Tintinabar"],
         name_id["Sprint Shoes"],
-        name_id["Rename Card"],
+        name_id["ArchplgoItem"],
     ],
     [
         name_id["Guardian"],
@@ -301,3 +301,6 @@ if args.stronger_atma_weapon:
     # move stronger atma weapon from equipment tier c to tier a
     tiers[6].remove(name_id["Atma Weapon"])
     tiers[8].append(name_id["Atma Weapon"])
+
+if args.ap_data:
+    tiers[5].remove(name_id["ArchplgoItem"])

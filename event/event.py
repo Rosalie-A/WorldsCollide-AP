@@ -1,3 +1,6 @@
+import json
+
+import args
 from memory.space import Bank, Space, Reserve, Allocate, Free, Write, Read
 import data.direction as direction
 
@@ -16,6 +19,10 @@ from instruction.event import EVENT_CODE_START
 from event.event_reward import RewardType, Reward
 
 class Event():
+    if args.ap_data:
+        with open("location_equivalences.json") as file:
+            location_equivalencies = json.load(file)
+
     def __init__(self, events, rom, args, dialogs, characters, items, maps, enemies, espers, shops):
         self.events = events
         self.rom = rom
@@ -31,6 +38,8 @@ class Event():
 
         self.rewards_log = []
         self.changes_log = []
+        self.aliases = []
+        self.planned_reward_index = 0
 
     def name(self):
         raise NotImplementedError(self.__class__.__name__ + " event name")
@@ -42,7 +51,13 @@ class Event():
         return 1
 
     def add_reward(self, possible_types):
-        new_reward = Reward(self, possible_types)
+        if args.ap_data and self.name() in Event.location_equivalencies.keys():
+            ap_name = Event.location_equivalencies[self.name()][self.planned_reward_index]
+            ap_index = self.planned_reward_index
+            self.planned_reward_index += 1
+            new_reward = Reward(self, RewardType.ARCHIPELAGO, ap_name, ap_index)
+        else:
+            new_reward = Reward(self, possible_types)
         self.rewards.append(new_reward)
         return new_reward
 

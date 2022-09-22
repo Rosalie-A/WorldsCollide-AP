@@ -1,17 +1,30 @@
+import json
 from enum import Flag, unique, auto
+import args
+import constants.items
+from data.characters import Characters
+
+
 @unique
 class RewardType(Flag):
     NONE = auto()
     CHARACTER = auto()
     ESPER = auto()
     ITEM = auto()
+    ARCHIPELAGO = auto()
 
 class Reward:
-    def __init__(self, event, possible_types):
+    if args.ap_data:
+        with open("location_equivalences.json") as file:
+            location_equivalencies = json.load(file)
+
+    def __init__(self, event, possible_types, ap_name="", ap_index=""):
         self.id = None
         self.type = None
         self.event = event
         self.possible_types = possible_types
+        self.ap_name = ap_name
+        self.ap_index = ap_index
 
     def single_possible_type(self):
         return self.possible_types in RewardType
@@ -29,7 +42,7 @@ class Reward:
 
         return result + " (" + ', '.join(possible_strings) + ")"
 
-def choose_reward(possible_types, characters, espers, items):
+def choose_reward(possible_types, characters, espers, items, ap_reward = None):
     import random
 
     all_types = [flag for flag in RewardType]
@@ -44,6 +57,25 @@ def choose_reward(possible_types, characters, espers, items):
                 return (espers.get_random_esper(), reward_type)
             elif reward_type == RewardType.ITEM:
                 item_possible = True
+            elif reward_type == RewardType.ARCHIPELAGO:
+                reward = args.ap_data[ap_reward.ap_name]
+                if reward == "Archipelago Item":
+                    return (constants.items.name_id["ArchplgoItem"], RewardType.ITEM)
+                print("======================")
+                if reward == "Ragnarok Sword":
+                    print("Ragnarok Sword")
+                    print("Item")
+                    return (constants.items.name_id["Ragnarok"], RewardType.ITEM)
+                if reward == "Ragnarok Esper":
+                    print("Ragnarok Sword")
+                    print("Esper")
+                    return (espers.get_specific_esper("Ragnarok"), RewardType.ESPER)
+                if reward in Characters.DEFAULT_NAME:
+                    return (characters.get_specific_character(reward), RewardType.CHARACTER)
+                elif reward in constants.items.good_items:
+                    return (constants.items.name_id[reward], RewardType.ITEM)
+                else:
+                    return (espers.get_specific_esper(reward), RewardType.ESPER)
 
     # tried all possible_rewards and none were available
     # probably running out of chars and espers and need to make item rewards possible for more events

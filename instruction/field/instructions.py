@@ -57,6 +57,11 @@ def RecruitAndSelectParty(character):
     from instruction.field.functions import REFRESH_CHARACTERS_AND_SELECT_PARTY
     return RecruitCharacter(character), Call(REFRESH_CHARACTERS_AND_SELECT_PARTY)
 
+def RecruitAndSelectParty2(character):
+    from instruction.field.custom import RecruitCharacter2
+    from instruction.field.functions import REFRESH_CHARACTERS_AND_SELECT_PARTY
+    return RecruitCharacter2(character), Call(REFRESH_CHARACTERS_AND_SELECT_PARTY)
+
 class SetParty(_Instruction):
     def __init__(self, party):
         super().__init__(0x46, party)
@@ -162,6 +167,34 @@ def AddEsper(esper_id, sound_effect = True):
         return AddEsper(esper_id), PlaySoundEffect(141)
     else:
         return AddEsper(esper_id)
+
+class _AddEsper2(_Instruction):
+    def __init__(self):
+        super().__init__(0xa3)
+
+    def __str__(self):
+        return super().__str__()
+
+def AddEsper2(esper_id, sound_effect = True):
+    AddEsper = type("AddEsper", (_AddEsper2,), {})
+    if sound_effect:
+        return AddEsper(), PlaySoundEffect(0xCD)
+    else:
+        return AddEsper()
+
+class _AddItem2(_Instruction):
+    def __init__(self):
+        super().__init__(0xa4)
+
+    def __str__(self):
+        return super().__str__()
+
+def AddItem2(esper_id, sound_effect = True):
+    AddItem = type("AddItem", (_AddItem2,), {})
+    if sound_effect:
+        return AddItem(), PlaySoundEffect(0xCD)
+    else:
+        return AddItem()
 
 class RemoveEsper(_Instruction):
     def __init__(self, esper_id):

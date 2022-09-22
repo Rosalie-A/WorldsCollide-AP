@@ -331,7 +331,7 @@ tiers[Item.ITEM] = [
         name_id["Bolt Edge"],
         name_id["Inviz Edge"],
         name_id["Shadow Edge"],
-        name_id["Rename Card"],
+        name_id["ArchplgoItem"],
     ],
     [
         name_id["Ether"],

@@ -303,6 +303,9 @@ class Items():
         return random.choice(self.get_items(exclude, item_type))
 
     def get_good_random(self):
+        choice = random.choice(self.GOOD)
+        while choice == 231:
+            choice = random.choice(self.GOOD)
         return random.choice(self.GOOD)
 
     def get_receive_dialog(self, item):

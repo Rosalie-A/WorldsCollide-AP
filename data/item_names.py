@@ -230,7 +230,7 @@ id_name = {
     228 : "Exp. Egg",
     229 : "Tintinabar",
     230 : "Sprint Shoes",
-    231 : "Rename Card",
+    231 : "ArchplgoItem",
     232 : "Tonic",
     233 : "Potion",
     234 : "X-Potion",

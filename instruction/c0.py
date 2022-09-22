@@ -239,6 +239,72 @@ def _recruit_character_mod():
     return space.start_address
 recruit_character = _recruit_character_mod()
 
+def _recruit_character_mod2():
+    import data.event_word as event_word
+    characters_available_address = event_word.address(event_word.CHARACTERS_AVAILABLE)
+
+    space = Allocate(Bank.C0, 47, "c0 recruit_character2")
+    if args.start_average_level:
+        # set level to average before recruiting character so new character not included in average
+        space.write(
+            asm.LDA(0x11E5, asm.ABS),                 # a = character argument
+            asm.JSR(average_level, asm.ABS),
+        )
+    space.write(
+        asm.TDC(),
+        asm.LDA(0x11E5, asm.ABS),                     # a = character argument
+        asm.JSR(0xbaed, asm.ABS),                   # x = a mod 8 (bit), y = a // 8 (byte)
+
+        asm.LDA(0x1edc, asm.ABS_Y),                 # a = character recruited byte
+        asm.ORA(power_of_two_table, asm.LNG_X),     # set character recruited bit
+        asm.STA(0x1edc, asm.ABS_Y),                 # store result
+
+        asm.LDA(0x1ede, asm.ABS_Y),                 # a = character available byte
+        asm.ORA(power_of_two_table, asm.LNG_X),     # set character available bit
+        asm.STA(0x1ede, asm.ABS_Y),                 # store result
+
+        asm.INC(characters_available_address, asm.ABS),
+
+        asm.LDA(0x11E5, asm.ABS),                     # a = character argument
+        asm.JSR(character_data_offset, asm.ABS),    # y = character data offset (+0x1600)
+        asm.JSR(update_magic_skills, asm.ABS),      # update magic/skills based on character's level
+        asm.RTL(),
+    )
+    return space.start_address
+recruit_character2 = _recruit_character_mod2()
+
+def _get_esper2():
+    import data.event_word as event_word
+    espers_available_address = event_word.address(event_word.ESPERS_FOUND)
+
+    space = Allocate(Bank.C0, 22, "c0 give esper")
+    space.write(
+        asm.TDC(),
+        asm.LDA(0x11E5, asm.ABS),  # a = esper argument
+        asm.JSR(0xbaed, asm.ABS),  # x = a mod 8 (bit), y = a // 8 (byte)
+
+        asm.LDA(0x1a69, asm.ABS_Y),  # a = esper obtained byte
+        asm.ORA(power_of_two_table, asm.LNG_X),  # set esper obtained bit
+        asm.STA(0x1a69, asm.ABS_Y),  # store result
+
+        asm.INC(espers_available_address, asm.ABS),
+
+        asm.RTL(),
+    )
+    return space.start_address
+add_esper2 = _get_esper2()
+
+def _get_item2():
+    space = Allocate(Bank.C0, 20, "c0 give item")
+    space.write(
+        asm.TDC(),
+        asm.LDA(0x11E5, asm.ABS),  # a = item byte
+        asm.JSR(0xacf2, asm.ABS),  # give item, skipping loading from event argument
+        asm.RTL(),
+    )
+    return space.start_address
+add_item2 = _get_item2()
+
 def _character_recruited_mod():
     # input: a = character id
     # output: a = 1 if character recruited (in menus), else a = 0

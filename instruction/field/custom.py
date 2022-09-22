@@ -88,6 +88,57 @@ class RecruitCharacter(_Instruction):
     def __str__(self):
         return super().__str__(self.args[0])
 
+class RecruitCharacter2(_Instruction):
+    def __init__(self, character):
+        recruit_character_function2 = START_ADDRESS_SNES + c0.recruit_character2
+        src = [
+            asm.JSL(recruit_character_function2),
+            asm.LDA(0x02, asm.IMM8),        # command size
+            asm.JMP(0x9b5c, asm.ABS),       # next command
+        ]
+        space = Write(Bank.C0, src, "custom recruit_character command 2")
+        address = space.start_address
+
+        opcode = 0xa2
+        _set_opcode_address(opcode, address)
+
+        RecruitCharacter2.__init__ = lambda self, character: super().__init__(opcode, character)
+        self.__init__(character)
+
+class AddEsper2(_Instruction):
+    def __init__(self, esper):
+        add_esper_function2 = START_ADDRESS_SNES + c0.add_esper2
+        src = [
+            asm.JSL(add_esper_function2),
+            asm.LDA(0x02, asm.IMM8),        # command size
+            asm.JMP(0x9b5c, asm.ABS),       # next command
+        ]
+        space = Write(Bank.C0, src, "custom add_esper command 2")
+        address = space.start_address
+
+        opcode = 0xa3
+        _set_opcode_address(opcode, address)
+
+        AddEsper2.__init__ = lambda self, esper: super().__init__(opcode, esper)
+        self.__init__(esper)
+
+class AddItem2(_Instruction):
+    def __init__(self, item):
+        add_item_function2 = START_ADDRESS_SNES + c0.add_item2
+        src = [
+            asm.JSL(add_item_function2),
+            asm.LDA(0x02, asm.IMM8),        # command size
+            asm.JMP(0x9b5c, asm.ABS),       # next command
+        ]
+        space = Write(Bank.C0, src, "custom add_esper command 2")
+        address = space.start_address
+
+        opcode = 0xa4
+        _set_opcode_address(opcode, address)
+
+        AddItem2.__init__ = lambda self, item: super().__init__(opcode, item)
+        self.__init__(item)
+
 class _InvokeBattleType(_Instruction):
     # invoke battle with given type (front/back/pincer/side) regardless of formation settings
     def __init__(self, pack, battle_type, background):

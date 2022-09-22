@@ -61,7 +61,7 @@ category_types = {
         ResultType(58, "High Tier Item", "High Tier Item", None),
         ResultType(40, "Illumina", "Illumina", None),
         ResultType(39, "Imp Set", "Imp Set", None),
-        ResultType(41, "Rename Cards", "Rename Cards", None),
+        ResultType(41, "ArchplgoItems", "ArchplgoItems", None),
         ResultType(42, "Ribbon", "Ribbon", None),
         ResultType(43, "Tools", "Tools", None),
     ],

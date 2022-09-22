@@ -76,7 +76,7 @@ custom_values = {
     name_id["Red Jacket"]   : 32000,
     name_id["Regal Crown"]  : 16000,
     name_id["Relic Ring"]   : 1000,
-    name_id["Rename Card"]  : 10,
+    name_id["ArchplgoItem"]  : 10,
     name_id["Ribbon"]       : 28000,
     name_id["Rising Sun"]   : 3500,
     name_id["Safety Bit"]   : 12000,

@@ -20,7 +20,7 @@ class MetamorphGroups:
         self.groups[1].items[1] = name_id["Potion"] # replace with potion
 
     def remove_exp_eggs(self):
-        self.groups[18].items[3] = name_id["Rename Card"] # replace with rename card
+        self.groups[18].items[3] = name_id["ArchplgoItem"] # replace with ArchplgoItem
 
     def mod(self):
         if args.permadeath:

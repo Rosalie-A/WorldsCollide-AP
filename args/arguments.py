@@ -1,3 +1,6 @@
+import json
+
+
 class Arguments:
     def __init__(self):
         import importlib
@@ -25,6 +28,7 @@ class Arguments:
 
         self.parser.add_argument("-nro", dest = "no_rom_output", action = "store_true", help = "Do not output a modified rom file")
         self.parser.add_argument("-slog", dest = "stdout_log", action = "store_true", help = "Write log to stdout instead of file")
+        self.parser.add_argument("-ap", dest = "ap_data", help = "Provided Archipelago Data")
 
         for group in self.group_modules.values():
             group.parse(self.parser)
@@ -66,6 +70,12 @@ class Arguments:
 
         if self.debug:
             self.spoiler_log = True
+        self.ap_data_path = self.ap_data
+        if self.ap_data:
+            with open(self.ap_data) as ap_file:
+                decoded_data = json.load(ap_file)
+                print(decoded_data)
+            self.ap_data = decoded_data
 
     def _process_min_max(self, arg_name):
         values = getattr(self, arg_name)

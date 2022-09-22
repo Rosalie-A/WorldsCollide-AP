@@ -627,6 +627,10 @@ class XBA(_Instruction):
     def __init__(self):
         super().__opcode__(0xeb)
 
+class TCD(_Instruction):
+    def __init__(self):
+        super().__opcode__(0x5b)
+
 class TDC(_Instruction):
     def __init__(self):
         super().__opcode__(0x7b)
