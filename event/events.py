@@ -1,6 +1,6 @@
 import args
 from memory.space import Bank, Allocate
-from event.event_reward import RewardType, Reward, choose_reward, weighted_reward_choice
+from event.event_reward import CHARACTER_ESPER_ONLY_REWARDS, RewardType, choose_reward, weighted_reward_choice
 import instruction.field as field
 
 class Events():
@@ -16,7 +16,9 @@ class Events():
         self.espers = data.espers
         self.shops = data.shops
 
-        self.mod()
+        events = self.mod()
+
+        self.validate(events)
 
     def mod(self):
         # generate list of events from files
@@ -59,6 +61,8 @@ class Events():
         if self.args.spoiler_log:
             from log import section
             section("Events", log_strings, [])
+
+        return events
 
     def init_reward_slots(self, events):
         import random
@@ -277,3 +281,10 @@ def write_event_trigger_function():
     space.write(
         asm.JSR(trigger_event_check, asm.ABS),
     )
+
+    def validate(self, events):
+        char_esper_checks = []
+        for event in events:
+            char_esper_checks += [r for r in event.rewards if r.possible_types == (RewardType.CHARACTER | RewardType.ESPER)]
+
+        assert len(char_esper_checks) == CHARACTER_ESPER_ONLY_REWARDS, "Number of char/esper only checks changed - Check usages of CHARACTER_ESPER_ONLY_REWARDS and ensure no breaking changes"

@@ -13,6 +13,7 @@ class RewardType(Flag):
     ITEM = auto()
     ARCHIPELAGO = auto()
 
+CHARACTER_ESPER_ONLY_REWARDS = 6
 class Reward:
     if args.ap_data:
         with open("location_equivalences.json") as file:
