@@ -1,4 +1,4 @@
-from ..memory.space import Reserve
+from memory.space import Reserve
 class TitleGraphics:
     def __init__(self, rom, args):
         self.rom = rom

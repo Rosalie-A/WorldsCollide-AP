@@ -1,4 +1,5 @@
 from args.arguments import Arguments
+ap_data = None
 arguments = Arguments()
 
 import sys

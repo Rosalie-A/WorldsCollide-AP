@@ -18,7 +18,7 @@ class Events():
 
         events = self.mod()
 
-        self.validate(events)
+        #self.validate(events)
 
     def mod(self):
         # generate list of events from files
