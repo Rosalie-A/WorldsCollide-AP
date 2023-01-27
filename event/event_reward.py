@@ -75,6 +75,8 @@ def choose_reward(possible_types, characters, espers, items, ap_reward = None):
                     return (characters.get_specific_character(reward), RewardType.CHARACTER)
                 elif reward in constants.items.good_items:
                     return (constants.items.name_id[reward], RewardType.ITEM)
+                elif reward in constants.items.name_id.keys():
+                    return (constants.items.name_id[reward], RewardType.ITEM)
                 else:
                     return (espers.get_specific_esper(reward), RewardType.ESPER)
 
