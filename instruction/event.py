@@ -4,7 +4,7 @@ class _Instruction:
     def __init__(self, opcode, *args):
         self.opcode = opcode
 
-        from utils.flatten import flatten
+        from ff6wcutils.flatten import flatten
         self.args = flatten(args)
 
     def __len__(self):

@@ -62,7 +62,7 @@ def choose_reward(possible_types, characters, espers, items, ap_reward = None):
                 reward = args.ap_data[ap_reward.ap_name]
                 if reward == "Archipelago Item":
                     return (constants.items.name_id["ArchplgoItem"], RewardType.ITEM)
-                print("======================")
+                print(f"========== {reward}")
                 if reward == "Ragnarok Sword":
                     print("Ragnarok Sword")
                     print("Item")
@@ -71,7 +71,7 @@ def choose_reward(possible_types, characters, espers, items, ap_reward = None):
                     print("Ragnarok Sword")
                     print("Esper")
                     return (espers.get_specific_esper("Ragnarok"), RewardType.ESPER)
-                if reward in Characters.DEFAULT_NAME:
+                if str.upper(reward) in Characters.DEFAULT_NAME:
                     return (characters.get_specific_character(reward), RewardType.CHARACTER)
                 elif reward in constants.items.good_items:
                     return (constants.items.name_id[reward], RewardType.ITEM)
@@ -113,5 +113,5 @@ def reward_slot_weights(slot_iterations, iteration):
 def weighted_reward_choice(slot_iterations, iteration):
     weights = reward_slot_weights(slot_iterations, iteration)
 
-    from utils.weighted_random import weighted_random
+    from ff6wcutils.weighted_random import weighted_random
     return weighted_random(weights)

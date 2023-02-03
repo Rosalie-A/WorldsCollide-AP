@@ -2,7 +2,7 @@ import json
 
 
 class Arguments:
-    def __init__(self):
+    def __init__(self, ap_args):
         import importlib
         self.groups = [
             "settings",
@@ -36,7 +36,7 @@ class Arguments:
         for group in self.group_modules.values():
             group.parse(self.parser)
 
-        self.parser.parse_args(namespace = self)
+        self.parser.parse_args(ap_args, namespace = self)
 
         self.flags = ""
         self.seed_rng_flags = ""

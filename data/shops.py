@@ -81,7 +81,7 @@ class Shops():
     def random_tiered(self):
         def get_item(item_type, exclude = None):
             import random
-            from utils.weighted_random import weighted_random
+            from ff6wcutils.weighted_random import weighted_random
             from data.shop_item_tiers import tiers, weights
 
             if exclude is None:

@@ -124,7 +124,7 @@ class Espers():
     def randomize_spells_tiered(self):
         def get_spell():
             from data.esper_spell_tiers import tiers, weights, tier_s_distribution
-            from utils.weighted_random import weighted_random
+            from ff6wcutils.weighted_random import weighted_random
 
             random_tier = weighted_random(weights)
             if random_tier < len(weights) - 1: # not s tier, use equal distribution

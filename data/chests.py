@@ -122,7 +122,7 @@ class Chests():
     def random_tiered(self):
         def get_item(tiers, tier_s_distribution):
             from data.chest_item_tiers import weights
-            from utils.weighted_random import weighted_random
+            from ff6wcutils.weighted_random import weighted_random
 
             random_tier = weighted_random(weights)
             if random_tier < len(weights) - 1: # not s tier, use equal distribution
@@ -147,7 +147,7 @@ class Chests():
 
     def random_scaled(self):
         import math
-        from utils.weighted_random import weighted_random
+        from ff6wcutils.weighted_random import weighted_random
 
         # shuffle the chests to mix up empty/item/gold positions
         self.shuffle([Chest.EMPTY, Chest.ITEM, Chest.GOLD])

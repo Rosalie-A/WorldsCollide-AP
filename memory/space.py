@@ -75,7 +75,7 @@ class Space():
         return self._description
 
     def write(self, *values):
-        from utils.flatten import flatten
+        from ff6wcutils.flatten import flatten
         values = flatten(values)
         values = self._invoke_callables(values)
         values = self._parse_labels(values)
@@ -128,7 +128,7 @@ class Space():
         return label_pointer # return a new pointer to a new label
 
     def _invoke_callables(self, values):
-        from utils.flatten import flatten
+        from ff6wcutils.flatten import flatten
         result = []
         index = 0
         for value in values:
@@ -280,7 +280,7 @@ def Free(start_address, end_address):
     heap.free(start_address, end_address)
 
 def Write(destination, data, description):
-    from utils.flatten import flatten
+    from ff6wcutils.flatten import flatten
 
     size = 0
     data = flatten(data)

@@ -1,5 +1,6 @@
-def main():
+def main(ap_args):
     import args
+    args.main(ap_args)
     import log
 
     from memory.memory import Memory

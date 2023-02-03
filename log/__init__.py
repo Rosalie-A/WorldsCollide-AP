@@ -35,8 +35,6 @@ logging.info(log_msg)
 if not args.stdout_log:
     print(log_msg)
 
-if not args.hide_flags:
-    args.log()
 
 if args.manifest_file:
     import json

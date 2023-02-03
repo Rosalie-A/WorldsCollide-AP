@@ -92,7 +92,7 @@ class Events():
 
     def choose_archipelago_rewards(self, reward_slots):
         for slot in reward_slots:
-            slot.id, slot.type = choose_reward(slot.possible_types, self.characters, self.espers, self.items, slot)
+            slot.id, slot.type = choose_reward(RewardType.ARCHIPELAGO, self.characters, self.espers, self.items, slot)
 
     def character_gating_mod(self, events, name_event):
         import random

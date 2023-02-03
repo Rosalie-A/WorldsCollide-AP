@@ -36,7 +36,7 @@ def section_entries(label, lentries, rentries):
         lentries[-1] = lentries[-1][:-1]
         rentries[-1] = rentries[-1][:-1]
 
-    from utils.flatten import flatten
+    from ff6wcutils.flatten import flatten
     lcolumn = flatten(lentries)
     rcolumn = flatten(rentries)
 

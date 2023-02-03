@@ -163,7 +163,7 @@ class Maps():
         # there is a box which can be walked into but not out of which causes the game to lock
         # fix the three boxes to no longer be walkable
 
-        from utils.compression import compress, decompress
+        from ff6wcutils.compression import compress, decompress
         layer1_tilemap = 0x1c
         tilemap_ptrs_start = 0x19cd90
         tilemap_ptr_addr = tilemap_ptrs_start + layer1_tilemap * self.rom.LONG_PTR_SIZE
