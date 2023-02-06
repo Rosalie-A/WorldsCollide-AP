@@ -11,7 +11,7 @@ class Memory:
         free()
 
     def write(self):
-        self.rom.set_bytes(0x00FFC0, bytearray(args.ap_data["RomName"], 'utf8'))
+        self.rom.set_bytes(0x00FFC0, bytearray(args.ap_data["RomName"], 'utf-8'))
         self.rom.set_bytes(0x12BEBC, bytearray(text.get_bytes(text.convert("ArchplgoItem", text.TEXT2), text.TEXT2)))
         if not args.no_rom_output:
             self.rom.write(args.output_file)

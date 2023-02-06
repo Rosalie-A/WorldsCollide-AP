@@ -1,3 +1,8 @@
+import os
+from sys import path
+# It's either this or adjusting every import manually. There's fifteen hundred of those. You tell me.
+path.append(os.path.join(os.getcwd(), "./worlds/ff6wc/WorldsCollide"))
+
 def main(ap_args):
     import args
     args.main(ap_args)
