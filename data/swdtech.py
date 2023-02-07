@@ -1,4 +1,4 @@
-import data.text as text
+import worlds.ff6wc.WorldsCollide.data.text as text
 
 class SwdTech:
     NAME_SIZE = 12

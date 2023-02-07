@@ -1,4 +1,4 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
 
 class SouthFigaro(Event):
     def name(self):

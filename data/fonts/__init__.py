@@ -1,5 +1,5 @@
 def __init__():
-    from data.fonts.widths import Widths
+    from worlds.ff6wc.WorldsCollide.data.fonts.widths import Widths
     widths = Widths()
 
     import sys, inspect

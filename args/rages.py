@@ -2,7 +2,7 @@ def name():
     return "Rages"
 
 def parse(parser):
-    from data.rages import Rages
+    from worlds.ff6wc.WorldsCollide.data.rages import Rages
 
     rages = parser.add_argument_group("Rages")
 

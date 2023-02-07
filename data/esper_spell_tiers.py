@@ -1,4 +1,4 @@
-from data.spell_names import name_id
+from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
 
 tiers = [
     [

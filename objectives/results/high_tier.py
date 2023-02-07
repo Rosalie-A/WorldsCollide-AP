@@ -1,4 +1,4 @@
-from objectives.results._objective_result import *
+from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
 
 class Field(field_result.Result):
     def src(self, item_id):
@@ -16,7 +16,7 @@ class Result(ObjectiveResult):
     NAME = "High Tier Item"
     def __init__(self):
         import random
-        from data.items import Items
+        from worlds.ff6wc.WorldsCollide.data.items import Items
 
         random_item = random.choice(Items.GOOD)
         super().__init__(Field, Battle, random_item)

@@ -1,5 +1,5 @@
-from objectives.results._objective_result import *
-from objectives.results._add_sub_stat import add_stat_all, sub_stat_all
+from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
+from worlds.ff6wc.WorldsCollide.objectives.results._add_sub_stat import add_stat_all, sub_stat_all
 
 SPEED_ADDRESS = 0x161b
 add_speed = add_stat_all(SPEED_ADDRESS, "speed")

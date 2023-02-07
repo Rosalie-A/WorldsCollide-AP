@@ -1,10 +1,10 @@
-from memory.space import Bank, Write
-import instruction.asm as asm
-from objectives._cached_function import _CachedFunction
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.objectives._cached_function import _CachedFunction
 
-import data.event_bit as event_bit
-import data.battle_bit as battle_bit
-import data.event_word as event_word
+import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
+import worlds.ff6wc.WorldsCollide.data.battle_bit as battle_bit
+import worlds.ff6wc.WorldsCollide.data.event_word as event_word
 
 class _Condition(_CachedFunction, asm.JSR):
     def __init__(self, *args, **kwargs):

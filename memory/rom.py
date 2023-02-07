@@ -5,7 +5,7 @@ class ROM():
     LONG_PTR_SIZE = 3   # long ptr  (24-bit)
 
     def __init__(self, file_name):
-        from valid_rom_file import valid_rom_file
+        from worlds.ff6wc.WorldsCollide.valid_rom_file import valid_rom_file
         if not valid_rom_file(file_name):
             raise ValueError("Invalid ROM File")
 

@@ -58,7 +58,7 @@ class RandomAttack(Instruction):
         return [self.OPCODE, self._attack1, self._attack2, self._attack3]
 
     def __str__(self):
-        from data.spell_names import id_name
+        from worlds.ff6wc.WorldsCollide.data.spell_names import id_name
         return f"RandomAttack: {id_name[self._attack1]}, {id_name[self._attack2]}, {id_name[self._attack3]}"
 
 class SetTarget(Instruction):
@@ -247,7 +247,7 @@ class Spell(Instruction):
     def __init__(self, spell_id):
         self._spell_id = spell_id
 
-        from data.spell_names import id_name
+        from worlds.ff6wc.WorldsCollide.data.spell_names import id_name
         self.name = id_name[self._spell_id]
 
     @property

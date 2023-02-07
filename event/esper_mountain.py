@@ -1,4 +1,4 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
 
 class EsperMountain(Event):
     def name(self):
@@ -100,7 +100,7 @@ class EsperMountain(Event):
         space = Write(Bank.CB, src, "esper mountain south ultros event tile")
         south_ultros_event_tile = space.start_address
 
-        from data.map_event import MapEvent
+        from worlds.ff6wc.WorldsCollide.data.map_event import MapEvent
         new_event = MapEvent()
         new_event.x = 15
         new_event.y = 23

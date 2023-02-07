@@ -1,8 +1,9 @@
-from data.dialogs.dialog import Dialog
-from data.structures import DataList
-from memory.space import Space
-from data.fonts import widths
-import data.text
+from worlds.ff6wc.WorldsCollide.data.dialogs.dialog import Dialog
+from worlds.ff6wc.WorldsCollide.data.structures import DataList
+from worlds.ff6wc.WorldsCollide.memory.space import Space
+from worlds.ff6wc.WorldsCollide.data.fonts import widths
+import worlds.ff6wc.WorldsCollide.data.text
+import worlds.ff6wc.WorldsCollide.data as data
 
 class Dialogs():
     DIALOG_PTRS_START = 0xce602
@@ -33,7 +34,7 @@ class Dialogs():
     MULTI_LINE_BATTLE_DIALOGS_START = 0x10d200
     MULTI_LINE_BATTLE_DIALOGS_END = 0x10fcff
 
-    from constants.objectives import MAX_OBJECTIVES
+    from worlds.ff6wc.WorldsCollide.constants.objectives import MAX_OBJECTIVES
     OBJECTIVES = list(range(3084, 3084 + MAX_OBJECTIVES))
     BATTLE_OBJECTIVES = list(range(70, 70 + MAX_OBJECTIVES))
 
@@ -106,7 +107,7 @@ class Dialogs():
             self.multi_line_battle_dialogs.append(dialog)
 
     def free(self):
-        import data.dialogs.free as free
+        import worlds.ff6wc.WorldsCollide.data.dialogs.free as free
 
         self.free_multi_line_battle_dialogs = []
         for dialog_id in free.multi_line_battle_dialogs:
@@ -143,7 +144,7 @@ class Dialogs():
         return (" " * left_spaces) + string
 
     def move_battle_messages(self):
-        from memory.space import START_ADDRESS_SNES, Bank, Reserve, Allocate, Free
+        from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES, Bank, Reserve, Allocate, Free
         space = Allocate(Bank.F0, 4000, "battle messages new location")
 
         # update pointers to messages (leave pointers in d1 bank)
@@ -164,7 +165,7 @@ class Dialogs():
         Free(0x11f000, 0x11f79f)
 
     def objectives_mod(self):
-        import objectives
+        import worlds.ff6wc.WorldsCollide.objectives as objectives
         self.multi_line_battle_objectives = []
         for index, objective in enumerate(objectives):
             line2 = self.get_centered(str(objective.result))

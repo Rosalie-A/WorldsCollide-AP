@@ -1,6 +1,6 @@
-from memory.space import Bank, START_ADDRESS_SNES, Write
-import instruction.asm as asm
-from objectives._cached_function import _CachedFunction
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.objectives._cached_function import _CachedFunction
 
 class Result(_CachedFunction, asm.JSR):
     def __init__(self, *args, **kwargs):
@@ -22,7 +22,7 @@ def SetBit(address, bit):
     ]
 
 def AddItem(item_id):
-    from instruction.c0 import add_item
+    from worlds.ff6wc.WorldsCollide.instruction.c0 import add_item
     return [
         asm.PHP(),
         asm.A8(),

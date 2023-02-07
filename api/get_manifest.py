@@ -1,6 +1,6 @@
   
 def get_manifest(flags = None, hash = None, seed_id = None):
-  from version import __version__  
+  from worlds.ff6wc.WorldsCollide.version import __version__
   properties = [('version', __version__)]
 
   if flags:

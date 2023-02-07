@@ -1,5 +1,5 @@
-from memory.space import Bank, START_ADDRESS_SNES, Reserve, Allocate, Write
-import instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Reserve, Allocate, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
 def equipable_umaro(character_count):
     space = Reserve(0x31e6f, 0x31e6f, "Compare character id for equipment menu")
@@ -12,7 +12,7 @@ def set_starting_level(start_level):
     space.write(start_level.to_bytes(1, 'little'))
 
 def update_morph_character(characters):
-    from constants.commands import id_name
+    from worlds.ff6wc.WorldsCollide.constants.commands import id_name
 
     # NOTE: this assumes only 1 character has morph
     for character in characters:
@@ -23,8 +23,8 @@ def update_morph_character(characters):
                 return
 
 def show_original_names():
-    import data.text as text
-    from data.characters import Characters
+    import worlds.ff6wc.WorldsCollide.data.text as text
+    from worlds.ff6wc.WorldsCollide.data.characters import Characters
 
     space = Allocate(Bank.C3, 195, "characters show original names")
     original_names_table = space.next_address

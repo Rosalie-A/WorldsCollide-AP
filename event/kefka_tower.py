@@ -1,5 +1,5 @@
-from event.event import *
-import args
+from worlds.ff6wc.WorldsCollide.event.event import *
+import worlds.ff6wc.WorldsCollide.args as args
 
 class KefkaTower(Event):
     def name(self):
@@ -13,7 +13,7 @@ class KefkaTower(Event):
             field.SetEventBit(npc_bit.POLTRGEIST_STATUE_KEFKA_TOWER),
         )
 
-        import objectives
+        import worlds.ff6wc.WorldsCollide.objectives as objectives
         self.unlock_final_kefka_result_name = "Unlock Final Kefka"
         if self.unlock_final_kefka_result_name not in objectives.results:
             space.write(
@@ -339,7 +339,7 @@ class KefkaTower(Event):
         # not sure why (stairs?) but this npc only blocks skipping the inferno event tile when entering from the east
         # fortunately this means the npc does not block leaving KT from the west after landing at statues
 
-        from data.npc import NPC
+        from worlds.ff6wc.WorldsCollide.data.npc import NPC
         inferno_npc = self.maps.get_npc(0x19a, 0x10)
         invisible_block_npc = NPC()
         invisible_block_npc.x = 30
@@ -372,7 +372,7 @@ class KefkaTower(Event):
         )
 
     def poltergeist_skip_fix(self):
-        from data.npc import NPC
+        from worlds.ff6wc.WorldsCollide.data.npc import NPC
         poltergeist_statue_npc = self.maps.get_npc(0x14e, 0x10)
         invisible_block_npc = NPC()
         invisible_block_npc.x = 36

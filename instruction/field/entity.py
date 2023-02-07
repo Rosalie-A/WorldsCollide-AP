@@ -1,11 +1,11 @@
-from instruction.event import _Instruction
-from instruction.entity import *
+from worlds.ff6wc.WorldsCollide.instruction.event import _Instruction
+from worlds.ff6wc.WorldsCollide.instruction.entity import *
 
 CAMERA, PARTY0, PARTY1, PARTY2, PARTY3 = range(0x30, 0x35)
 
 class MoveDiagonal(_Instruction):
     def __init__(self, dir1, dist1, dir2, dist2):
-        import data.direction as direction
+        import worlds.ff6wc.WorldsCollide.data.direction as direction
         dir_letter = { direction.UP : "u", direction.RIGHT : "r",
                        direction.DOWN : "d", direction.LEFT : "l" }
         dest_opcode = {"ru11" : 0xa0, "rd11" : 0xa1, "ld11" : 0xa2, "lu11" : 0xa3,

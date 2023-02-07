@@ -1,6 +1,6 @@
-from memory.space import Bank, Reserve, Allocate, Free, Write, Read, START_ADDRESS_SNES
-import instruction.asm as asm
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate, Free, Write, Read, START_ADDRESS_SNES
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.args as args
 
 # replace vanilla commands with calls to extracted functions
 def _extract_original(original_start, original_end):
@@ -206,7 +206,7 @@ def _esper_found_mod():
 esper_found = _esper_found_mod()
 
 def _recruit_character_mod():
-    import data.event_word as event_word
+    import worlds.ff6wc.WorldsCollide.data.event_word as event_word
     characters_available_address = event_word.address(event_word.CHARACTERS_AVAILABLE)
 
     space = Allocate(Bank.C0, 43, "c0 recruit_character")
@@ -297,7 +297,7 @@ def _is_skill_learner_mod():
     # input: a = character id, x = 16 bit offset to end of learners table + 1, y = size of learners table
     # output: a = 1 if character in skill learner table, else a = 0
 
-    from memory.space import START_ADDRESS_SNES
+    from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES
     src = [
         "LEARNER_CHECK_LOOP_START",
         asm.CPY(0x0000, asm.IMM16),

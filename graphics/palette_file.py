@@ -1,4 +1,4 @@
-from graphics.palette import Palette
+from worlds.ff6wc.WorldsCollide.graphics.palette import Palette
 
 class PaletteFile(Palette):
     def __init__(self, path):

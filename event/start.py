@@ -1,4 +1,4 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
 import random
 
 class Start(Event):
@@ -208,9 +208,9 @@ class Start(Event):
                 field.AddItem(tool, sound_effect = False),
             ]
 
-        from constants.items import id_name
-        from data.shop_item_tiers import tiers
-        from data.item import Item
+        from worlds.ff6wc.WorldsCollide.constants.items import id_name
+        from worlds.ff6wc.WorldsCollide.data.shop_item_tiers import tiers
+        from worlds.ff6wc.WorldsCollide.data.item import Item
         junk = []
         junk += tiers[Item.WEAPON][0]
         junk += tiers[Item.SHIELD][0]

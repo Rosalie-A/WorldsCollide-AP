@@ -1,6 +1,6 @@
-from data.character_sprite import CharacterSprite
-from data.structures import DataArray
-from constants.entities import id_character, name_id
+from worlds.ff6wc.WorldsCollide.data.character_sprite import CharacterSprite
+from worlds.ff6wc.WorldsCollide.data.structures import DataArray
+from worlds.ff6wc.WorldsCollide.constants.entities import id_character, name_id
 
 # portrait args are for characters + imp
 PORTRAIT_CHARACTERS = list(id_character) + [name_id["Imp"]]

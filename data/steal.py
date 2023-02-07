@@ -1,5 +1,5 @@
-from memory.space import Bank, Reserve, Allocate, Write
-import instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
 class Steal:
     def __init__(self, rom, args):

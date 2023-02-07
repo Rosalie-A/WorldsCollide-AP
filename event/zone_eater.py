@@ -1,4 +1,4 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
 
 class ZoneEater(Event):
     def name(self):
@@ -31,7 +31,7 @@ class ZoneEater(Event):
         chest_bridge_npc = self.maps.get_npc(0x114, chest_bridge_npc_id)
 
         import copy
-        from data.npc import NPC
+        from worlds.ff6wc.WorldsCollide.data.npc import NPC
         gate_npc = copy.deepcopy(chest_bridge_npc) # copy bottom left npc to drop towards end of bottom level
         gate_npc.x = 30
         gate_npc.y = 28

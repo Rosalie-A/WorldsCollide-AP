@@ -1,6 +1,6 @@
-from instruction.event import _Instruction, _Branch, _LoadMap
-from instruction.entity import *
-import data.event_bit as event_bit
+from worlds.ff6wc.WorldsCollide.instruction.event import _Instruction, _Branch, _LoadMap
+from worlds.ff6wc.WorldsCollide.instruction.entity import *
+import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
 
 class SubmergeFigaroCastle(_Instruction):
     def __init__(self):
@@ -47,12 +47,12 @@ class BranchIfEventBitClear(_Branch):
 
 class EndIfEventBitSet(BranchIfEventBitSet):
     def __init__(self, event_bit):
-        from instruction.field.functions import END
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import END
         super().__init__(event_bit, END)
 
 class EndIfEventBitClear(BranchIfEventBitClear):
     def __init__(self, event_bit):
-        from instruction.field.functions import END
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import END
         super().__init__(event_bit, END)
 
 class Branch(BranchIfEventBitClear):

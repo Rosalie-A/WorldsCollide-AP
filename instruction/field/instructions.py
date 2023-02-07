@@ -1,7 +1,8 @@
-import data.event_bit as event_bit
+import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
 
-from instruction.event import _Instruction, _Branch, _LoadMap, EVENT_CODE_START
+from worlds.ff6wc.WorldsCollide.instruction.event import _Instruction, _Branch, _LoadMap, EVENT_CODE_START
 from enum import IntEnum, IntFlag
+from worlds.ff6wc.WorldsCollide import data
 
 class NOP(_Instruction):
     def __init__(self):
@@ -53,13 +54,13 @@ class RemoveCharacterFromParties(_Instruction):
         return super().__str__(f"{self.args[0]}")
 
 def RecruitAndSelectParty(character):
-    from instruction.field.custom import RecruitCharacter
-    from instruction.field.functions import REFRESH_CHARACTERS_AND_SELECT_PARTY
+    from worlds.ff6wc.WorldsCollide.instruction.field.custom import RecruitCharacter
+    from worlds.ff6wc.WorldsCollide.instruction.field.functions import REFRESH_CHARACTERS_AND_SELECT_PARTY
     return RecruitCharacter(character), Call(REFRESH_CHARACTERS_AND_SELECT_PARTY)
 
 def RecruitAndSelectParty2(character):
-    from instruction.field.custom import RecruitCharacter2
-    from instruction.field.functions import REFRESH_CHARACTERS_AND_SELECT_PARTY
+    from worlds.ff6wc.WorldsCollide.instruction.field.custom import RecruitCharacter2
+    from worlds.ff6wc.WorldsCollide.instruction.field.functions import REFRESH_CHARACTERS_AND_SELECT_PARTY
     return RecruitCharacter2(character), Call(REFRESH_CHARACTERS_AND_SELECT_PARTY)
 
 class SetParty(_Instruction):
@@ -114,11 +115,11 @@ class StopScreenShake(_Instruction):
 class _AddItem(_Instruction):
     def __init__(self, item):
         if isinstance(item, str):
-            from data.item_names import name_id
+            from worlds.ff6wc.WorldsCollide.data.item_names import name_id
             self.item = name_id[item]
             self.item_name = item
         else:
-            from data.item_names import id_name
+            from worlds.ff6wc.WorldsCollide.data.item_names import id_name
             self.item = item
             self.item_name = id_name[item]
 
@@ -594,7 +595,7 @@ class SetParentMap(_Instruction):
         self.x = x
         self.y = y
 
-        import data.direction
+        import worlds.ff6wc.WorldsCollide.data.direction
         if direction == data.direction.UP:
             dir_arg = 2
         elif direction == data.direction.RIGHT:
@@ -667,7 +668,7 @@ class BranchIfEventBitSet(_Branch):
 
 class ReturnIfEventBitSet(BranchIfEventBitSet):
     def __init__(self, event_bit):
-        from instruction.field.functions import RETURN
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import RETURN
         super().__init__(event_bit, RETURN)
 
 class BranchIfEventBitClear(_Branch):
@@ -682,7 +683,7 @@ class BranchIfEventBitClear(_Branch):
 
 class ReturnIfEventBitClear(BranchIfEventBitClear):
     def __init__(self, event_bit):
-        from instruction.field.functions import RETURN
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import RETURN
         super().__init__(event_bit, RETURN)
 
 class BranchIfAny(_Branch):
@@ -733,12 +734,12 @@ class BranchIfAll(_Branch):
 
 class ReturnIfAny(BranchIfAny):
     def __init__(self, checks):
-        from instruction.field.functions import RETURN
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import RETURN
         super().__init__(checks, RETURN)
 
 class ReturnIfAll(BranchIfAll):
     def __init__(self, checks):
-        from instruction.field.functions import RETURN
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import RETURN
         super().__init__(checks, RETURN)
 
 class Branch(BranchIfEventBitClear):
@@ -767,7 +768,7 @@ class BranchIfBattleEventBitClear(_Branch):
 
 class ReturnIfBattleEventBitClear(BranchIfBattleEventBitClear):
     def __init__(self, battle_event_bit):
-        from instruction.field.functions import RETURN
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import RETURN
         super().__init__(battle_event_bit, RETURN)
 
 class SetEventWord(_Instruction):
@@ -904,7 +905,7 @@ class _BranchIfPartySize(BranchIfEventBitSet):
         return super(BranchIfEventBitSet, self).__str__(self.size)
 
 def BranchIfPartySize(size, destination):
-    from instruction.field.functions import UPDATE_PARTY_SIZE_EVENT_BITS
+    from worlds.ff6wc.WorldsCollide.instruction.field.functions import UPDATE_PARTY_SIZE_EVENT_BITS
     BranchIfPartySize = type("BranchIfPartySize", (_BranchIfPartySize,), {})
     return Call(UPDATE_PARTY_SIZE_EVENT_BITS), BranchIfPartySize(size, destination)
 
@@ -914,11 +915,11 @@ class LoadActiveParty(_Instruction):
         super().__init__(0xe4)
 
 def BranchIfEsperNotFound(esper, destination):
-    from instruction.field.custom import LoadEsperFound
+    from worlds.ff6wc.WorldsCollide.instruction.field.custom import LoadEsperFound
     return LoadEsperFound(esper), BranchIfEventBitClear(event_bit.multipurpose(0), destination)
 
 def BranchIfPartyEmpty(party, destination):
-    from instruction.field.custom import LoadPartiesWithCharacters
+    from worlds.ff6wc.WorldsCollide.instruction.field.custom import LoadPartiesWithCharacters
     return LoadPartiesWithCharacters(), BranchIfEventBitClear(event_bit.multipurpose(party-1), destination)
 
 class _InvokeBattle(_Instruction):
@@ -941,7 +942,7 @@ def InvokeBattle(pack, background = 0x3f, battle_sound = True, battle_animation 
     InvokeBattle = type("InvokeBattle", (_InvokeBattle,), {})
     commands = [InvokeBattle(pack, background, battle_sound, battle_animation)]
     if check_game_over:
-        from instruction.field.functions import CHECK_GAME_OVER
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import CHECK_GAME_OVER
         commands.append(Call(CHECK_GAME_OVER))
     return commands
 
@@ -951,11 +952,11 @@ class BattleType(IntEnum):
     PINCER  = 2
     SIDE    = 3
 def InvokeBattleType(pack, battle_type, background = 0x3f, check_game_over = True):
-    from instruction.field.custom import _InvokeBattleType
+    from worlds.ff6wc.WorldsCollide.instruction.field.custom import _InvokeBattleType
     InvokeBattleType = type("InvokeBattleType", (_InvokeBattleType,), {})
     commands = [InvokeBattleType(pack, battle_type, background)]
     if check_game_over:
-        from instruction.field.functions import CHECK_GAME_OVER
+        from worlds.ff6wc.WorldsCollide.instruction.field.functions import CHECK_GAME_OVER
         commands.append(Call(CHECK_GAME_OVER))
     return commands
 
@@ -965,7 +966,7 @@ class InvokeColiseumBattle(_Instruction):
 
 class _EntityAct(_Instruction):
     def __init__(self, entity, wait_until_complete, *actions):
-        import instruction.field.entity as field_entity
+        import worlds.ff6wc.WorldsCollide.instruction.field.entity as field_entity
         actions = list(actions) + [field_entity.End()]
 
         self.actions_size = 0
@@ -989,7 +990,7 @@ class _EntityAct(_Instruction):
         return result
 
 def EntityAct(entity, wait_until_complete, *actions):
-        import instruction.field.entity as field_entity
+        import worlds.ff6wc.WorldsCollide.instruction.field.entity as field_entity
         EntityAct = type("EntityAct", (_EntityAct,), {})
         return EntityAct(entity, wait_until_complete, *actions), list(actions), field_entity.End()
 

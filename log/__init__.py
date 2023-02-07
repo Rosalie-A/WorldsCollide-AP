@@ -1,7 +1,8 @@
 import logging, os
-from log.format import *
+from worlds.ff6wc.WorldsCollide.log.format import *
+from worlds.ff6wc.WorldsCollide import args
 
-import args
+import worlds.ff6wc.WorldsCollide.args as args
 name, ext = os.path.splitext(args.output_file)
 log_file = "{}{}".format(name, ".txt")
 if args.stdout_log:
@@ -12,7 +13,7 @@ else:
 
 hash = ', '.join([entry.name for entry in args.sprite_hash])
 import time
-import version
+import worlds.ff6wc.WorldsCollide.version as version
 log_msg =  f"Version   {version.__version__}\n"
 log_msg += f"Generated {time.strftime('%Y-%m-%d %H:%M:%S')}\n"
 log_msg += f"Input     {os.path.basename(args.input_file)}\n"
@@ -38,7 +39,7 @@ if not args.stdout_log:
 
 if args.manifest_file:
     import json
-    from api.get_manifest import get_manifest
+    from worlds.ff6wc.WorldsCollide.api.get_manifest import get_manifest
     manifest = get_manifest(args.flags, hash, args.seed_id)
     with open(args.manifest_file, "wb") as output:
         output.write(json.dumps(manifest, indent=4).encode())

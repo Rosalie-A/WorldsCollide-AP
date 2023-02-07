@@ -1,6 +1,6 @@
-from memory.space import START_ADDRESS_SNES, Bank, Reserve, Allocate, Write, Read
-import instruction.asm as asm
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES, Bank, Reserve, Allocate, Write, Read
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.args as args
 import random
 
 def _divide_mod():
@@ -56,7 +56,7 @@ def _set_gray_text_color_mod():
 set_gray_text_color = _set_gray_text_color_mod()
 
 def _boss_formations_mod():
-    from data.bosses import normal_formation_name
+    from worlds.ff6wc.WorldsCollide.data.bosses import normal_formation_name
 
     bosses_table = []
     for formation in normal_formation_name:
@@ -71,7 +71,7 @@ def _boss_formations_mod():
 boss_formations, boss_formations_size = _boss_formations_mod()
 
 def _dragon_formations_mod():
-    from data.bosses import dragon_formation_name
+    from worlds.ff6wc.WorldsCollide.data.bosses import dragon_formation_name
 
     dragons_table = []
     for formation in dragon_formation_name:
@@ -86,7 +86,7 @@ def _dragon_formations_mod():
 dragon_formations, dragon_formations_size = _dragon_formations_mod()
 
 def _final_battle_formations_mod():
-    from data.bosses import final_battle_formation_name
+    from worlds.ff6wc.WorldsCollide.data.bosses import final_battle_formation_name
 
     final_battles_table = []
     for formation in final_battle_formation_name:

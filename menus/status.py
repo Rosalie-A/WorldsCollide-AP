@@ -1,6 +1,6 @@
-from memory.space import Bank, Reserve, Allocate
-import instruction.asm as asm
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.args as args
 
 class StatusMenu:
     def __init__(self, characters):
@@ -10,7 +10,7 @@ class StatusMenu:
         self.mod()
 
     def mod_natural_magic(self):
-        import data.text as text
+        import worlds.ff6wc.WorldsCollide.data.text as text
 
         natural_magic_learners = []
         if self.characters.natural_magic.learner1 is not None:

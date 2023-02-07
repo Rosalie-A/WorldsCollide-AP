@@ -25,7 +25,7 @@ class Shop():
                 self.item_count += 1
 
     def data(self):
-        from data.shops import Shops
+        from worlds.ff6wc.WorldsCollide.data.shops import Shops
         data = [0x00] * Shops.DATA_SIZE
 
         data[0]     = self.type             << 0
@@ -97,7 +97,7 @@ class Shop():
             items_added.append(random_item_id)
 
     def name(self):
-        from data.shop_map_names import shop_map_names
+        from worlds.ff6wc.WorldsCollide.data.shop_map_names import shop_map_names
         if self.id < len(shop_map_names):
             return shop_map_names[self.id]
         return ""

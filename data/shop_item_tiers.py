@@ -1,6 +1,6 @@
-from data.item_names import name_id
-from data.item import Item
-import args
+from worlds.ff6wc.WorldsCollide.data.item_names import name_id
+from worlds.ff6wc.WorldsCollide.data.item import Item
+import worlds.ff6wc.WorldsCollide.args as args
 
 tiers = [None] * Item.ITEM_TYPE_COUNT
 weights = [None] * Item.ITEM_TYPE_COUNT

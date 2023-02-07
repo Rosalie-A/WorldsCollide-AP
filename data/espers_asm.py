@@ -1,8 +1,8 @@
-from memory.space import Bank, Reserve, Allocate, Write
-import instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
 def equipable_mod(espers):
-    from data.characters import Characters
+    from worlds.ff6wc.WorldsCollide.data.characters import Characters
 
     character_id_address = 0x1cf8
     gray_out_if_equipped = 0xc35576

@@ -1,4 +1,5 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
+import worlds.ff6wc.WorldsCollide.data as data
 
 class LoneWolf(Event):
     def name(self):
@@ -144,7 +145,7 @@ class LoneWolf(Event):
 
     def alternative_item_mod(self):
         # item lone wolf will give as a reward for not picking self.reward1
-        import data.text
+        import worlds.ff6wc.WorldsCollide.data.text
         item_name = data.text.convert(self.items.get_name(self.reward2.id), data.text.TEXT1) # item names are stored as TEXT2, dialogs are TEXT1
 
         self.dialogs.set_text(1765, "<line><     >Grrrr…<line><     >You'll never get this<line><     >“" + item_name + "”!<end>")

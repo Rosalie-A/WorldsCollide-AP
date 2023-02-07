@@ -26,7 +26,7 @@ def parse(parser):
                             help = "Remove spells from learnable sources: Items, Espers, Natural Magic, and Objectives")
 
 def process(args):
-    from constants.spells import black_magic_ids, white_magic_ids, gray_magic_ids, spell_id
+    from worlds.ff6wc.WorldsCollide.constants.spells import black_magic_ids, white_magic_ids, gray_magic_ids, spell_id
 
     # If no_ultima is on, add it to our exclude list for downstream use
     # If permadeath is on, add it to our exclude list for downstream use
@@ -110,14 +110,14 @@ def options(args):
         
     return opts
 def _format_spells_log_entries(spell_ids):
-    from constants.spells import id_spell
+    from worlds.ff6wc.WorldsCollide.constants.spells import id_spell
     spell_entries = []
     for spell_id in spell_ids:
         spell_entries.append(("", id_spell[spell_id]))
     return spell_entries
 
 def menu(args):
-    from menus.flags_remove_learnable_spells import FlagsRemoveLearnableSpells
+    from worlds.ff6wc.WorldsCollide.menus.flags_remove_learnable_spells import FlagsRemoveLearnableSpells
 
     entries = options(args)
     for index, entry in enumerate(entries):

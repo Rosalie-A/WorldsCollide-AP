@@ -1,10 +1,10 @@
-from data.enemy_script import EnemyScript
-from data.enemy_script_custom_commands import EnemyScriptCommands
-from data.enemy_script_dialogs import EnemyScriptDialogs
-from data.enemy_script_abilities import EnemyScriptAbilities
-from data.structures import DataMap
+from worlds.ff6wc.WorldsCollide.data.enemy_script import EnemyScript
+from worlds.ff6wc.WorldsCollide.data.enemy_script_custom_commands import EnemyScriptCommands
+from worlds.ff6wc.WorldsCollide.data.enemy_script_dialogs import EnemyScriptDialogs
+from worlds.ff6wc.WorldsCollide.data.enemy_script_abilities import EnemyScriptAbilities
+from worlds.ff6wc.WorldsCollide.data.structures import DataMap
 
-import data.enemy_script_commands as ai_instr
+import worlds.ff6wc.WorldsCollide.data.enemy_script_commands as ai_instr
 
 class EnemyScripts():
     SCRIPT_PTRS_START = 0xf8400
@@ -86,7 +86,7 @@ class EnemyScripts():
         shiva_script.replace(end_battle, boss_death)
 
     def doom_gaze_no_escape_mod(self):
-        from data.spell_names import name_id
+        from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
 
         doom_gaze_script = self.get_script("Doom Gaze")
         escape_turn = [
@@ -104,7 +104,7 @@ class EnemyScripts():
         doom_gaze_script.remove(set_defeated_bit)
 
     def wrexsoul_no_zinger_mod(self):
-        from data.spell_names import name_id
+        from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
 
         wrexsoul_script = self.get_script("Wrexsoul")
 
@@ -216,7 +216,7 @@ class EnemyScripts():
         chadarnook_demon_script.replace(attacked_enough_switch, attacked_enough_switch_new)
 
     def magimaster_no_ultima_mod(self):
-        from data.spell_names import name_id
+        from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
 
         magimaster_script = self.get_script("MagiMaster")
 
@@ -228,7 +228,7 @@ class EnemyScripts():
         magimaster_script.remove(ultima)
 
     def hidon_no_chokesmoke(self):
-        from data.spell_names import name_id
+        from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
 
         hidon_script = self.get_script("Hidon")
 
@@ -244,7 +244,7 @@ class EnemyScripts():
         hidon_script.remove(chokesmoke)
 
     def magic_urn_no_life(self):
-        from data.spell_names import name_id
+        from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
 
         magic_urn_script = self.get_script("Magic Urn")
 

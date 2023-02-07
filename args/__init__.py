@@ -1,4 +1,4 @@
-from args.arguments import Arguments
+from worlds.ff6wc.WorldsCollide.args.arguments import Arguments
 ap_data = None
 
 def main(ap_args):
@@ -8,4 +8,4 @@ def main(ap_args):
     module = sys.modules[__name__]
     for name, value in arguments.__dict__.items():
         setattr(module, name, value)
-    from args.log import log
+    from worlds.ff6wc.WorldsCollide.args.log import log

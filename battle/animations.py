@@ -1,7 +1,7 @@
-from memory.space import Bank, Reserve, Read, Write
-import data.battle_animation_scripts as battle_animation_scripts
-import instruction.asm as asm
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Read, Write
+import worlds.ff6wc.WorldsCollide.data.battle_animation_scripts as battle_animation_scripts
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.args as args
 
 class Animations:
     def __init__(self):

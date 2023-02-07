@@ -1,8 +1,8 @@
-from data.swdtech import SwdTech
-from data.structures import DataArray
+from worlds.ff6wc.WorldsCollide.data.swdtech import SwdTech
+from worlds.ff6wc.WorldsCollide.data.structures import DataArray
 
-from memory.space import Bank, Reserve, Allocate, Write
-import instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
 class SwdTechs:
     NAMES_START = 0x0f3c40
@@ -30,7 +30,7 @@ class SwdTechs:
         self.learners_table_end = self.learners_table + len(self.learners)
 
     def write_is_learner(self):
-        import instruction.c0 as c0
+        import worlds.ff6wc.WorldsCollide.instruction.c0 as c0
 
         src = [
             asm.PHY(),
@@ -44,8 +44,8 @@ class SwdTechs:
         self.is_learner_function = space.start_address_snes
 
     def event_check_mod(self):
-        from memory.space import START_ADDRESS_SNES
-        import instruction.c0 as c0
+        from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES
+        import worlds.ff6wc.WorldsCollide.instruction.c0 as c0
 
         learn_swdtechs = 0x0a1da
         character_recruited = c0.character_recruited + START_ADDRESS_SNES

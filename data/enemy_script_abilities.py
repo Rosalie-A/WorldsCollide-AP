@@ -1,6 +1,6 @@
-from data.spell_names import name_id
-from data.enemy_script_custom_commands import *
-import data.enemy_script_commands as ai_instr
+from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
+from worlds.ff6wc.WorldsCollide.data.enemy_script_custom_commands import *
+import worlds.ff6wc.WorldsCollide.data.enemy_script_commands as ai_instr
 
 class EnemyScriptAbilities:
     # spell to replace -> randomization category and +tier
@@ -155,7 +155,7 @@ class EnemyScriptAbilities:
         return SPECIAL0
 
     def _scale_ability(self, ability_id, enemy):
-        from data.spell_names import id_name
+        from worlds.ff6wc.WorldsCollide.data.spell_names import id_name
         name = id_name[ability_id]
 
         if name not in self.SPELL_CATEGORY:
@@ -174,11 +174,11 @@ class EnemyScriptAbilities:
         return ability_id
 
     def _scale_spell_instruction(self, instruction, enemy):
-        from data.spell_names import id_name
+        from worlds.ff6wc.WorldsCollide.data.spell_names import id_name
         instruction.spell_id = self._scale_ability(instruction.spell_id, enemy)
 
     def _scale_random_attack_instruction(self, instruction, enemy):
-        from data.spell_names import id_name
+        from worlds.ff6wc.WorldsCollide.data.spell_names import id_name
 
         instruction.attack1 = self._scale_ability(instruction.attack1, enemy)
         instruction.attack2 = self._scale_ability(instruction.attack2, enemy)
@@ -244,7 +244,7 @@ class EnemyScriptAbilities:
         gold_dragon_script.replace(target_self, target_default, count = 2)
 
     def scale_abilities_mod(self):
-        import data.bosses as bosses
+        import worlds.ff6wc.WorldsCollide.data.bosses as bosses
 
         for index, script in enumerate(self.enemy_scripts.scripts):
             enemy = self.enemies.enemies[index]

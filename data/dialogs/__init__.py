@@ -1,5 +1,5 @@
 def __init__():
-    from data.dialogs.dialogs import Dialogs
+    from worlds.ff6wc.WorldsCollide.data.dialogs.dialogs import Dialogs
     dialogs = Dialogs()
 
     import sys, inspect

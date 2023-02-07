@@ -1,7 +1,7 @@
-from memory.space import Bank, Reserve, Write
-import instruction.field.instructions as field
-import instruction.field.entity as field_entity
-import data.battle_bit as battle_bit
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Write
+import worlds.ff6wc.WorldsCollide.instruction.field.instructions as field
+import worlds.ff6wc.WorldsCollide.instruction.field.entity as field_entity
+import worlds.ff6wc.WorldsCollide.data.battle_bit as battle_bit
 
 RETURN = 0xa5eb3    # return command, used for branching
 END = 0xa5eb4       # end command, used for branching
@@ -23,7 +23,7 @@ RETURN_ALL_PARTIES_TO_FALCON = 0xc2109
 UPDATE_PARTY_SIZE_EVENT_BITS = 0xac5c1
 
 def _delete_all_characters_mod():
-    from constants.entities import CHARACTER_COUNT
+    from worlds.ff6wc.WorldsCollide.constants.entities import CHARACTER_COUNT
 
     src = []
     for character in range(CHARACTER_COUNT):
@@ -115,7 +115,7 @@ CHECK_GAME_OVER = _check_game_over_mod()
 
 class CheckObjectives(field.Call):
     def __init__(self):
-        import objectives
+        import worlds.ff6wc.WorldsCollide.objectives as objectives
 
         src = []
         for objective in objectives:
@@ -131,7 +131,7 @@ class CheckObjectives(field.Call):
 
 class FinishCheck(field.Call):
     def __init__(self):
-        import data.event_word as event_word
+        import worlds.ff6wc.WorldsCollide.data.event_word as event_word
         src = [
             field.IncrementEventWord(event_word.CHECKS_COMPLETE),
             CheckObjectives(),

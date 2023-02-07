@@ -1,4 +1,4 @@
-import args
+import worlds.ff6wc.WorldsCollide.args as args
 
 SECTION_WIDTH = 120
 COLUMN_WIDTH = 60
@@ -36,7 +36,7 @@ def section_entries(label, lentries, rentries):
         lentries[-1] = lentries[-1][:-1]
         rentries[-1] = rentries[-1][:-1]
 
-    from ff6wcutils.flatten import flatten
+    from worlds.ff6wc.WorldsCollide.ff6wcutils.flatten import flatten
     lcolumn = flatten(lentries)
     rcolumn = flatten(rentries)
 

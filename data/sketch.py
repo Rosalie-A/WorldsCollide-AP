@@ -6,7 +6,7 @@ class Sketch():
         self.common = attack_data[1]
 
     def attack_data(self):
-        from data.sketches import Sketches
+        from worlds.ff6wc.WorldsCollide.data.sketches import Sketches
         data = [0x00] * Sketches.ATTACKS_DATA_SIZE
 
         data[0] = self.rare

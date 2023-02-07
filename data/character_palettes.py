@@ -1,5 +1,5 @@
-from data.character_palette import CharacterPalette
-from data.structures import DataArray
+from worlds.ff6wc.WorldsCollide.data.character_palette import CharacterPalette
+from worlds.ff6wc.WorldsCollide.data.structures import DataArray
 
 SPRITE_PALETTE_COUNT = 7
 DEFAULT_CHARACTER_PALETTES = list(range(SPRITE_PALETTE_COUNT))
@@ -81,8 +81,8 @@ class CharacterPalettes:
                     self.battle_palettes[palette_index].data = palette_data
 
     def mod_character_palettes(self):
-        from data.character_sprites import SPRITE_CHARACTERS
-        from sprite_hash import HASH_CHARACTERS
+        from worlds.ff6wc.WorldsCollide.data.character_sprites import SPRITE_CHARACTERS
+        from worlds.ff6wc.WorldsCollide.sprite_hash import HASH_CHARACTERS
 
         # NOTE: palettes >= 6 do not work in menus and should not be used for main characters
         for index, palette_id in enumerate(self.args.sprite_palettes):
@@ -96,7 +96,7 @@ class CharacterPalettes:
                 self.menu_character_sprites.set_palette(character, palette_id)
 
     def mod_portrait_palettes(self):
-        from data.character_sprites import PORTRAIT_CHARACTERS, DEFAULT_CHARACTER_PORTRAITS
+        from worlds.ff6wc.WorldsCollide.data.character_sprites import PORTRAIT_CHARACTERS, DEFAULT_CHARACTER_PORTRAITS
 
         for index, portrait_palette_file in enumerate(self.args.portrait_palette_files):
             if self.args.portrait_ids[index] != DEFAULT_CHARACTER_PORTRAITS[index]:

@@ -1,12 +1,12 @@
-from settings.initial_spells import InitialSpells
-from settings.movement import Movement
-from settings.random_rng import RandomRNG
-from settings.permadeath import Permadeath
-from settings.y_npc import YNPC
-from settings.config import Config
+from worlds.ff6wc.WorldsCollide.settings.initial_spells import InitialSpells
+from worlds.ff6wc.WorldsCollide.settings.movement import Movement
+from worlds.ff6wc.WorldsCollide.settings.random_rng import RandomRNG
+from worlds.ff6wc.WorldsCollide.settings.permadeath import Permadeath
+from worlds.ff6wc.WorldsCollide.settings.y_npc import YNPC
+from worlds.ff6wc.WorldsCollide.settings.config import Config
 
-from memory.space import Reserve
-import instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.memory.space import Reserve
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
 __all__ = ["Settings"]
 class Settings:

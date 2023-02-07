@@ -1,6 +1,6 @@
-from memory.space import Bank, Reserve, Allocate
-import instruction.asm as asm
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.args as args
 
 class DanceMenu:
     def __init__(self, dances):
@@ -10,7 +10,7 @@ class DanceMenu:
         self.mod()
 
     def draw_ability_names_mod(self):
-        import data.text as text
+        import worlds.ff6wc.WorldsCollide.data.text as text
         dance_data_address = self.dances.DATA_START + 0xc00000
 
         comma_value = int.from_bytes(text.get_bytes(',', text.TEXT3), "little")

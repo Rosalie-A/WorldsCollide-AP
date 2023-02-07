@@ -1,17 +1,17 @@
-from memory.space import Bank, START_ADDRESS_SNES, Reserve, Allocate, Write
-import instruction.asm as asm
-import instruction.f0 as f0
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Reserve, Allocate, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
+import worlds.ff6wc.WorldsCollide.args as args
 
 class CheckDragonBoss(asm.JSL):
     def __init__(self):
         # after battle check if boss/dragon was defeated, if so increment/set boss/dragon count/bit
 
-        import data.event_word as event_word
+        import worlds.ff6wc.WorldsCollide.data.event_word as event_word
         dragons_defeated_address = event_word.address(event_word.DRAGONS_DEFEATED)
         bosses_defeated_address = event_word.address(event_word.BOSSES_DEFEATED)
 
-        import data.battle_bit as battle_bit
+        import worlds.ff6wc.WorldsCollide.data.battle_bit as battle_bit
         boss_bits_start = battle_bit.address(battle_bit.BOSS_DEFEATED_START)
         dragon_bits_start = battle_bit.address(battle_bit.DRAGON_DEFEATED_START)
 

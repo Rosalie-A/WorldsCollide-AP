@@ -1,4 +1,4 @@
-import data.direction as direction
+import worlds.ff6wc.WorldsCollide.data.direction as direction
 
 class NPC():
     DATA_SIZE = 0x09
@@ -95,7 +95,7 @@ class NPC():
         return data
 
     def set_event_address(self, address):
-        from instruction.event import EVENT_CODE_START
+        from worlds.ff6wc.WorldsCollide.instruction.event import EVENT_CODE_START
         self.event_address = address - EVENT_CODE_START
 
     def print(self):

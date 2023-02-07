@@ -1,4 +1,4 @@
-from data.npc import NPC
+from worlds.ff6wc.WorldsCollide.data.npc import NPC
 
 class NPCs():
     NPC_COUNT = 2192

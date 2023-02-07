@@ -1,5 +1,5 @@
-from data.shop import Shop
-from data.structures import DataArray
+from worlds.ff6wc.WorldsCollide.data.shop import Shop
+from worlds.ff6wc.WorldsCollide.data.structures import DataArray
 
 class Shops():
     DATA_START = 0x47ac0
@@ -81,8 +81,8 @@ class Shops():
     def random_tiered(self):
         def get_item(item_type, exclude = None):
             import random
-            from ff6wcutils.weighted_random import weighted_random
-            from data.shop_item_tiers import tiers, weights
+            from worlds.ff6wc.WorldsCollide.ff6wcutils.weighted_random import weighted_random
+            from worlds.ff6wc.WorldsCollide.data.shop_item_tiers import tiers, weights
 
             if exclude is None:
                 exclude = []
@@ -235,8 +235,8 @@ class Shops():
     def disable_buy_if_empty(self):
         # in shops with no items scrolling breaks and you can buy "Empty" items
         # this function will not allow the buy menu to be selected if the shop type is empty
-        from memory.space import Bank, Reserve, Write
-        import instruction.asm as asm
+        from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Write
+        import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
         src = [
             asm.LDX(0x67, asm.DIR),         # x = shop index
@@ -272,7 +272,7 @@ class Shops():
         self.remove_excluded_items()
 
     def log(self):
-        from log import section_entries, format_option
+        from worlds.ff6wc.WorldsCollide.log import section_entries, format_option
 
         lentries = []
         rentries = []

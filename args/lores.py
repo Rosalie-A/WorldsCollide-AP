@@ -2,7 +2,7 @@ def name():
     return "Lores"
 
 def parse(parser):
-    from data.lores import Lores
+    from worlds.ff6wc.WorldsCollide.data.lores import Lores
 
     lores = parser.add_argument_group("Lores")
 

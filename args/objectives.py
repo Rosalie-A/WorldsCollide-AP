@@ -1,4 +1,4 @@
-from constants.objectives import MAX_OBJECTIVES, MAX_CONDITIONS
+from worlds.ff6wc.WorldsCollide.constants.objectives import MAX_OBJECTIVES, MAX_CONDITIONS
 
 def parse(parser):
     objectives = parser.add_argument_group("Objectives")
@@ -7,9 +7,9 @@ def parse(parser):
                                 type = str, help = "Objective " + chr(ord('A') + oi))
 
 def process(args):
-    from constants.objectives.results import types as result_types
-    from constants.objectives.results import id_type as result_id_type
-    from constants.objectives.conditions import types as condition_types
+    from worlds.ff6wc.WorldsCollide.constants.objectives.results import types as result_types
+    from worlds.ff6wc.WorldsCollide.constants.objectives.results import id_type as result_id_type
+    from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import types as condition_types
 
     class Result:
         def __init__(self, _id, name, format_string, value_range, args):

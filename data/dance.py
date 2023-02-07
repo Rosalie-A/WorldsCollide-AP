@@ -1,4 +1,4 @@
-import data.text as text
+import worlds.ff6wc.WorldsCollide.data.text as text
 
 class Dance:
     def __init__(self, id, data, name_data):
@@ -10,7 +10,7 @@ class Dance:
         return self.dances
 
     def name_data(self):
-        from data.dances import Dances
+        from worlds.ff6wc.WorldsCollide.data.dances import Dances
         data = text.get_bytes(self.name, text.TEXT2)
         data.extend([0xff] * (Dances.NAME_SIZE - len(data)))
         return data

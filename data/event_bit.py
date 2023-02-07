@@ -209,7 +209,7 @@ TEMP_SONG_OVERRIDE = 0x1cc
 ENABLE_Y_PARTY_SWITCHING = 0x1ce
 ALWAYS_CLEAR = 0x176 # this event_bit is always clear, used for branching
 
-from constants.objectives import MAX_OBJECTIVES
+from worlds.ff6wc.WorldsCollide.constants.objectives import MAX_OBJECTIVES
 for index in range(MAX_OBJECTIVES):
     globals()["OBJECTIVE" + str(index)] = 0xe0 + index
 

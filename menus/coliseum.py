@@ -1,6 +1,6 @@
-from memory.space import Bank, Reserve, Allocate
-import instruction.asm as asm
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.args as args
 
 class ColiseumMenu:
     def __init__(self):

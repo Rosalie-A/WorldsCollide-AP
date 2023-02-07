@@ -1,4 +1,4 @@
-from data.map_event import MapEvent
+from worlds.ff6wc.WorldsCollide.data.map_event import MapEvent
 
 class MapEvents():
     EVENT_COUNT = 1164

@@ -1,10 +1,10 @@
-from memory.space import Allocate, Bank, Reserve, Write
-import instruction.asm as asm
-from data.movement import AUTO_SPRINT, B_DASH, ORIGINAL, SPRINT_SHOES_B_DASH, MovementSpeed
+from worlds.ff6wc.WorldsCollide.memory.space import Allocate, Bank, Reserve, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.data.movement import AUTO_SPRINT, B_DASH, ORIGINAL, SPRINT_SHOES_B_DASH, MovementSpeed
 
 class Movement:
     def __init__(self):
-        import args
+        import worlds.ff6wc.WorldsCollide.args as args
         self.movement = args.movement or AUTO_SPRINT
 
         if self.movement != ORIGINAL:
@@ -28,7 +28,7 @@ class Movement:
 
 
     def get_auto_sprint_src(self):
-        import args
+        import worlds.ff6wc.WorldsCollide.args as args
         CURRENT_MAP_BYTE = 0x82 # 2 bytes
         OWZERS_MANSION_ID = 0x00CF # the door room can create visual artifacts on the map while dashing
         CONTROLLER1_BYTE2 = 0x4219

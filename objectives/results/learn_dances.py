@@ -1,7 +1,7 @@
-from objectives.results._objective_result import *
+from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
 
 def _random_dance_table():
-    from constants.dances import id_dance
+    from worlds.ff6wc.WorldsCollide.constants.dances import id_dance
 
     dance_table = [2 ** index for index in range(len(id_dance))]
     random.shuffle(dance_table)

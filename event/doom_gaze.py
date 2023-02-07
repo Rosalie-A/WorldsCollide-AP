@@ -1,4 +1,4 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
 
 class DoomGaze(Event):
     def name(self):
@@ -32,7 +32,7 @@ class DoomGaze(Event):
         )
 
     def doom_gaze_battle_mod(self):
-        import instruction.asm as asm
+        import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
         boss_pack_id = self.get_boss("Doom Gaze")
         boss_formation_id = self.enemies.packs.get_formations(boss_pack_id)[0]

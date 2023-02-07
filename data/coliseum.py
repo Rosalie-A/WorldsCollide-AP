@@ -1,4 +1,4 @@
-from data.match import Match
+from worlds.ff6wc.WorldsCollide.data.match import Match
 
 class Coliseum():
     MATCH_COUNT = 256
@@ -92,7 +92,7 @@ class Coliseum():
             self.randomize_rewards_hidden()
 
     def log(self):
-        from log import section
+        from worlds.ff6wc.WorldsCollide.log import section
         section("Coliseum", self.formatted_rows(), [])
 
     def print(self):

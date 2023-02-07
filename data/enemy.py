@@ -1,5 +1,5 @@
-import data.text as text
-from data.status_effects import StatusEffects
+import worlds.ff6wc.WorldsCollide.data.text as text
+from worlds.ff6wc.WorldsCollide.data.status_effects import StatusEffects
 
 class Enemy:
     def __init__(self, id, data, name_data, item_data, special_name_data):
@@ -103,7 +103,7 @@ class Enemy:
         self.no_scan            = 0
 
     def data(self):
-        from data.enemies import Enemies
+        from worlds.ff6wc.WorldsCollide.data.enemies import Enemies
         data = [0x00] * Enemies.DATA_SIZE
 
         data[0]     = self.speed
@@ -167,13 +167,13 @@ class Enemy:
         return data
 
     def name_data(self):
-        from data.enemies import Enemies
+        from worlds.ff6wc.WorldsCollide.data.enemies import Enemies
         data = text.get_bytes(self.name, text.TEXT2)
         data.extend([0xff] * (Enemies.NAME_SIZE - len(data)))
         return data
 
     def item_data(self):
-        from data.enemies import Enemies
+        from worlds.ff6wc.WorldsCollide.data.enemies import Enemies
         item_data = [0x00] * Enemies.ITEMS_SIZE
 
         item_data[0]    = self.steal_rare
@@ -184,7 +184,7 @@ class Enemy:
         return item_data
 
     def special_name_data(self):
-        from data.enemies import Enemies
+        from worlds.ff6wc.WorldsCollide.data.enemies import Enemies
         data = text.get_bytes(self.special_name, text.TEXT2)
         data.extend([0xff] * (Enemies.SPECIAL_NAMES_SIZE - len(data)))
         return data

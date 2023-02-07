@@ -1,18 +1,18 @@
-from data.map_property import MapProperty
+from worlds.ff6wc.WorldsCollide.data.map_property import MapProperty
 
-import data.npcs as npcs
-from data.npc import NPC
+import worlds.ff6wc.WorldsCollide.data.npcs as npcs
+from worlds.ff6wc.WorldsCollide.data.npc import NPC
 
-from data.chests import Chests
+from worlds.ff6wc.WorldsCollide.data.chests import Chests
 
-import data.map_events as events
-from data.map_event import MapEvent
+import worlds.ff6wc.WorldsCollide.data.map_events as events
+from worlds.ff6wc.WorldsCollide.data.map_event import MapEvent
 
-import data.map_exits as exits
-from data.map_exit import ShortMapExit, LongMapExit
+import worlds.ff6wc.WorldsCollide.data.map_exits as exits
+from worlds.ff6wc.WorldsCollide.data.map_exit import ShortMapExit, LongMapExit
 
-import data.world_map_event_modifications as world_map_event_modifications
-from data.world_map import WorldMap
+import worlds.ff6wc.WorldsCollide.data.world_map_event_modifications as world_map_event_modifications
+from worlds.ff6wc.WorldsCollide.data.world_map import WorldMap
 
 class Maps():
     MAP_COUNT = 416
@@ -163,7 +163,7 @@ class Maps():
         # there is a box which can be walked into but not out of which causes the game to lock
         # fix the three boxes to no longer be walkable
 
-        from ff6wcutils.compression import compress, decompress
+        from worlds.ff6wc.WorldsCollide.ff6wcutils.compression import compress, decompress
         layer1_tilemap = 0x1c
         tilemap_ptrs_start = 0x19cd90
         tilemap_ptr_addr = tilemap_ptrs_start + layer1_tilemap * self.rom.LONG_PTR_SIZE

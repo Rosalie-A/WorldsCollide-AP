@@ -2,7 +2,7 @@ def name():
     return "Dances"
 
 def parse(parser):
-    from data.dances import Dances
+    from worlds.ff6wc.WorldsCollide.data.dances import Dances
 
     dances = parser.add_argument_group("Dances")
 

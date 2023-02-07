@@ -1,5 +1,5 @@
-from objectives.results._objective_result import *
-import data.event_bit as event_bit
+from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
+import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
 
 class Field(field_result.Result):
     def src(self):

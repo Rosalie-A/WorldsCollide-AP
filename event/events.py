@@ -1,7 +1,7 @@
-import args
-from memory.space import Bank, Allocate
-from event.event_reward import CHARACTER_ESPER_ONLY_REWARDS, RewardType, choose_reward, weighted_reward_choice
-import instruction.field as field
+import worlds.ff6wc.WorldsCollide.args as args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Allocate
+from worlds.ff6wc.WorldsCollide.event.event_reward import CHARACTER_ESPER_ONLY_REWARDS, RewardType, choose_reward, weighted_reward_choice
+import worlds.ff6wc.WorldsCollide.instruction.field as field
 
 class Events():
     def __init__(self, rom, args, data):
@@ -23,15 +23,26 @@ class Events():
     def mod(self):
         # generate list of events from files
         import os, importlib, inspect
-        from event.event import Event
+        from worlds.ff6wc.WorldsCollide.event.event import Event
         events = []
         name_event = {}
         for event_file in sorted(os.listdir(os.path.dirname(__file__))):
-            if event_file[-3:] != '.py' or event_file == 'events.py' or event_file == 'event.py':
+            pyc = False
+            if event_file[-3:] == "pyc":
+                pyc = True
+            elif event_file[-3:] != '.py':
+                continue
+            if event_file == 'events.py' \
+                    or event_file == 'event.py' \
+                    or event_file == "events.pyc" \
+                    or event_file == "event.pyc":
                 continue
 
-            module_name = event_file[:-3]
-            event_module = importlib.import_module('event.' + module_name)
+            if pyc:
+                module_name = event_file[:-4]
+            else:
+                module_name = event_file[:-3]
+            event_module = importlib.import_module('.event.' + module_name, "worlds.ff6wc.WorldsCollide")
 
             for event_name, event_class in inspect.getmembers(event_module, inspect.isclass):
                 if event_name.lower() != module_name.replace('_', '').lower():
@@ -59,7 +70,7 @@ class Events():
         #write_event_trigger_function()
 
         if self.args.spoiler_log:
-            from log import section
+            from worlds.ff6wc.WorldsCollide.log import section
             section("Events", log_strings, [])
 
         return events

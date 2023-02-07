@@ -1,10 +1,11 @@
 EVENT_CODE_START = 0x0a0000
+from worlds.ff6wc.WorldsCollide import data
 
 class _Instruction:
     def __init__(self, opcode, *args):
         self.opcode = opcode
 
-        from ff6wcutils.flatten import flatten
+        from worlds.ff6wc.WorldsCollide.ff6wcutils.flatten import flatten
         self.args = flatten(args)
 
     def __len__(self):
@@ -68,7 +69,7 @@ class _LoadMap(_Instruction):
         self.x = x
         self.y = y
 
-        import data.direction
+        import worlds.ff6wc.WorldsCollide.data.direction
         map_dir_music = map_id
         if direction == data.direction.UP:
             map_dir_music |= 0x0000

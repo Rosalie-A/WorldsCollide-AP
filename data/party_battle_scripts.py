@@ -1,5 +1,5 @@
-from data.party_battle_script import PartyBattleScript
-from data.structures import DataArray
+from worlds.ff6wc.WorldsCollide.data.party_battle_script import PartyBattleScript
+from worlds.ff6wc.WorldsCollide.data.structures import DataArray
 
 class PartyBattleScripts:
     DATA_START = 0x10fd00

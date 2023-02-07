@@ -1,5 +1,5 @@
-from data.bosses import name_enemy
-from data.spell_names import name_id
+from worlds.ff6wc.WorldsCollide.data.bosses import name_enemy
+from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
 
 # This dictionary contains sketch command overrides for specific enemies
 # Each array is in the order of [Rare (25%), Common (75%)]

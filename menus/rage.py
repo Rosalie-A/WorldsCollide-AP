@@ -1,6 +1,6 @@
-from memory.space import Bank, Reserve, Allocate, Write
-import instruction.asm as asm
-from data.spell_names import name_id, id_name
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.data.spell_names import name_id, id_name
 
 
 class RageMenu:
@@ -9,7 +9,7 @@ class RageMenu:
         self.enemies = enemies
 
         # Build an array to lookup enemy-specific Special command effects
-        from constants.status_effects import A, B, C, D
+        from worlds.ff6wc.WorldsCollide.constants.status_effects import A, B, C, D
         self.status_effects = []
         self.status_effects.extend(list(A.id_name.values()))
         self.status_effects.extend(list(B.id_name.values()))
@@ -35,7 +35,7 @@ class RageMenu:
         self.mod()
 
     def get_rage_string(self, id, attack_id):
-        from data.spell_names import id_name, name_id
+        from worlds.ff6wc.WorldsCollide.data.spell_names import id_name, name_id
 
         if attack_id == name_id["Special"]:
             # handle special name lookup + special attack info (dmg multipler, status effect)
@@ -57,7 +57,7 @@ class RageMenu:
         return rage_str
 
     def draw_ability_names_mod(self):
-        import data.text as text
+        import worlds.ff6wc.WorldsCollide.data.text as text
 
         # Get the custom strings for each rage to be written to the ROM
         lines = []

@@ -1,4 +1,4 @@
-from data.map_exit import ShortMapExit, LongMapExit
+from worlds.ff6wc.WorldsCollide.data.map_exit import ShortMapExit, LongMapExit
 
 class MapExits():
     SHORT_EXIT_COUNT = 0x469

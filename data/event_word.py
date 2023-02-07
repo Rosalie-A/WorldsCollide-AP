@@ -16,8 +16,8 @@ def address(event_word):
     return 0x1fc2 + event_word * 2
 
 def _init_event_words_mod():
-    from memory.space import Bank, Reserve, Write
-    import instruction.asm as asm
+    from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Write
+    import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
     # initialize custom event words to zero
     # this is done before pregame menu so no objectives shown as complete

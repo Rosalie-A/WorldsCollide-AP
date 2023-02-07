@@ -9,11 +9,11 @@ TEXT3 = TextType.TEXT3
 
 def convert(string, to_type):
     if to_type == TEXT1:
-        from data.text.text1 import text_value
+        from worlds.ff6wc.WorldsCollide.data.text.text1 import text_value
     elif to_type == TEXT2:
-        from data.text.text2 import text_value
+        from worlds.ff6wc.WorldsCollide.data.text.text2 import text_value
     elif to_type == TEXT3:
-        from data.text.text3 import text_value
+        from worlds.ff6wc.WorldsCollide.data.text.text3 import text_value
     else:
         raise NameError("text_type {} not found".format(text_type))
 
@@ -42,11 +42,11 @@ def convert(string, to_type):
 
 def get_string(values, text_type):
     if text_type == TEXT1:
-        from data.text.text1 import value_text
+        from worlds.ff6wc.WorldsCollide.data.text.text1 import value_text
     elif text_type == TEXT2:
-        from data.text.text2 import value_text
+        from worlds.ff6wc.WorldsCollide.data.text.text2 import value_text
     elif text_type == TEXT3:
-        from data.text.text3 import value_text
+        from worlds.ff6wc.WorldsCollide.data.text.text3 import value_text
     else:
         raise NameError("text_type {} not found".format(text_type))
 
@@ -70,11 +70,11 @@ def get_string(values, text_type):
 
 def get_bytes(string, text_type):
     if text_type == TEXT1:
-        from data.text.text1 import text_value
+        from worlds.ff6wc.WorldsCollide.data.text.text1 import text_value
     elif text_type == TEXT2:
-        from data.text.text2 import text_value
+        from worlds.ff6wc.WorldsCollide.data.text.text2 import text_value
     elif text_type == TEXT3:
-        from data.text.text3 import text_value
+        from worlds.ff6wc.WorldsCollide.data.text.text3 import text_value
     else:
         raise NameError("text_type {} not found".format(text_type))
 

@@ -15,7 +15,7 @@ class Chest():
         # for gold, contents = amount of gp / 100
 
     def data(self):
-        from data.chests import Chests
+        from worlds.ff6wc.WorldsCollide.data.chests import Chests
         data = [0x00] * Chests.DATA_SIZE
 
         data[0]     = self.x

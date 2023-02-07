@@ -1,5 +1,5 @@
-from event.event import *
-from event.veldt_helpers import *
+from worlds.ff6wc.WorldsCollide.event.event import *
+from worlds.ff6wc.WorldsCollide.event.veldt_helpers import *
 
 # NOTE: if gau in menus he has been recruited (will not change based on leap status)
 #       if gau not in menus he has not been recruited yet
@@ -53,7 +53,7 @@ class Veldt(Event):
         self.log_reward(self.reward)
 
     def leap_mod(self):
-        import data.event_word as event_word
+        import worlds.ff6wc.WorldsCollide.data.event_word as event_word
         characters_available_address = event_word.address(event_word.CHARACTERS_AVAILABLE)
 
         space = Reserve(0x21d0d, 0x21d11, "veldt if gau not available script command", asm.NOP())
@@ -266,7 +266,7 @@ class Veldt(Event):
         space = Reserve(0x248dc, 0x248dd, "veldt gau appears after battle load battle event id", asm.NOP())
 
     def add_gau_party(self):
-        import data.event_word as event_word
+        import worlds.ff6wc.WorldsCollide.data.event_word as event_word
 
         space = Allocate(Bank.C2, 56, "veldt recruit gau/char function", asm.NOP())
         recruit_function = space.next_address
@@ -277,8 +277,8 @@ class Veldt(Event):
             "RECRUIT_CHAR",
         )
         if self.reward.type == RewardType.CHARACTER:
-            import instruction.c0 as c0
-            from memory.space import START_ADDRESS_SNES
+            import worlds.ff6wc.WorldsCollide.instruction.c0 as c0
+            from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES
 
             recruit_character_address = START_ADDRESS_SNES + c0.recruit_character
             space.write(
@@ -360,7 +360,7 @@ class Veldt(Event):
         )
 
     def battle_events_mod(self):
-        import instruction.battle_event as battle_event
+        import worlds.ff6wc.WorldsCollide.instruction.battle_event as battle_event
 
         # this dialog is shared between char and gau appearing after battle so remove the name
         # but keep the dialog to prevent freezes/bugs from acting too soon after they appear

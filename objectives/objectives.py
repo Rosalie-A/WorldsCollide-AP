@@ -1,10 +1,10 @@
-import args
+import worlds.ff6wc.WorldsCollide.args as args
 
-from objectives.results import results
-from objectives.conditions import conditions
-from objectives.objective import Objective
+from worlds.ff6wc.WorldsCollide.objectives.results import results
+from worlds.ff6wc.WorldsCollide.objectives.conditions import conditions
+from worlds.ff6wc.WorldsCollide.objectives.objective import Objective
 
-from objectives.result_dict import ResultDict
+from worlds.ff6wc.WorldsCollide.objectives.result_dict import ResultDict
 
 class Objectives:
     results = ResultDict()

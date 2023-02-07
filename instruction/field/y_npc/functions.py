@@ -1,13 +1,13 @@
-from memory.space import Bank, Allocate, Reserve, Write, Read
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Allocate, Reserve, Write, Read
+import worlds.ff6wc.WorldsCollide.args as args
 
-import instruction.field.instructions as field
-from instruction.field.y_npc.instructions import SetYNPCGraphics, YEffect, YNPCEffect
+import worlds.ff6wc.WorldsCollide.instruction.field.instructions as field
+from worlds.ff6wc.WorldsCollide.instruction.field.y_npc.instructions import SetYNPCGraphics, YEffect, YNPCEffect
 
 DEFAULT_SOUND = 0x4f # lagomorph
 
 def _graphics_group(possibilities):
-    from instruction.field.custom import BranchChance
+    from worlds.ff6wc.WorldsCollide.instruction.field.custom import BranchChance
     space = Allocate(Bank.CC, 200, "field y npc graphics group", field.NOP())
 
     addresses = []
@@ -123,9 +123,9 @@ def imperial():
     return _graphics_group(possibilities)
 
 def main_character():
-    from data.characters import Characters
-    from data.character_sprites import DEFAULT_CHARACTER_SPRITES
-    from data.character_palettes import DEFAULT_CHARACTER_SPRITE_PALETTES
+    from worlds.ff6wc.WorldsCollide.data.characters import Characters
+    from worlds.ff6wc.WorldsCollide.data.character_sprites import DEFAULT_CHARACTER_SPRITES
+    from worlds.ff6wc.WorldsCollide.data.character_palettes import DEFAULT_CHARACTER_SPRITE_PALETTES
 
     sprites = DEFAULT_CHARACTER_SPRITES[:Characters.CHARACTER_COUNT]
     palettes = args.sprite_palettes
@@ -265,7 +265,7 @@ def random_graphics():
     return space.start_address
 
 def _y_npc():
-    from instruction.field.functions import RETURN
+    from worlds.ff6wc.WorldsCollide.instruction.field.functions import RETURN
     address = RETURN
     if args.y_npc_mascot:
         address = mascot()

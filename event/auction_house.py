@@ -1,4 +1,4 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
 
 # 0xcb4ecc
 #   if in wor go to 0xcb55b0

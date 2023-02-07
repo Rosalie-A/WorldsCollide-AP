@@ -1,4 +1,4 @@
-from data.world_map_event_modification import WorldMapEventModification
+from worlds.ff6wc.WorldsCollide.data.world_map_event_modification import WorldMapEventModification
 
 class WorldMapEventModifications:
     WOB_MODIFICATIONS_COUNT = 15

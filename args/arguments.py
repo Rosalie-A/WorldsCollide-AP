@@ -16,7 +16,7 @@ class Arguments:
         ]
         self.group_modules = {}
         for group in self.groups:
-            self.group_modules[group] = importlib.import_module("args." + group)
+            self.group_modules[group] = importlib.import_module(".args." + group, "worlds.ff6wc.WorldsCollide")
 
         from argparse import ArgumentParser
         self.parser = ArgumentParser()
@@ -52,10 +52,11 @@ class Arguments:
         self.seed_rng_flags = self.seed_rng_flags.strip()
 
         # seed game based on given flags as well so players can't change them for competitions without changing the rest of the game
-        from seed import seed_rng
+        from worlds.ff6wc.WorldsCollide.seed import seed_rng
         self.seed = seed_rng(self.seed, self.seed_rng_flags)
 
-        import sprite_hash, version
+        import worlds.ff6wc.WorldsCollide.sprite_hash as sprite_hash
+        import worlds.ff6wc.WorldsCollide.version as version
         self.sprite_hash = sprite_hash.generate_hash(self.seed + self.seed_rng_flags + version.__version__)
 
         import os

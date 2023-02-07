@@ -1,5 +1,5 @@
-from objectives.results._objective_result import *
-from constants.items import BREAKABLE_RODS
+from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
+from worlds.ff6wc.WorldsCollide.constants.items import BREAKABLE_RODS
 
 class Field(field_result.Result):
     def src(self):

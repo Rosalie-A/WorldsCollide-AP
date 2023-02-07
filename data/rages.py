@@ -1,6 +1,6 @@
-from data.rage import Rage
-from data.structures import DataBits, DataArray
-from data.ability_data import AbilityData
+from worlds.ff6wc.WorldsCollide.data.rage import Rage
+from worlds.ff6wc.WorldsCollide.data.structures import DataBits, DataArray
+from worlds.ff6wc.WorldsCollide.data.ability_data import AbilityData
 
 class Rages():
     RAGE_COUNT = 256 # 255 available
@@ -50,8 +50,8 @@ class Rages():
             self.init_data[rage_id] = 1
 
     def no_leap(self):
-        from memory.space import Reserve
-        import instruction.asm as asm
+        from worlds.ff6wc.WorldsCollide.memory.space import Reserve
+        import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
         space = Reserve(0x23b71, 0x23b8f, "rages leap command", asm.NOP())
         space.add_label("LEAP_MISS", 0x23bc0)
@@ -78,7 +78,7 @@ class Rages():
         )
 
     def no_life(self):
-        from data.spell_names import name_id
+        from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
         # change Robite to cure 2 from life
         self.rages[self.RHOBITE_RAGE_ID].attack2 = name_id["Cure 2"]
 
@@ -110,7 +110,7 @@ class Rages():
         self.attack_data.write()
 
     def log(self):
-        from log import section
+        from worlds.ff6wc.WorldsCollide.log import section
 
         lcolumn = []
         rcolumn = []

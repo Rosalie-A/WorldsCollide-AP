@@ -1,5 +1,5 @@
-from objectives.results._objective_result import *
-from objectives.results._apply_characters_party import ApplyToParty
+from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
+from worlds.ff6wc.WorldsCollide.objectives.results._apply_characters_party import ApplyToParty
 
 def _full_heal():
     current_hp_start = 0x1609

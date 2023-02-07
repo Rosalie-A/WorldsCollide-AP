@@ -1,6 +1,6 @@
-from objectives.conditions._objective_condition import *
-from constants.objectives.condition_bits import dragon_bit
-from data.bosses import name_formation, name_pack
+from worlds.ff6wc.WorldsCollide.objectives.conditions._objective_condition import *
+from worlds.ff6wc.WorldsCollide.constants.objectives.condition_bits import dragon_bit
+from worlds.ff6wc.WorldsCollide.data.bosses import name_formation, name_pack
 
 class Condition(ObjectiveCondition):
     NAME = "Dragon"

@@ -1,6 +1,6 @@
-from data.character_sprites import PORTRAIT_CHARACTERS, SPRITE_CHARACTERS, DEFAULT_CHARACTER_PORTRAITS, DEFAULT_CHARACTER_SPRITES
-from data.character_palettes import SPRITE_PALETTE_COUNT, DEFAULT_CHARACTER_PALETTES, DEFAULT_CHARACTER_SPRITE_PALETTES
-from data.characters import Characters
+from worlds.ff6wc.WorldsCollide.data.character_sprites import PORTRAIT_CHARACTERS, SPRITE_CHARACTERS, DEFAULT_CHARACTER_PORTRAITS, DEFAULT_CHARACTER_SPRITES
+from worlds.ff6wc.WorldsCollide.data.character_palettes import SPRITE_PALETTE_COUNT, DEFAULT_CHARACTER_PALETTES, DEFAULT_CHARACTER_SPRITE_PALETTES
+from worlds.ff6wc.WorldsCollide.data.characters import Characters
 
 def parse(parser):
     graphics = parser.add_argument_group("Graphics")
@@ -20,9 +20,9 @@ def parse(parser):
                               help = "World Minimap made Opaque with Minimap icon changed to higher contrast to improve visibility.")
 
 def process(args):
-    import graphics.palettes.palettes as palettes
-    import graphics.portraits.portraits as portraits
-    import graphics.sprites.sprites as sprites
+    import worlds.ff6wc.WorldsCollide.graphics.palettes.palettes as palettes
+    import worlds.ff6wc.WorldsCollide.graphics.portraits.portraits as portraits
+    import worlds.ff6wc.WorldsCollide.graphics.sprites.sprites as sprites
 
     if args.character_names is not None:
         args.names = args.character_names.split('.')

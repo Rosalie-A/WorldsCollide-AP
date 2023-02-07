@@ -1,7 +1,7 @@
-from memory.space import START_ADDRESS_SNES, Bank, Reserve, Free, Write, Read
-from instruction.event import _Instruction
-import instruction.asm as asm
-import instruction.c1 as c1
+from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES, Bank, Reserve, Free, Write, Read
+from worlds.ff6wc.WorldsCollide.instruction.event import _Instruction
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.instruction.c1 as c1
 
 def _set_opcode_address(opcode, address):
     opcode_table_address = 0x1fdbe + opcode * 2
@@ -88,7 +88,7 @@ class DisplayMultiLineDialog(_Instruction):
 
 class IncrementChecksComplete(_Instruction):
     def __init__(self):
-        import data.event_word as event_word
+        import worlds.ff6wc.WorldsCollide.data.event_word as event_word
         checks_complete_address = event_word.address(event_word.CHECKS_COMPLETE)
 
         src = [

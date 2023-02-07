@@ -1,6 +1,6 @@
 
 def get_portraits():
-    from graphics.portraits.portraits import id_portrait
+    from worlds.ff6wc.WorldsCollide.graphics.portraits.portraits import id_portrait
     
     sprites = [{
         'id': portrait_id,

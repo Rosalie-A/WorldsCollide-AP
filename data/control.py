@@ -5,7 +5,7 @@ class Control():
         self.attack_data_array = attack_data
 
     def attack_data(self):
-        from data.controls import Controls
+        from worlds.ff6wc.WorldsCollide.data.controls import Controls
         data = [0x00] * Controls.ATTACKS_DATA_SIZE
 
         data = self.attack_data_array

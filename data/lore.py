@@ -1,5 +1,5 @@
-from data.ability_data import AbilityData
-import data.text as text
+from worlds.ff6wc.WorldsCollide.data.ability_data import AbilityData
+import worlds.ff6wc.WorldsCollide.data.text as text
 
 class Lore(AbilityData):
     def __init__(self, id, name_data, ability_data, desc_data):
@@ -10,13 +10,13 @@ class Lore(AbilityData):
         self.desc = text.get_string(desc_data, text.TEXT2).rstrip('\0')
 
     def name_data(self):
-        from data.lores import Lores
+        from worlds.ff6wc.WorldsCollide.data.lores import Lores
         data = text.get_bytes(self.name, text.TEXT2)
         data.extend([0xff] * (Lores.NAME_SIZE - len(data)))
         return data
 
     def desc_data(self):
-        from data.lores import Lores
+        from worlds.ff6wc.WorldsCollide.data.lores import Lores
         data = text.get_bytes(self.desc, text.TEXT2)
         return data
 

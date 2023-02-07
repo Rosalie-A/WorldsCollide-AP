@@ -1,8 +1,8 @@
-from memory.space import Bank, Write
-import instruction.asm as asm
-import instruction.field as field
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.instruction.field as field
 
-from objectives.results._apply_characters_party import ApplyToCharacter, ApplyToCharacters
+from worlds.ff6wc.WorldsCollide.objectives.results._apply_characters_party import ApplyToCharacter, ApplyToCharacters
 
 def AddStat(stat_address):
     MAX_STAT = 0x80

@@ -1,6 +1,6 @@
 def get_palettes():
-    from graphics.palettes.palettes import id_palette
-    from api.get_palette_bytes import get_palette_bytes
+    from worlds.ff6wc.WorldsCollide.graphics.palettes.palettes import id_palette
+    from worlds.ff6wc.WorldsCollide.api.get_palette_bytes import get_palette_bytes
 
     palettes = [{
         'id': palette_id,
@@ -10,8 +10,8 @@ def get_palettes():
     return palettes
 
 def get_palettes_with_colors():
-    from graphics.palettes.palettes import id_palette
-    from api.get_palette_bytes import get_palette_bytes
+    from worlds.ff6wc.WorldsCollide.graphics.palettes.palettes import id_palette
+    from worlds.ff6wc.WorldsCollide.api.get_palette_bytes import get_palette_bytes
 
     palettes = [{
         'id': palette_id,

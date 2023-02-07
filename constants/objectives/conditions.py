@@ -1,6 +1,6 @@
-from constants.objectives.condition_bits import check_bit, quest_bit, boss_bit, dragon_bit
-from constants.entities import id_character
-from constants.espers import id_esper
+from worlds.ff6wc.WorldsCollide.constants.objectives.condition_bits import check_bit, quest_bit, boss_bit, dragon_bit
+from worlds.ff6wc.WorldsCollide.constants.entities import id_character
+from worlds.ff6wc.WorldsCollide.constants.espers import id_esper
 
 from collections import namedtuple
 ConditionType = namedtuple("ConditionType", ["name", "string_function", "value_range", "min_max"])

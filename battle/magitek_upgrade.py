@@ -1,8 +1,8 @@
-from memory.space import Bank, START_ADDRESS_SNES, Reserve, Write, Read
-import instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Reserve, Write, Read
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
-import data.event_bit as event_bit
-import objectives
+import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
+import worlds.ff6wc.WorldsCollide.objectives as objectives
 
 class _MagitekUpgrade:
     '''Set the Magitek menu in battle to match the Magitek Upgrade objective result.'''

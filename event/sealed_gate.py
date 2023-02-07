@@ -1,4 +1,4 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
 
 class SealedGate(Event):
     def name(self):
@@ -42,7 +42,7 @@ class SealedGate(Event):
         self.log_reward(self.reward)
 
     def world_map_mod(self):
-        import instruction.asm as asm
+        import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
         # calls to remove from minimap
         space = Reserve(0x2e85dc, 0x2e85de, "sealed gate call remove from minimap", asm.NOP())

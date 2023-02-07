@@ -1,5 +1,5 @@
-from objectives.results._objective_result import *
-from data.item_names import name_id as item_name_id
+from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
+from worlds.ff6wc.WorldsCollide.data.item_names import name_id as item_name_id
 
 RENAME_CARD_COUNT = 14
 

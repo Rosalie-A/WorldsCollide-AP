@@ -1,6 +1,6 @@
-from memory.rom import ROM
-from memory.heap import Heap
-from memory.label import Label, LabelPointer
+from worlds.ff6wc.WorldsCollide.memory.rom import ROM
+from worlds.ff6wc.WorldsCollide.memory.heap import Heap
+from worlds.ff6wc.WorldsCollide.memory.label import Label, LabelPointer
 
 from enum import IntEnum
 BANK_SIZE = 0x10000
@@ -75,7 +75,7 @@ class Space():
         return self._description
 
     def write(self, *values):
-        from ff6wcutils.flatten import flatten
+        from worlds.ff6wc.WorldsCollide.ff6wcutils.flatten import flatten
         values = flatten(values)
         values = self._invoke_callables(values)
         values = self._parse_labels(values)
@@ -128,7 +128,7 @@ class Space():
         return label_pointer # return a new pointer to a new label
 
     def _invoke_callables(self, values):
-        from ff6wcutils.flatten import flatten
+        from worlds.ff6wc.WorldsCollide.ff6wcutils.flatten import flatten
         result = []
         index = 0
         for value in values:
@@ -280,7 +280,7 @@ def Free(start_address, end_address):
     heap.free(start_address, end_address)
 
 def Write(destination, data, description):
-    from ff6wcutils.flatten import flatten
+    from worlds.ff6wc.WorldsCollide.ff6wcutils.flatten import flatten
 
     size = 0
     data = flatten(data)

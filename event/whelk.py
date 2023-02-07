@@ -1,4 +1,4 @@
-from event.event import *
+from worlds.ff6wc.WorldsCollide.event.event import *
 
 class Whelk(Event):
     def name(self):
@@ -69,7 +69,7 @@ class Whelk(Event):
 
     def add_npc(self, sprite, palette):
         # add whelk guard npc to map 0x2b
-        from data.npc import NPC
+        from worlds.ff6wc.WorldsCollide.data.npc import NPC
         new_npc = NPC()
         new_npc.x = 112
         new_npc.y = 29
@@ -97,7 +97,7 @@ class Whelk(Event):
         space.write(guard_npc_id)
 
         # add guard calls whelk event to map 0x2b
-        from data.map_event import MapEvent
+        from worlds.ff6wc.WorldsCollide.data.map_event import MapEvent
         for x in range(3):
             new_event = MapEvent()
             new_event.x = 111 + x

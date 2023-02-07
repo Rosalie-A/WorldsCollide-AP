@@ -1,7 +1,7 @@
-from data.control import Control
-from data.structures import DataArray
-from memory.space import Reserve, Allocate, Bank, Write
-import instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.data.control import Control
+from worlds.ff6wc.WorldsCollide.data.structures import DataArray
+from worlds.ff6wc.WorldsCollide.memory.space import Reserve, Allocate, Bank, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
 class Controls():
     ATTACKS_DATA_START = 0xf3d00
@@ -92,7 +92,7 @@ class Controls():
         space = Reserve(0x023ae8, 0x023aec, "control always", asm.NOP())
 
     def enable_control_improved_abilities(self):
-        from data.spell_names import name_id
+        from worlds.ff6wc.WorldsCollide.data.spell_names import name_id
         # Ensure that Rage & Special are available (if there are open Controls)
         for control in self.controls:
             # Search for blanks, rages, and specials

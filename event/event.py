@@ -1,26 +1,26 @@
 import json
 
-import args
-from memory.space import Bank, Space, Reserve, Allocate, Free, Write, Read
-import data.direction as direction
+import worlds.ff6wc.WorldsCollide.args as args
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Space, Reserve, Allocate, Free, Write, Read
+import worlds.ff6wc.WorldsCollide.data.direction as direction
 
-import data.event_bit as event_bit
-import data.event_word as event_word
-import data.npc_bit as npc_bit
-import data.battle_bit as battle_bit
+import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
+import worlds.ff6wc.WorldsCollide.data.event_word as event_word
+import worlds.ff6wc.WorldsCollide.data.npc_bit as npc_bit
+import worlds.ff6wc.WorldsCollide.data.battle_bit as battle_bit
 
-import instruction.asm as asm
-import instruction.field as field
-import instruction.field.entity as field_entity
-import instruction.world as world
-import instruction.vehicle as vehicle
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.instruction.field as field
+import worlds.ff6wc.WorldsCollide.instruction.field.entity as field_entity
+import worlds.ff6wc.WorldsCollide.instruction.world as world
+import worlds.ff6wc.WorldsCollide.instruction.vehicle as vehicle
 
-from instruction.event import EVENT_CODE_START
-from event.event_reward import RewardType, Reward
+from worlds.ff6wc.WorldsCollide.instruction.event import EVENT_CODE_START
+from worlds.ff6wc.WorldsCollide.event.event_reward import RewardType, Reward
 
 class Event():
     if args.ap_data:
-        with open("location_equivalences.json") as file:
+        with open("../../location_equivalences.json") as file:
             location_equivalencies = json.load(file)
 
     def __init__(self, events, rom, args, dialogs, characters, items, maps, enemies, espers, shops):

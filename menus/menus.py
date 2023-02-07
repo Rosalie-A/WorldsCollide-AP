@@ -1,13 +1,13 @@
-import menus.pregame_track as pregame_track
-import menus.pregame as pregame
-import menus.track as track
-import menus.dance as dance
-import menus.rage as rage
-import menus.status as status
-import menus.final_lineup as final_lineup
-import menus.coliseum as coliseum
-import menus.sell as sell
-import menus.magic as magic
+import worlds.ff6wc.WorldsCollide.menus.pregame_track as pregame_track
+import worlds.ff6wc.WorldsCollide.menus.pregame as pregame
+import worlds.ff6wc.WorldsCollide.menus.track as track
+import worlds.ff6wc.WorldsCollide.menus.dance as dance
+import worlds.ff6wc.WorldsCollide.menus.rage as rage
+import worlds.ff6wc.WorldsCollide.menus.status as status
+import worlds.ff6wc.WorldsCollide.menus.final_lineup as final_lineup
+import worlds.ff6wc.WorldsCollide.menus.coliseum as coliseum
+import worlds.ff6wc.WorldsCollide.menus.sell as sell
+import worlds.ff6wc.WorldsCollide.menus.magic as magic
 
 class Menus:
     def __init__(self, characters, dances, rages, enemies):
@@ -30,8 +30,8 @@ class Menus:
         self.scrollbar_bugfix()
 
     def scrollbar_bugfix(self):
-        from memory.space import Reserve
-        import instruction.asm as asm
+        from worlds.ff6wc.WorldsCollide.memory.space import Reserve
+        import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
         # square hardcoded the vertical scrollbar speed here (0x0070 is the speed for menus with 256 rows, e.g. items)
         # as a result, the scrollbar does not work correctly in menus with between roughly 140 to 230 rows

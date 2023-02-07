@@ -1,8 +1,8 @@
-from data.esper import Esper
-from data.ability_data import AbilityData
-from data.structures import DataArray
+from worlds.ff6wc.WorldsCollide.data.esper import Esper
+from worlds.ff6wc.WorldsCollide.data.ability_data import AbilityData
+from worlds.ff6wc.WorldsCollide.data.structures import DataArray
 
-import data.espers_asm as espers_asm
+import worlds.ff6wc.WorldsCollide.data.espers_asm as espers_asm
 import random
 
 class Espers():
@@ -123,8 +123,8 @@ class Espers():
 
     def randomize_spells_tiered(self):
         def get_spell():
-            from data.esper_spell_tiers import tiers, weights, tier_s_distribution
-            from ff6wcutils.weighted_random import weighted_random
+            from worlds.ff6wc.WorldsCollide.data.esper_spell_tiers import tiers, weights, tier_s_distribution
+            from worlds.ff6wc.WorldsCollide.ff6wcutils.weighted_random import weighted_random
 
             random_tier = weighted_random(weights)
             if random_tier < len(weights) - 1: # not s tier, use equal distribution
@@ -210,7 +210,7 @@ class Espers():
             esper.mp = max(min(value, 254), 1)
 
     def equipable_random(self):
-        from data.characters import Characters
+        from worlds.ff6wc.WorldsCollide.data.characters import Characters
         possible_characters = list(range(Characters.CHARACTER_COUNT - 2)) # exclude gogo/umaro
 
         for esper in self.espers:
@@ -228,7 +228,7 @@ class Espers():
         #      81 // 12 = 6, each character can equip 6 different espers
         #      81 % 12 = 9, 9 characters can equip 1 additional esper (7 total for those 9)
 
-        from data.characters import Characters
+        from worlds.ff6wc.WorldsCollide.data.characters import Characters
         possible_characters = list(range(Characters.CHARACTER_COUNT - 2)) # exclude gogo/umaro
         characters_per_esper = self.args.esper_equipable_balanced_random_value
 
@@ -265,8 +265,8 @@ class Espers():
         self.espers[self.PHOENIX].status4 = 0x04
 
     def multi_summon(self):
-        from memory.space import Reserve
-        import instruction.asm as asm
+        from worlds.ff6wc.WorldsCollide.memory.space import Reserve
+        import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
         space = Reserve(0x24da3, 0x24da5, "espers set used in battle bit", asm.NOP())
 
@@ -358,7 +358,7 @@ class Espers():
         return self.esper_names[esper]
 
     def log(self):
-        from log import COLUMN_WIDTH, section_entries, format_option
+        from worlds.ff6wc.WorldsCollide.log import COLUMN_WIDTH, section_entries, format_option
         from textwrap import wrap
 
         lentries = []

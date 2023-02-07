@@ -1,8 +1,8 @@
-from memory.rom import ROM
-from memory.space import Space
-from memory.free import free
-from data import text
-import args
+from worlds.ff6wc.WorldsCollide.memory.rom import ROM
+from worlds.ff6wc.WorldsCollide.memory.space import Space
+from worlds.ff6wc.WorldsCollide.memory.free import free
+from worlds.ff6wc.WorldsCollide.data import text
+import worlds.ff6wc.WorldsCollide.args as args
 
 class Memory:
     def __init__(self):

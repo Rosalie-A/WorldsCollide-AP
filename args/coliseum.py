@@ -2,7 +2,7 @@ def name():
     return "Coliseum"
 
 def parse(parser):
-    from constants.items import ITEM_COUNT
+    from worlds.ff6wc.WorldsCollide.constants.items import ITEM_COUNT
 
     coliseum = parser.add_argument_group("Coliseum")
 

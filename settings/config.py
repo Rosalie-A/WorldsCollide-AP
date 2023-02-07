@@ -1,6 +1,6 @@
-from memory.space import Reserve, Bank, Write
-import instruction.asm as asm
-import args
+from worlds.ff6wc.WorldsCollide.memory.space import Reserve, Bank, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.args as args
 
 class Config:
     def __init__(self):

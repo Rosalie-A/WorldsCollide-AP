@@ -1,8 +1,8 @@
-from data.magitek import Magitek
-from data.ability_data import AbilityData
-from data.structures import DataArray
+from worlds.ff6wc.WorldsCollide.data.magitek import Magitek
+from worlds.ff6wc.WorldsCollide.data.ability_data import AbilityData
+from worlds.ff6wc.WorldsCollide.data.structures import DataArray
 
-from memory.space import Bank, Reserve, Allocate, Write
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate, Write
 
 class Magiteks:
     MAGITEK_COUNT = 8

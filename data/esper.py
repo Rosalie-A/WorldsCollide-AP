@@ -1,5 +1,5 @@
-from data.ability_data import AbilityData
-import data.text as text
+from worlds.ff6wc.WorldsCollide.data.ability_data import AbilityData
+import worlds.ff6wc.WorldsCollide.data.text as text
 
 from enum import IntFlag
 
@@ -40,7 +40,7 @@ class Esper(AbilityData):
         self.equipable_characters = 0x3fff # equipable characters bitmask (default to all)
 
     def spells_bonus_data(self):
-        from data.espers import Espers
+        from worlds.ff6wc.WorldsCollide.data.espers import Espers
         data = [0x00] * Espers.SPELLS_BONUS_DATA_SIZE
 
         for spell_index in range(self.SPELL_COUNT):
@@ -51,7 +51,7 @@ class Esper(AbilityData):
         return data
 
     def name_data(self):
-        from data.espers import Espers
+        from worlds.ff6wc.WorldsCollide.data.espers import Espers
         data = text.get_bytes(self.name, text.TEXT2)
         data.extend([0xff] * (Espers.NAME_SIZE - len(data)))
         return data
@@ -140,7 +140,7 @@ class Esper(AbilityData):
         self.set_bonus(random.choice(possible))
 
     def get_equipable_characters(self):
-        from data.characters import Characters
+        from worlds.ff6wc.WorldsCollide.data.characters import Characters
         characters = []
         for character in range(Characters.CHARACTER_COUNT):
             if self.equipable_characters & (1 << character):

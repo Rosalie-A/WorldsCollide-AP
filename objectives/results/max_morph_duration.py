@@ -1,4 +1,4 @@
-from objectives.results._objective_result import *
+from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
 
 def _max_morph_duration():
     morph_duration_address = 0x1cf6

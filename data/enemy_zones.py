@@ -1,4 +1,4 @@
-from data.enemy_zone import WOBZone, WORZone, MapZone
+from worlds.ff6wc.WorldsCollide.data.enemy_zone import WOBZone, WORZone, MapZone
 
 class EnemyZones():
     # world of balance is split into 64 zones

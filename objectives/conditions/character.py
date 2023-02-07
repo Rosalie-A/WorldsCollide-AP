@@ -1,4 +1,4 @@
-from objectives.conditions._objective_condition import *
+from worlds.ff6wc.WorldsCollide.objectives.conditions._objective_condition import *
 
 class Condition(ObjectiveCondition):
     NAME = "Character"

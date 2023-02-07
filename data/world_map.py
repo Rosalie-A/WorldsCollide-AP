@@ -1,4 +1,4 @@
-from memory.space import Reserve
+from worlds.ff6wc.WorldsCollide.memory.space import Reserve
 
 class WorldMap:
     def __init__(self, rom, args):

@@ -1,5 +1,5 @@
-from data.ability_data import AbilityData
-import data.text as text
+from worlds.ff6wc.WorldsCollide.data.ability_data import AbilityData
+import worlds.ff6wc.WorldsCollide.data.text as text
 
 class Magitek(AbilityData):
     def __init__(self, id, name_data, ability_data):
@@ -9,7 +9,7 @@ class Magitek(AbilityData):
         self.name = text.get_string(name_data, text.TEXT2).rstrip('\0')
 
     def name_data(self):
-        from data.magiteks import Magiteks
+        from worlds.ff6wc.WorldsCollide.data.magiteks import Magiteks
         data = text.get_bytes(self.name, text.TEXT2)
         data.extend([0xff] * (Magiteks.NAME_SIZE - len(data)))
         return data

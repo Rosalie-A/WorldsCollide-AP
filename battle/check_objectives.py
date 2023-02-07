@@ -1,10 +1,10 @@
-from memory.space import Bank, Write
-import instruction.asm as asm
+from worlds.ff6wc.WorldsCollide.memory.space import Bank, Write
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 
 class CheckObjectives(asm.JSR):
     def __init__(self):
-        import objectives
-        import data.dialogs as dialogs
+        import worlds.ff6wc.WorldsCollide.objectives as objectives
+        import worlds.ff6wc.WorldsCollide.data.dialogs as dialogs
 
         src = [
             asm.PHP(),

@@ -1,8 +1,8 @@
-import instruction.asm as asm
+import worlds.ff6wc.WorldsCollide.instruction.asm as asm
 character_data_size = 37
 
 def ApplyToCharacters(instructions):
-    from constants.entities import CHARACTER_COUNT
+    from worlds.ff6wc.WorldsCollide.constants.entities import CHARACTER_COUNT
 
     return [
         asm.PHP(),
