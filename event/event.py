@@ -1,4 +1,5 @@
 import json
+import os
 
 import worlds.ff6wc.WorldsCollide.args as args
 from worlds.ff6wc.WorldsCollide.memory.space import Bank, Space, Reserve, Allocate, Free, Write, Read
@@ -20,7 +21,7 @@ from worlds.ff6wc.WorldsCollide.event.event_reward import RewardType, Reward
 
 class Event():
     if args.ap_data:
-        with open("../../location_equivalences.json") as file:
+        with open(os.path.dirname(os.path.abspath(__file__)) + "/../../location_equivalences.json") as file:
             location_equivalencies = json.load(file)
 
     def __init__(self, events, rom, args, dialogs, characters, items, maps, enemies, espers, shops):
