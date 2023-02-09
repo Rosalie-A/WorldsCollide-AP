@@ -19,7 +19,7 @@ CHARACTER_ESPER_ONLY_REWARDS = 6
 class Reward:
     if worlds.ff6wc.WorldsCollide.args.ap_data:
         print(os.getcwd())
-        with open("../../location_equivalences.json") as file:
+        with open(os.path.dirname(os.path.abspath(__file__)) + "/../../location_equivalences.json") as file:
             location_equivalencies = json.load(file)
 
     def __init__(self, event, possible_types, ap_name="", ap_index=""):
