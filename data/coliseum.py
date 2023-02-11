@@ -47,6 +47,8 @@ class Coliseum():
     def randomize_rewards(self):
         for match in self.matches:
             match.reward = self.items.get_random()
+            while match.reward == 231: # no ArchplgoItems allowed
+                match.reward = self.items.get_random()
 
     def remove_excluded_items(self):
         import random

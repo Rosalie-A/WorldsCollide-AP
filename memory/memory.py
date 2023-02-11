@@ -7,12 +7,12 @@ import worlds.ff6wc.WorldsCollide.args as args
 class Memory:
     def __init__(self):
         self.rom = ROM(args.input_file)
+        self.rom.set_bytes(0x12BEBC, bytearray(text.get_bytes(text.convert("ArchplgoItem", text.TEXT2), text.TEXT2)))
         Space.rom = self.rom
         free()
 
     def write(self):
         self.rom.set_bytes(0x00FFC0, bytearray(args.ap_data["RomName"], 'utf-8'))
-        self.rom.set_bytes(0x12BEBC, bytearray(text.get_bytes(text.convert("ArchplgoItem", text.TEXT2), text.TEXT2)))
         if not args.no_rom_output:
             self.rom.write(args.output_file)
         else:

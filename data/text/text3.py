@@ -358,7 +358,7 @@ text_value = {
               '<Exp. Egg>'          : 0x0ee4,
               '<Tintinabar>'        : 0x0ee5,
               '<Sprint Shoes>'      : 0x0ee6,
-              '<Rename Card>'       : 0x0ee7,
+              '<ArchplgoItem>'      : 0x0ee7,
               '<Tonic>'             : 0x0ee8,
               '<Potion>'            : 0x0ee9,
               '<X-Potion>'          : 0x0eea,
