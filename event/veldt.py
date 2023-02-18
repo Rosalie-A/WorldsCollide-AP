@@ -37,9 +37,12 @@ class Veldt(Event):
         if self.reward.type == RewardType.CHARACTER:
             self.char = self.reward.id
             self.sprite = self.reward.id
-        else:
+        elif self.reward.type == RewardType.ESPER:
             import random
             self.sprite = random.choice([14, 15, 19, 20])
+        elif self.reward.type == RewardType.ITEM:
+            self.char = self.characters.CHARACTER_COUNT + 1
+            self.sprite = self.characters.CHARACTER_COUNT + 1
 
         self.leap_mod()
         self.gau_ai_mod()

@@ -42,6 +42,7 @@ class Events():
                 module_name = event_file[:-4]
             else:
                 module_name = event_file[:-3]
+
             event_module = importlib.import_module('.event.' + module_name, "worlds.ff6wc.WorldsCollide")
 
             for event_name, event_class in inspect.getmembers(event_module, inspect.isclass):

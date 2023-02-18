@@ -1,6 +1,7 @@
 from worlds.ff6wc.WorldsCollide.memory.rom import ROM
 from worlds.ff6wc.WorldsCollide.memory.heap import Heap
 from worlds.ff6wc.WorldsCollide.memory.label import Label, LabelPointer
+import worlds.ff6wc.WorldsCollide.args as args
 
 from enum import IntEnum
 BANK_SIZE = 0x10000
@@ -32,12 +33,13 @@ class Space():
         # check if space conflicts with any existing spaces
         from bisect import bisect
         dest_index = bisect(self.spaces, self)
-        if dest_index < len(self.spaces) and self.end_address >= self.spaces[dest_index].start_address:
-            message = str(self) + " conflicts with existing spaces:\n"
-            while dest_index < len(self.spaces) and self.end_address >= self.spaces[dest_index].start_address:
-                message += str(self.spaces[dest_index]) + "\n"
-                dest_index += 1
-            raise RuntimeError(message)
+        if args.debug:
+            if dest_index < len(self.spaces) and self.end_address >= self.spaces[dest_index].start_address:
+                message = str(self) + " conflicts with existing spaces:\n"
+                while dest_index < len(self.spaces) and self.end_address >= self.spaces[dest_index].start_address:
+                    message += str(self.spaces[dest_index]) + "\n"
+                    dest_index += 1
+                raise RuntimeError(message)
         self.spaces.insert(dest_index, self)
 
     def __lt__(self, other):

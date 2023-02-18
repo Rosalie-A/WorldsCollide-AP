@@ -183,20 +183,6 @@ def AddEsper2(esper_id, sound_effect = True):
     else:
         return AddEsper()
 
-class _AddItem2(_Instruction):
-    def __init__(self):
-        super().__init__(0xa4)
-
-    def __str__(self):
-        return super().__str__()
-
-def AddItem2(esper_id, sound_effect = True):
-    AddItem = type("AddItem", (_AddItem2,), {})
-    if sound_effect:
-        return AddItem(), PlaySoundEffect(0xCD)
-    else:
-        return AddItem()
-
 class RemoveEsper(_Instruction):
     def __init__(self, esper_id):
         self.esper_id = esper_id

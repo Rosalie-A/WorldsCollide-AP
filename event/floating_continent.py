@@ -35,6 +35,8 @@ class FloatingContinent(Event):
             self.ground_character_mod(self.reward1.id)
         elif self.reward1.type == RewardType.ESPER:
             self.ground_esper_mod(self.reward1.id)
+        elif self.reward1.type == RewardType.ITEM:
+            self.ground_item_mod(self.reward1.id)
         self.finish_ground_check()
 
         self.save_point_hole_mod()
@@ -54,6 +56,8 @@ class FloatingContinent(Event):
             self.escape_character_mod(self.reward3.id)
         elif self.reward3.type == RewardType.ESPER:
             self.escape_esper_mod(self.reward3.id)
+        elif self.reward3.type == RewardType.ITEM:
+            self.escape_item_mod(self.reward3.id)
 
         self.log_reward(self.reward1)
         self.log_reward(self.reward2)
@@ -200,6 +204,20 @@ class FloatingContinent(Event):
         space.write(
             field.AddEsper(esper),
             field.Dialog(self.espers.get_receive_esper_dialog(esper)),
+            field.DeleteEntity(self.ground_shadow_npc_id),
+            field.Branch(space.end_address + 1),
+        )
+
+    def ground_item_mod(self, item):
+        self.ground_shadow_npc.sprite = 91
+        self.ground_shadow_npc.palette = 2
+        self.ground_shadow_npc.split_sprite = 1
+        self.ground_shadow_npc.direction = direction.UP
+
+        space = Reserve(0xad9b1, 0xad9ed, "floating continent add esper on ground", field.NOP())
+        space.write(
+            field.AddItem(item),
+            field.Dialog(self.items.get_receive_dialog(item)),
             field.DeleteEntity(self.ground_shadow_npc_id),
             field.Branch(space.end_address + 1),
         )
@@ -477,4 +495,27 @@ class FloatingContinent(Event):
             field.LoadMap(0x06, direction.DOWN, default_music = True, x = 16, y = 6, fade_in = True, entrance_event = True),
             field.AddEsper(esper),
             field.Dialog(self.espers.get_receive_esper_dialog(esper)),
+        ])
+
+    def escape_item_mod(self, item):
+        # use guest character to give item reward
+        guest_char_id = 0x0f
+        guest_char = self.maps.get_npc(0x189, guest_char_id)
+
+        random_sprite = self.characters.get_random_esper_item_sprite()
+        random_sprite_palette = self.characters.get_palette(random_sprite)
+
+        space = Reserve(0xa579d, 0xa57b2, "floating continent wait dialogs", field.NOP())
+        space.write(
+            field.SetSprite(guest_char_id, random_sprite),
+            field.SetPalette(guest_char_id, random_sprite_palette),
+            field.RefreshEntities(),
+        )
+
+        self.escape_mod(guest_char_id, [
+            field.DeleteEntity(guest_char_id),
+            field.RefreshEntities(),
+            field.LoadMap(0x06, direction.DOWN, default_music = True, x = 16, y = 6, fade_in = True, entrance_event = True),
+            field.AddItem(item),
+            field.Dialog(self.items.get_receive_dialog(item)),
         ])

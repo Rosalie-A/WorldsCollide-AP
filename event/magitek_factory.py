@@ -47,6 +47,8 @@ class MagitekFactory(Event):
             self.character_mod(self.reward3.id)
         elif self.reward3.type == RewardType.ESPER:
             self.esper_mod(self.reward3.id)
+        elif self.reward3.type == RewardType.ITEM:
+            self.item_mod(self.reward3.id)
 
         self.crane_battle_mod()
         self.after_cranes_mod()
@@ -320,6 +322,19 @@ class MagitekFactory(Event):
             field.FadeOutScreen(),
             field.WaitForFade(),
             field.Branch(space.end_address + 1), # skip nops
+        )
+
+    def item_mod(self, item):
+        self.setzer_npc.sprite = self.characters.get_random_esper_item_sprite()
+        self.setzer_npc.palette = self.characters.get_palette(self.setzer_npc.sprite)
+
+        space = Reserve(0xc819b, 0xc8302, "magitek factory add char and kefka cranes scene", field.NOP())
+        space.write(
+            field.AddItem(item),
+            field.Dialog(self.items.get_receive_dialog(item)),
+            field.FadeOutScreen(),
+            field.WaitForFade(),
+            field.Branch(space.end_address + 1),  # skip nops
         )
 
     def crane_battle_mod(self):
