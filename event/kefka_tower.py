@@ -497,6 +497,8 @@ class KefkaTower(Event):
     def final_scenes_mod(self):
         # remove dialogs that require button press so final scenes automatically start
         space = Reserve(0xa1072, 0xa1074, "kefka tower it's breaking up!", field.NOP())
+        #write zero to the always FF. that's our signal the game is done
+        space.write(asm.STZ(0x02, asm.DIR))
         space = Reserve(0xa11d3, 0xa11d5, "kefka tower there's no time to lose! airship's just ahead", field.NOP())
         space = Reserve(0xa1205, 0xa1207, "kefka tower terra! you're back!", field.NOP())
         space = Reserve(0xa1231, 0xa1233, "kefka tower come on, everybody! we have to work together!", field.NOP())
