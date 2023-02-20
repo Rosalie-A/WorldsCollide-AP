@@ -18,7 +18,6 @@ class RewardType(Flag):
 CHARACTER_ESPER_ONLY_REWARDS = 6
 class Reward:
     if worlds.ff6wc.WorldsCollide.args.ap_data:
-        print(os.getcwd())
         with open(os.path.dirname(os.path.abspath(__file__)) + "/../../location_equivalences.json") as file:
             location_equivalencies = json.load(file)
 
@@ -65,14 +64,9 @@ def choose_reward(possible_types, characters, espers, items, ap_reward = None):
                 reward = args.ap_data[ap_reward.ap_name]
                 if reward == "Archipelago Item":
                     return (constants.items.name_id["ArchplgoItem"], RewardType.ITEM)
-                print(f"========== {reward}")
                 if reward == "Ragnarok Sword":
-                    print("Ragnarok Sword")
-                    print("Item")
                     return (constants.items.name_id["Ragnarok"], RewardType.ITEM)
                 if reward == "Ragnarok Esper":
-                    print("Ragnarok Sword")
-                    print("Esper")
                     return (espers.get_specific_esper("Ragnarok"), RewardType.ESPER)
                 if str.upper(reward) in Characters.DEFAULT_NAME:
                     return (characters.get_specific_character(reward), RewardType.CHARACTER)

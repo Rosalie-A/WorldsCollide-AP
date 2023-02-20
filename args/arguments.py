@@ -71,7 +71,6 @@ class Arguments:
         if self.ap_data:
             with open(self.ap_data) as ap_file:
                 decoded_data = json.load(ap_file)
-                print(decoded_data)
             self.ap_data = decoded_data
 
     def _process_min_max(self, arg_name):
