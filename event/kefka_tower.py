@@ -310,7 +310,45 @@ class KefkaTower(Event):
         )
 
     def atma_mod(self):
-        src = [
+        src = []
+        if self.atma_reward.type == RewardType.ITEM:
+            src = self.get_atma_item_src()
+        elif self.atma_reward.type == RewardType.ESPER:
+            src = self.get_atma_esper_src()
+        elif self.atma_reward.type == RewardType.CHARACTER:
+            src = self.get_atma_character_src()
+        space = Write(Bank.CC, src, "kefka tower atma reward")
+        atma_reward = space.start_address
+
+        space = Reserve(0xc18d3, 0xc18d6, "kefka tower after atma", field.NOP())
+        space.write(
+            field.Call(atma_reward),
+        )
+
+    def get_atma_character_src(self):
+        return [
+            Read(0xc18d3, 0xc18d6),  # show save point, set save point npc bit
+            field.SetEventBit(event_bit.DEFEATED_ATMA),
+            field.FinishCheck(),
+            field.RecruitAndSelectParty(self.atma_reward.id),
+            field.FadeInScreen(),
+            field.WaitForFade(),
+            field.Return(),
+        ]
+
+    def get_atma_esper_src(self):
+        return [
+            Read(0xc18d3, 0xc18d6), # show save point, set save point npc bit
+
+            field.AddEsper(self.atma_reward.id),
+            field.Dialog(self.espers.get_receive_esper_dialog(self.atma_reward.id)),
+            field.SetEventBit(event_bit.DEFEATED_ATMA),
+            field.FinishCheck(),
+            field.Return(),
+        ]
+
+    def get_atma_item_src(self):
+        return [
             Read(0xc18d3, 0xc18d6), # show save point, set save point npc bit
 
             field.AddItem(self.item),
@@ -319,13 +357,6 @@ class KefkaTower(Event):
             field.FinishCheck(),
             field.Return(),
         ]
-        space = Write(Bank.CC, src, "kefka tower atma reward")
-        atma_reward = space.start_address
-
-        space = Reserve(0xc18d3, 0xc18d6, "kefka tower after atma", field.NOP())
-        space.write(
-            field.Call(atma_reward),
-        )
 
     def inferno_battle_mod(self):
         boss_pack_id = self.get_boss("Inferno")

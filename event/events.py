@@ -62,6 +62,11 @@ class Events():
         log_strings = []
         space = Allocate(Bank.CC, 400, "event/npc bit initialization", field.NOP())
         for event in events:
+            print(event.name())
+            if len(event.rewards) > 0:
+                for reward in event.rewards:
+                    print(reward)
+            print("===")
             event.init_event_bits(space)
             event.mod()
 

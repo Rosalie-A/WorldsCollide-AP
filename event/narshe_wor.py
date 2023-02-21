@@ -36,6 +36,8 @@ class NarsheWOR(Event):
             self.weapon_shop_esper_mod(self.reward1.id)
         elif self.reward1.type == RewardType.ITEM:
             self.weapon_shop_item_mod(self.reward1.id)
+        elif self.reward1.type == RewardType.CHARACTER:
+            self.weapon_shop_character_mod(self.reward1.id)
 
         self.cursed_shield_mod()
 
@@ -152,11 +154,17 @@ class NarsheWOR(Event):
 
     def esper_room_mod(self, esper_item_instructions):
         from worlds.ff6wc.WorldsCollide.data.npc import NPC
+        if self.reward1.type == RewardType.CHARACTER:
+            sprite_num = self.reward1.id
+            palette_num = self.characters.get_palette(self.reward1.id)
+        else:
+            sprite_num = 52
+            palette_num = 0
         guard_npc = NPC()
         guard_npc.x = 74
         guard_npc.y = 40
-        guard_npc.sprite = 52
-        guard_npc.palette = 0
+        guard_npc.sprite = sprite_num
+        guard_npc.palette = palette_num
         guard_npc.direction = direction.DOWN
         guard_npc.speed = 3
         guard_npc.event_byte = 0x60
@@ -220,6 +228,30 @@ class NarsheWOR(Event):
         self.esper_room_mod([
             field.AddItem(item),
             field.Dialog(self.items.get_receive_dialog(item)),
+        ])
+
+    def weapon_shop_character_mod(self, character):
+        magicite_npc_id = 0x11
+        magicite_npc = self.maps.get_npc(0x18, magicite_npc_id)
+        magicite_npc.sprite = character
+        magicite_npc.palette = self.characters.get_palette(character)
+        magicite_npc.split_sprite = 0
+        magicite_npc.direction = direction.DOWN
+
+        import worlds.ff6wc.WorldsCollide.data.text
+        item_name = data.text.convert(self.characters.get_name(character), data.text.TEXT1) # item names are stored as TEXT2, dialogs are TEXT1
+        dialog_text = "This gives off an eerie aura!<line><choice> Leave it “" + item_name + "”"
+
+        self.weapon_shop_mod(dialog_text, [
+            field.RecruitAndSelectParty(character),
+            field.FadeInScreen(),
+            field.WaitForFade()
+        ])
+
+        self.esper_room_mod([
+            field.RecruitAndSelectParty(character),
+            field.FadeInScreen(),
+            field.WaitForFade()
         ])
 
     def cursed_shield_mod(self):

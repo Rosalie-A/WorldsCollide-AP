@@ -22,6 +22,8 @@ class DoomGaze(Event):
             self.esper_mod(self.reward.id)
         elif self.reward.type == RewardType.ITEM:
             self.item_mod(self.reward.id)
+        elif self.reward.type == RewardType.CHARACTER:
+            self.character_mod(self.reward.id)
 
         self.log_reward(self.reward)
 
@@ -92,4 +94,18 @@ class DoomGaze(Event):
         self.receive_reward_mod([
             field.Dialog(self.items.get_receive_dialog(item)),
             field.AddItem(item, sound_effect = False),
+        ])
+
+    def character_mod(self, character):
+        self.magicite_npc.sprite = character
+        self.magicite_npc.palette = self.characters.get_palette(character)
+        self.magicite_npc.split_sprite = 1
+        self.magicite_npc.direction = direction.DOWN
+
+        space = Reserve(0xa00d6, 0xa00d7, "doom gaze flash screen white when receiving esper", field.NOP())
+
+        self.receive_reward_mod([
+            field.FadeOutScreen(),
+            field.WaitForFade(),
+            field.RecruitAndSelectParty(character),
         ])

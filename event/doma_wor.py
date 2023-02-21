@@ -53,6 +53,8 @@ class DomaWOR(Event):
             self.throne_esper_mod(self.reward2.id)
         elif self.reward2.type == RewardType.ITEM:
             self.throne_item_mod(self.reward2.id)
+        elif self.reward2.type == RewardType.CHARACTER:
+            self.throne_character_mod(self.reward2.id)
 
         self.log_reward(self.reward3)
         self.log_reward(self.reward1)
@@ -313,6 +315,14 @@ class DomaWOR(Event):
         )
 
         space = Reserve(0xb9a89, 0xb9a8b, "doma wor receive alexandr dialog", field.NOP())
+
+    def throne_character_mod(self, character):
+        self.throne_esper_item_mod([
+            field.Dialog(self.espers.get_receive_esper_dialog(esper)),
+            field.RecruitAndSelectParty(character),
+            field.FadeInScreen(),
+            field.WaitForFade()
+        ])
 
     def throne_esper_mod(self, esper):
         self.throne_esper_item_mod([

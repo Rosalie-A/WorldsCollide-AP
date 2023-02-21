@@ -15,6 +15,8 @@ class Tritoch(Event):
             self.esper_mod(self.reward.id)
         elif self.reward.type == RewardType.ITEM:
             self.item_mod(self.reward.id)
+        elif self.reward.type == RewardType.CHARACTER:
+            self.character_mod(self.reward.id)
 
         self.log_reward(self.reward)
 
@@ -72,5 +74,25 @@ class Tritoch(Event):
 
         add_item_instructions = field.AddItem(item, sound_effect = False)
         receive_item_dialog_id = self.items.get_receive_dialog(item)
+
+        self.esper_item_mod(add_item_instructions, receive_item_dialog_id)
+
+    def character_mod(self, character):
+        magicite_npc_id = 0x11
+        magicite_npc = self.maps.get_npc(0x23, magicite_npc_id)
+        magicite_npc.sprite = character
+        magicite_npc.palette = self.characters.get_palette(character)
+        magicite_npc.split_sprite = 0
+        magicite_npc.direction = direction.DOWN
+
+        space = Reserve(0xc3779, 0xc377e, "tritoch esper sound effect and flash screen white", field.NOP())
+        space.write(
+            field.PlaySoundEffect(141),
+        )
+
+        space = Reserve(0xc3781, 0xc3781, "tritoch pause before receive dialog", field.NOP())
+
+        add_item_instructions = [field.RecruitAndSelectParty(character), field.FadeInScreen(), field.WaitForFade()]
+        receive_item_dialog_id = self.items.get_receive_dialog(231)
 
         self.esper_item_mod(add_item_instructions, receive_item_dialog_id)
