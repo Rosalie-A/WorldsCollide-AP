@@ -318,7 +318,6 @@ class DomaWOR(Event):
 
     def throne_character_mod(self, character):
         self.throne_esper_item_mod([
-            field.Dialog(self.espers.get_receive_esper_dialog(esper)),
             field.RecruitAndSelectParty(character),
             field.FadeInScreen(),
             field.WaitForFade()
