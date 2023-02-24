@@ -111,6 +111,7 @@ class LoneWolf(Event):
         space.write(
             add_esper_item,
             field.SetEventBit(npc_bit.MOG_MOOGLE_ROOM_WOR),
+            field.SetEventBit(event_bit.RECRUITED_MOG_WOB),
             field.Branch(space.end_address + 1), # skip nops
         )
 
