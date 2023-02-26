@@ -279,19 +279,27 @@ class Chests():
 
     def mod(self):
         self.fix_shared_bits()
+        treasuresanity = ""
         if self.args.ap_data:
-            self.ap_placement()
-        elif self.args.chest_contents_shuffle_random:
-            self.shuffle_random()
-            self.remove_excluded_items()
-        elif self.args.chest_contents_random_tiered:
-            self.random_tiered()
-        elif self.args.chest_contents_random_scaled:
-            self.random_scaled()
-        elif self.args.chest_contents_empty:
-            self.clear_contents()
-        else:
-            self.remove_excluded_items()
+            treasuresanity = "true"
+            for chest in self.chests:
+                if str(chest.id) in self.args.ap_data.keys():
+                    self.ap_placement()
+                    break
+                else:
+                    treasuresanity = "false"
+        if treasuresanity == "false":
+            if self.args.chest_contents_shuffle_random:
+                self.shuffle_random()
+                self.remove_excluded_items()
+            elif self.args.chest_contents_random_tiered:
+                self.random_tiered()
+            elif self.args.chest_contents_random_scaled:
+                self.random_scaled()
+            elif self.args.chest_contents_empty:
+                self.clear_contents()
+            else:
+                self.remove_excluded_items()
 
         if self.args.chest_monsters_shuffle:
             self.shuffle([Chest.MONSTER])
