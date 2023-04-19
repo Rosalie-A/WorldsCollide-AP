@@ -146,7 +146,7 @@ class EnemyPacks():
         self.phunbaba3_safety_check(bosses_to_replace)
 
     def randomize_event_bosses(self):
-        import worlds.ff6wc.WorldsCollide.args as args, random, objectives
+        import worlds.ff6wc.WorldsCollide.args as args, random, worlds.ff6wc.WorldsCollide.objectives as objectives
         from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import names as possible_condition_names
 
         boss_condition_name = "Boss"
