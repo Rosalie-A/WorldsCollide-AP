@@ -1,9 +1,9 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Reserve, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import Bank, START_ADDRESS_SNES, Reserve, Write
+from ..instruction import asm as asm
 
-import worlds.ff6wc.WorldsCollide.constants.status_effects as status_effects
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
-import worlds.ff6wc.WorldsCollide.objectives as objectives
+from ..constants import status_effects as status_effects
+from ..data import event_bit as event_bit
+from .. import objectives as objectives
 
 class _AutoStatus:
     def __init__(self):

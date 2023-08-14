@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
+from ..event.event import *
 
 class OperaHouseWOB(Event):
     def name(self):

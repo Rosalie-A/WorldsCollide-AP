@@ -1,7 +1,7 @@
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
-import worlds.ff6wc.WorldsCollide.data.npc_bit as npc_bit
-import worlds.ff6wc.WorldsCollide.data.battle_bit as battle_bit
-from worlds.ff6wc.WorldsCollide.data.bosses import normal_formation_name, dragon_formation_name
+from ...data import event_bit as event_bit
+from ...data import npc_bit as npc_bit
+from ...data import battle_bit as battle_bit
+from ...data.bosses import normal_formation_name, dragon_formation_name
 
 from collections import namedtuple
 NameBit = namedtuple("NameBit", ["name", "bit"])
@@ -88,7 +88,7 @@ quest_bit = [
     NameBit("Win A Coliseum Match", event_bit.WON_A_COLISEUM_MATCH),
 ]
 
-from worlds.ff6wc.WorldsCollide.constants.objectives.boss_ids import boss_objective_ids
+from ...constants.objectives.boss_ids import boss_objective_ids
 
 boss_bit = []
 for formation_id in boss_objective_ids:

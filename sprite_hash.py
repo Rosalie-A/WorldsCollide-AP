@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.constants.entities import name_id
+from .constants.entities import name_id
 HASH_CHARACTERS = [name_id[x] for x in ["General Leo", "Banon/Duncan", "Esper Terra", "Merchant"]]
 # the game reserves space for 22 sprites (14 main characters + imp/leo/banon/ghost/merchant/etc...)
 # overwrite some memory reserved for 4 chars which don't appear on save/load/shop/coliseum/party select screens

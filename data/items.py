@@ -1,11 +1,12 @@
-import worlds.ff6wc.WorldsCollide.args as args, random
-from worlds.ff6wc.WorldsCollide.data.item import Item
+from .. import args as args
+import random
+from ..data.item import Item
 
-from worlds.ff6wc.WorldsCollide.constants.items import good_items
-from worlds.ff6wc.WorldsCollide.constants.items import id_name, name_id
+from ..constants.items import good_items
+from ..constants.items import id_name, name_id
 
-import worlds.ff6wc.WorldsCollide.data.items_asm as items_asm
-import worlds.ff6wc.WorldsCollide.data as data
+from ..data import items_asm as items_asm
+from .. import data as data
 
 class Items():
     ITEM_COUNT = 256
@@ -62,7 +63,7 @@ class Items():
         #      480 // 14 = 34, each character can equip 34 different items
         #      480  % 14 = 4, 4 characters can equip 1 additional item (35 items total for those 4)
 
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         possible_characters = list(range(Characters.CHARACTER_COUNT))
         for item in self.items:
             if item.is_equipable() and item.id != self.EMPTY and type_condition(item.type):
@@ -94,7 +95,7 @@ class Items():
         if percent == 0:
             return
 
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         percent = percent / 100.0
         for item in self.items:
             if item.is_equipable() and item.id != self.EMPTY and type_condition(item.type):
@@ -105,7 +106,7 @@ class Items():
                         item.add_equipable_character(character)
 
     def equipable_shuffle_random(self, type_condition, percent):
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         equipable = [[] for _ in range(Characters.CHARACTER_COUNT)]
         for item in self.items:
             if item.is_equipable() and item.id != self.EMPTY and type_condition(item.type):
@@ -168,7 +169,7 @@ class Items():
         self.items[name_id["Super Ball"]].scale_price(2)
 
     def assign_values(self):
-        from worlds.ff6wc.WorldsCollide.data.item_custom_values import custom_values
+        from ..data.item_custom_values import custom_values
         for item in self.items:
             if item.id in custom_values:
                 item.price = custom_values[item.id]
@@ -180,9 +181,9 @@ class Items():
 
     def moogle_starting_equipment(self):
         # Give the moogles in Moogle Defense starting armor and helmets. Keeping vanilla weapons
-        from worlds.ff6wc.WorldsCollide.data.shop_item_tiers import tiers
-        from worlds.ff6wc.WorldsCollide.data.item import Item
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.shop_item_tiers import tiers
+        from ..data.item import Item
+        from ..data.characters import Characters
 
         for index in range(Characters.FIRST_MOOGLE, Characters.LAST_MOOGLE + 1):
             self.characters.characters[index].init_body = random.choice(tiers[Item.ARMOR][1])
@@ -311,7 +312,7 @@ class Items():
         if self.args.no_illuminas:
             exclude.append(name_id["Illumina"])
 
-        from worlds.ff6wc.WorldsCollide.data.movement import AUTO_SPRINT, B_DASH
+        from ..data.movement import AUTO_SPRINT, B_DASH
         # Sprint Shoes are a literal dead item if any of these options
         if self.args.no_sprint_shoes or self.args.movement in [AUTO_SPRINT, B_DASH]:
             exclude.append(name_id["Sprint Shoes"])
@@ -350,7 +351,7 @@ class Items():
         self.receive_dialogs[item_id] = dialog_id
 
         # item names are stored as TEXT2, dialogs are TEXT1
-        import worlds.ff6wc.WorldsCollide.data.text
+        from ..data import text
         item_name = data.text.convert(self.items[item_id].name, data.text.TEXT1)
 
         self.dialogs.set_text(dialog_id, '<line><     >Received “' + item_name + '”!<end>')

@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
-from worlds.ff6wc.WorldsCollide.data.item_names import name_id as item_name_id
+from ...objectives.results._objective_result import *
+from ...data.item_names import name_id as item_name_id
 
 IMP_ITEMS = ["Imp Halberd", "TortoiseShld", "Titanium", "Imp's Armor"]
 IMP_ITEM_IDS = [item_name_id[item_name] for item_name in IMP_ITEMS]

@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
+from ..event.event import *
 
 class DomaWOB(Event):
     def name(self):
@@ -137,7 +137,7 @@ class DomaWOB(Event):
         self.maps.delete_short_exit(0x00, self.wob_left_x, self.wob_left_y)
         self.maps.delete_short_exit(0x00, self.wob_right_x, self.wob_right_y)
 
-        from worlds.ff6wc.WorldsCollide.data.map_event import MapEvent
+        from ..data.map_event import MapEvent
 
         new_event = MapEvent()
         new_event.x = self.wob_left_x

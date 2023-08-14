@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.data.bosses import BossLocations
+from ..data.bosses import BossLocations
 
 
 DEFAULT_DRAGON_PROTOCOL = BossLocations.SHUFFLE

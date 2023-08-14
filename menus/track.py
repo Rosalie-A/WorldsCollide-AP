@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES, Bank, Write, Reserve, Allocate, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.c3 as c3
+from ..memory.space import START_ADDRESS_SNES, Bank, Write, Reserve, Allocate, Read
+from ..instruction import asm as asm
+from ..instruction import c3 as c3
 
 class TrackMenu:
     MENU_NUMBER = 10
@@ -53,7 +53,7 @@ class TrackMenu:
         )
 
     def main_menu_mod(self):
-        import worlds.ff6wc.WorldsCollide.data.text as text
+        from ..data import text as text
 
         # increase main menu options submenu size to allow track to fit
         space = Reserve(0x331bb, 0x331be, "main menu options submenu layout")
@@ -134,7 +134,7 @@ class TrackMenu:
         space.write(8)
 
     def draw_options_mod(self):
-        import worlds.ff6wc.WorldsCollide.data.text as text
+        from ..data import text as text
 
         text_positions = [
             ("Objectives", 0x798f),

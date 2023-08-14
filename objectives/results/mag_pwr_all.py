@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
-from worlds.ff6wc.WorldsCollide.objectives.results._add_sub_stat import add_stat_all, sub_stat_all
+from ...objectives.results._objective_result import *
+from ...objectives.results._add_sub_stat import add_stat_all, sub_stat_all
 
 MAG_PWR_ADDRESS = 0x161d
 add_mag_pwr = add_stat_all(MAG_PWR_ADDRESS, "mag_pwr")

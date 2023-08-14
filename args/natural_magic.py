@@ -4,7 +4,7 @@ def name():
 def parse(parser):
     natural_magic = parser.add_argument_group("Natural Magic")
 
-    from worlds.ff6wc.WorldsCollide.data.characters import Characters
+    from ..data.characters import Characters
     natural_magic_char_options = ["random", ""]
     natural_magic_char_options += [name.lower() for name in Characters.DEFAULT_NAME[ : -2]]
 

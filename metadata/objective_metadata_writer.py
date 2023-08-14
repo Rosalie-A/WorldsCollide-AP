@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.metadata.objective_condition_metadata import ObjectiveConditionMetadata
-from worlds.ff6wc.WorldsCollide.metadata.objective_metadata import ObjectiveMetadata
+from ..metadata.objective_condition_metadata import ObjectiveConditionMetadata
+from ..metadata.objective_metadata import ObjectiveMetadata
 
 OBJECTIVE_BANK = "FF"
 NAME_BANK = "FE"
@@ -14,8 +14,8 @@ CONDITION_NAME_LENGTH = 31
 
 class ObjectiveMetadataWriter:
     def __init__(self):
-        from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import types as condition_types
-        from worlds.ff6wc.WorldsCollide.constants.objectives.results import types as result_types, name_category
+        from ..constants.objectives.conditions import types as condition_types
+        from ..constants.objectives.results import types as result_types, name_category
 
         self.objectives = [ObjectiveMetadata(result_type, name_category[result_type.name]) for result_type in result_types]
         self.conditions = [ObjectiveConditionMetadata(condition_types.index(condition_type), condition_type) for condition_type in condition_types]
@@ -37,7 +37,7 @@ class ObjectiveMetadataWriter:
 
     def write(self):
         import json        
-        import worlds.ff6wc.WorldsCollide.args as args
+        from .. import args as args
         file_name = f"{args.output_file}"
         metadata = self.get_objective_metadata()
         print('Writing metadata to', file_name)

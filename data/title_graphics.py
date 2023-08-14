@@ -1,6 +1,8 @@
 import os
+import pkgutil
+from pathlib import Path
 
-from worlds.ff6wc.WorldsCollide.memory.space import Reserve
+from ..memory.space import Reserve
 class TitleGraphics:
     def __init__(self, rom, args):
         self.rom = rom
@@ -8,17 +10,13 @@ class TitleGraphics:
 
     def mod(self):
         # Read in the title graphics bin and write it to 18f000 - 194e95
-        title_screen_location = "./worlds/ff6wc/WorldsCollide/graphics/title/WC Spartan Title Data-CDude.bin"
-        if __file__[-3:] == "pyc":
-            title_screen_location = "./lib/worlds/ff6wc/WorldsCollide/graphics/title/WC Spartan Title Data-CDude.bin"
-        with open(title_screen_location, "rb") as binFile:
-            data = binFile.read()
 
-            space = Reserve(0x18f000, 0x194e95, "title graphics (compressed)")
-            if len(space) != len(data):
-                raise ValueError(f"Invalid title graphics bin size ({len(data)} should be {len(space)})")
+        data = pkgutil.get_data("worlds.ff6wc.WorldsCollide", os.path.join('graphics', 'title', 'WC Spartan Title Data-CDude.bin'))
+        space = Reserve(0x18f000, 0x194e95, "title graphics (compressed)")
+        if len(space) != len(data):
+             raise ValueError(f"Invalid title graphics bin size ({len(data)} should be {len(space)})")
 
-            space.write(data)
+        space.write(data)
 
     def write(self):
         if self.args.spoiler_log:

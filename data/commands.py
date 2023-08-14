@@ -1,7 +1,7 @@
 from multiprocessing.sharedctypes import Value
-from worlds.ff6wc.WorldsCollide.constants.commands import *
+from ..constants.commands import *
 import random
-import worlds.ff6wc.WorldsCollide.args as args
+from .. import args as args
 
 class Commands:
     def __init__(self, characters):
@@ -26,7 +26,7 @@ class Commands:
             except ValueError:
                 pass
 
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         # Give the Moogles for Moogle Defense randomized commands
         # Copy the list minus any exclusions
         possible_moogle_commands = command_list.copy()
@@ -46,7 +46,7 @@ class Commands:
                 self.characters[index].commands[1] = random.choice(possible_moogle_commands)
 
         # if suplex a train condition exists, guarantee blitz
-        import worlds.ff6wc.WorldsCollide.objectives as objectives
+        from .. import objectives as objectives
         blitz_id = name_id["Blitz"]
         if objectives.suplex_train_condition_exists and blitz_id not in args.character_commands:
             # try to replace a random "Random" or "Random Unique" command with Blitz (even if blitz in excluded commands)
@@ -88,7 +88,7 @@ class Commands:
         self.characters[Characters.GAU].commands[1] = args.character_commands[-1] # leap
 
     def shuffle_commands(self):
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
 
         commands = []
         for index in range(len(COMMAND_OPTIONS) - 1):
@@ -102,8 +102,8 @@ class Commands:
         self.characters[Characters.GAU].commands[0] = commands[-1] # rage
 
     def mod(self):
-        import worlds.ff6wc.WorldsCollide.data.characters_asm as characters_asm
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data import characters_asm as characters_asm
+        from ..data.characters import Characters
 
         if args.commands:
             self.mod_commands()
@@ -114,8 +114,8 @@ class Commands:
             characters_asm.update_morph_character(self.characters[ : Characters.CHARACTER_COUNT])
 
     def log(self):
-        from worlds.ff6wc.WorldsCollide.log import section, format_option
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..log import section, format_option
+        from ..data.characters import Characters
 
         lcolumn = []
         for index, option in enumerate(COMMAND_OPTIONS[ : -2]):

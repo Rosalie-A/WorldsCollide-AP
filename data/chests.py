@@ -1,9 +1,9 @@
-import worlds.ff6wc.WorldsCollide.constants.items
-from worlds.ff6wc.WorldsCollide.data.chest import Chest
-import worlds.ff6wc.WorldsCollide.data.chests_asm as chests_asm
-from worlds.ff6wc.WorldsCollide.data.structures import DataArrays
+from ..constants import items
+from ..data.chest import Chest
+from ..data import chests_asm as chests_asm
+from ..data.structures import DataArrays
 import random
-import worlds.ff6wc.WorldsCollide.constants as constants
+from .. import constants as constants
 
 class Chests():
     PTRS_START = 0x2d82f4
@@ -49,7 +49,7 @@ class Chests():
                                                              chest.id != lone_wolf_chest_id and \
                                                              chest.id != gem_box_chest_id]
 
-        from worlds.ff6wc.WorldsCollide.data.chest_item_tiers import tiers, tier_s_distribution
+        from ..data.chest_item_tiers import tiers, tier_s_distribution
         self.item_tiers = tiers
 
         # remove excluded items from tiers
@@ -122,8 +122,8 @@ class Chests():
 
     def random_tiered(self):
         def get_item(tiers, tier_s_distribution):
-            from worlds.ff6wc.WorldsCollide.data.chest_item_tiers import weights
-            from worlds.ff6wc.WorldsCollide.ff6wcutils.weighted_random import weighted_random
+            from ..data.chest_item_tiers import weights
+            from ..ff6wcutils.weighted_random import weighted_random
 
             random_tier = weighted_random(weights)
             if random_tier < len(weights) - 1: # not s tier, use equal distribution
@@ -148,7 +148,7 @@ class Chests():
 
     def random_scaled(self):
         import math
-        from worlds.ff6wc.WorldsCollide.ff6wcutils.weighted_random import weighted_random
+        from ..ff6wcutils.weighted_random import weighted_random
 
         # shuffle the chests to mix up empty/item/gold positions
         self.shuffle([Chest.EMPTY, Chest.ITEM, Chest.GOLD])
@@ -225,7 +225,7 @@ class Chests():
     def fix_shared_bits(self):
         # some chests on different maps share the same opened bits but have different contents
         # give them unique bits so both can be opened and contents aren't lost
-        from worlds.ff6wc.WorldsCollide.data.area_chests import area_chests
+        from ..data.area_chests import area_chests
 
         shared_chests = list(area_chests["Narshe Mines WOB"])
         shared_chests += list(area_chests["South Figaro Cave WOB"])
@@ -320,10 +320,10 @@ class Chests():
         self.chest_data.write()
 
     def log(self):
-        from worlds.ff6wc.WorldsCollide.log import SECTION_WIDTH, section, format_option
-        from worlds.ff6wc.WorldsCollide.data.area_chests import area_chests
-        from worlds.ff6wc.WorldsCollide.data.item_names import id_name
-        from worlds.ff6wc.WorldsCollide.data.item import Item
+        from ..log import SECTION_WIDTH, section, format_option
+        from ..data.area_chests import area_chests
+        from ..data.item_names import id_name
+        from ..data.item import Item
         from textwrap import wrap
 
         lcolumn = []

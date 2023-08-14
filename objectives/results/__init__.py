@@ -1,18 +1,12 @@
 results = {}
 def __init__():
-    import os, importlib
-    for module_file in os.listdir(os.path.dirname(__file__)):
-        pyc = False
-        if module_file[0] == '_':
+    import os
+    import pkgutil
+    import importlib
+    for module_file in pkgutil.iter_modules([os.path.dirname(__file__)]):
+        if module_file.name[0] == '_':
             continue
-        elif module_file[-3:] == "pyc":
-            pyc = True
-        elif module_file[-3:] != ".py":
-            continue
-        if pyc:
-            module_name = module_file[:-4]
-        else:
-            module_name = module_file[:-3]
+        module_name = module_file.name
         module = importlib.import_module("." + module_name, "worlds.ff6wc.WorldsCollide.objectives.results")
         results[module.Result.NAME] = module.Result
 __init__()

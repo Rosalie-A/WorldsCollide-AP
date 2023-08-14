@@ -1,13 +1,13 @@
-from worlds.ff6wc.WorldsCollide.data.character import Character
-from worlds.ff6wc.WorldsCollide.data.natural_magic import NaturalMagic
-from worlds.ff6wc.WorldsCollide.data.commands import Commands
-from worlds.ff6wc.WorldsCollide.data.menu_character_sprites import MenuCharacterSprites
-from worlds.ff6wc.WorldsCollide.data.character_sprites import CharacterSprites
-from worlds.ff6wc.WorldsCollide.data.character_palettes import CharacterPalettes
-from worlds.ff6wc.WorldsCollide.data.party_battle_scripts import PartyBattleScripts
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
+from ..data.character import Character
+from ..data.natural_magic import NaturalMagic
+from ..data.commands import Commands
+from ..data.menu_character_sprites import MenuCharacterSprites
+from ..data.character_sprites import CharacterSprites
+from ..data.character_palettes import CharacterPalettes
+from ..data.party_battle_scripts import PartyBattleScripts
+from ..data.structures import DataArray
 
-import worlds.ff6wc.WorldsCollide.data.characters_asm as characters_asm
+from ..data import characters_asm as characters_asm
 
 class Characters():
     CHARACTER_COUNT = 14   # 14 playable characters
@@ -107,7 +107,7 @@ class Characters():
                     setattr(character, stat, max(min(value, 255), 0))
 
     def get_characters_with_command(self, command_name):
-        from worlds.ff6wc.WorldsCollide.constants.commands import name_id
+        from ..constants.commands import name_id
         command_id = name_id[command_name]
 
         result = []

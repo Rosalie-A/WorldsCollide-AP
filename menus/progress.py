@@ -1,9 +1,9 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Bank, START_ADDRESS_SNES, Write
+from ..instruction import asm as asm
+from ..instruction import f0 as f0
+from .. import args as args
 
-import worlds.ff6wc.WorldsCollide.menus.pregame_track_scroll_area as scroll_area
+from ..menus import pregame_track_scroll_area as scroll_area
 
 # 0x0002 is not 0xffff after a battle (bug? c2d450), use 0x1202 instead
 constant_ffff = 0x1202 # always contains value 0xffff
@@ -33,7 +33,7 @@ class Progress(scroll_area.ScrollArea):
         super().__init__()
 
     def initialize_line_mod(self):
-        import worlds.ff6wc.WorldsCollide.data.event_word as event_word
+        from ..data import event_word as event_word
         event_words = [
             event_word.CHECKS_COMPLETE,
             event_word.CHARACTERS_AVAILABLE,

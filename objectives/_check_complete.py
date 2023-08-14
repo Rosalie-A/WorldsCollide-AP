@@ -1,12 +1,12 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.field as field
+from ..memory.space import Bank, START_ADDRESS_SNES, Write
+from ..instruction import asm as asm
+from ..instruction import field as field
 
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
-import worlds.ff6wc.WorldsCollide.data.event_word as event_word
-import worlds.ff6wc.WorldsCollide.data.dialogs as dialogs
+from ..data import event_bit as event_bit
+from ..data import event_word as event_word
+from ..data import dialogs as dialogs
 
-from worlds.ff6wc.WorldsCollide.objectives._cached_function import _CachedFunction
+from ..objectives._cached_function import _CachedFunction
 
 class Field(_CachedFunction, field.Call):
     def __init__(self, *args, **kwargs):

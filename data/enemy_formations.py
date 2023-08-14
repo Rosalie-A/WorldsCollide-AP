@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.data.enemy_formation import EnemyFormation
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
-import worlds.ff6wc.WorldsCollide.data.bosses as bosses
+from ..data.enemy_formation import EnemyFormation
+from ..data.structures import DataArray
+from ..data import bosses as bosses
 
 class EnemyFormations():
     FLAGS_START = 0xf5900
@@ -114,7 +114,7 @@ class EnemyFormations():
         self.formations[bosses.name_formation["Marshal"]].enemy_y_positions[1] -= 2
 
         # Enemy id's are the same as rage IDs.
-        from worlds.ff6wc.WorldsCollide.constants.rages import rage_id
+        from ..constants.rages import rage_id
         import random
         possible_minions = [
             rage_id["Red Wolf"],

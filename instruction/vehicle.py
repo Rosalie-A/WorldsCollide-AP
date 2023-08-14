@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.instruction.event import _Instruction, _Branch, _LoadMap
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
+from ..instruction.event import _Instruction, _Branch, _LoadMap
+from ..data import event_bit as event_bit
 
 class End(_Instruction):
     def __init__(self):

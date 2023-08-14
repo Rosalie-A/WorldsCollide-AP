@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
+from ..event.event import *
 
 class SouthFigaroCaveWOB(Event):
     def name(self):
@@ -138,7 +138,7 @@ class SouthFigaroCaveWOB(Event):
         space = Write(Bank.CA, src, "figaro cave move airship to town side")
         move_airship_to_town_side = space.start_address
 
-        from worlds.ff6wc.WorldsCollide.data.map_event import MapEvent
+        from ..data.map_event import MapEvent
         self.maps.delete_short_exit(0x046, 47, 40)
         new_event = MapEvent()
         new_event.x = 47

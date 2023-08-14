@@ -1,9 +1,9 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Reserve, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
+from ..memory.space import Bank, START_ADDRESS_SNES, Reserve, Write
+from ..instruction import asm as asm
+from ..data import event_bit as event_bit
 
-from worlds.ff6wc.WorldsCollide.data.spell_names import name_id as spell_name_id
-from worlds.ff6wc.WorldsCollide.data.bosses import name_formation
+from ..data.spell_names import name_id as spell_name_id
+from ..data.bosses import name_formation
 
 class _SuplexTrainCheck:
     def __init__(self):

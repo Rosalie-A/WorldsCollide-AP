@@ -1,7 +1,7 @@
-from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES, Bank, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
-import worlds.ff6wc.WorldsCollide.instruction.c3 as c3
+from ..memory.space import START_ADDRESS_SNES, Bank, Write
+from ..instruction import asm as asm
+from ..instruction import f0 as f0
+from ..instruction import c3 as c3
 
 from enum import IntEnum
 from collections import namedtuple
@@ -181,7 +181,7 @@ class ScrollArea:
         self.draw_character = space.start_address
 
     def draw_line_mod(self):
-        from worlds.ff6wc.WorldsCollide.data.text.text2 import text_value
+        from ..data.text.text2 import text_value
 
         src = []
         for line in self.lines:

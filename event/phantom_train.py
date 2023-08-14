@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
+from ..event.event import *
 
 class PhantomTrain(Event):
     def name(self):
@@ -157,7 +157,7 @@ class PhantomTrain(Event):
                               ForestPos(0x86, 5, 10), ForestPos(0x86, 7, 9), ForestPos(0x86, 13, 9)]
         forest_pos = random.choice(possible_positions)
 
-        from worlds.ff6wc.WorldsCollide.data.npc import NPC
+        from ..data.npc import NPC
         ghost_shop_npc = NPC()
         ghost_shop_npc.x = forest_pos.x
         ghost_shop_npc.y = forest_pos.y

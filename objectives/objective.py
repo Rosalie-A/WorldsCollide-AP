@@ -1,9 +1,9 @@
-from worlds.ff6wc.WorldsCollide.objectives.results import results
-from worlds.ff6wc.WorldsCollide.objectives.conditions import conditions
-from worlds.ff6wc.WorldsCollide.objectives._conditions_complete import ConditionsComplete
-from worlds.ff6wc.WorldsCollide.objectives._check_complete import CheckComplete
+from ..objectives.results import results
+from ..objectives.conditions import conditions
+from ..objectives._conditions_complete import ConditionsComplete
+from ..objectives._check_complete import CheckComplete
 
-import worlds.ff6wc.WorldsCollide.args as args
+from .. import args as args
 import random
 
 class Objective:
@@ -33,9 +33,9 @@ class Objective:
             self.result = results[arg_result.name](*arg_result.args)
             return
 
-        from worlds.ff6wc.WorldsCollide.constants.objectives.results import category_types
-        from worlds.ff6wc.WorldsCollide.constants.objectives.results import name_category
-        from worlds.ff6wc.WorldsCollide.constants.objectives.results import types
+        from ..constants.objectives.results import category_types
+        from ..constants.objectives.results import name_category
+        from ..constants.objectives.results import types
 
         category = name_category[arg_result.name]
         if category == "Random":
@@ -56,8 +56,8 @@ class Objective:
         self.result = results[random_type.name](*random_args)
 
     def _init_conditions(self, arg_conditions):
-        from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import types
-        from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import name_type
+        from ..constants.objectives.conditions import types
+        from ..constants.objectives.conditions import name_type
 
         self.conditions = [None] * len(arg_conditions)
 
@@ -120,8 +120,8 @@ class Objective:
 
     @classmethod
     def _init_suplex_train_quest_value(cls):
-        from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import name_type
-        from worlds.ff6wc.WorldsCollide.constants.objectives.condition_bits import quest_bit
+        from ..constants.objectives.conditions import name_type
+        from ..constants.objectives.condition_bits import quest_bit
 
         cls.suplex_train_quest_name = "Suplex A Train"
         for value in name_type["Quest"].value_range:

@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import ConditionType
+from ..constants.objectives.conditions import ConditionType
 
 class ObjectiveConditionMetadata:
     def __init__(self, id, condition: ConditionType):

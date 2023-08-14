@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.data.item_names import name_id
-import worlds.ff6wc.WorldsCollide.args as args
+from ..data.item_names import name_id
+from .. import args as args
 
 tiers = [
     [

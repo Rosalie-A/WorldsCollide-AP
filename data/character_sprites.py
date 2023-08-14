@@ -1,6 +1,8 @@
-from worlds.ff6wc.WorldsCollide.data.character_sprite import CharacterSprite
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
-from worlds.ff6wc.WorldsCollide.constants.entities import id_character, name_id
+import pkgutil
+
+from ..data.character_sprite import CharacterSprite
+from ..data.structures import DataArray
+from ..constants.entities import id_character, name_id
 
 # portrait args are for characters + imp
 PORTRAIT_CHARACTERS = list(id_character) + [name_id["Imp"]]
@@ -11,6 +13,7 @@ SPRITE_CHARACTERS += [name_id[x] for x in ["Soldier", "Imp", "Esper Terra", "Mer
 
 DEFAULT_CHARACTER_PORTRAITS = list(range(len(PORTRAIT_CHARACTERS)))
 DEFAULT_CHARACTER_SPRITES = list(range(len(SPRITE_CHARACTERS)))
+
 
 class CharacterSprites:
     # main characters (terra through umaro) + soldier + imp
@@ -33,12 +36,14 @@ class CharacterSprites:
 
         self.character_sprite_data = DataArray(self.rom, self.DATA_START, self.DATA_END, self.DATA_SIZE)
         self.other_sprite_data = DataArray(self.rom, self.OTHER_DATA_START, self.OTHER_DATA_END, self.OTHER_DATA_SIZE)
-        self.portrait_sprite_data = DataArray(self.rom, self.PORTRAIT_DATA_START, self.PORTRAIT_DATA_END, self.PORTRAIT_DATA_SIZE)
+        self.portrait_sprite_data = DataArray(self.rom, self.PORTRAIT_DATA_START, self.PORTRAIT_DATA_END,
+                                              self.PORTRAIT_DATA_SIZE)
 
         self.sprites = []
         self.character_sprites = []
         for character_sprite_index in range(len(self.character_sprite_data)):
-            character_sprite = CharacterSprite(character_sprite_index, self.character_sprite_data[character_sprite_index])
+            character_sprite = CharacterSprite(character_sprite_index,
+                                               self.character_sprite_data[character_sprite_index])
             self.character_sprites.append(character_sprite)
             self.sprites.append(character_sprite)
 
@@ -58,28 +63,26 @@ class CharacterSprites:
             character = SPRITE_CHARACTERS[sprite_index]
 
             if self.args.sprite_ids[sprite_index] != character:
-                with open(sprite_file, "rb") as sfile:
-                    sprite_data = list(sfile.read())
+                sprite_data = list(pkgutil.get_data(__name__, sprite_file))
 
-                    if len(sprite_data) < len(self.sprites[character].data):
-                        # if sprite file does not contain every tile (e.g. missing poses) of sprite it is replacing, pad it with zeros
-                        # this will cause the character to go invisible for these poses in-game but does not seem to break anything
-                        padding = [0] * (len(self.sprites[character].data) - len(sprite_data))
-                        sprite_data += padding
-                    elif len(sprite_data) > len(self.sprites[character].data):
-                        # sprite has more tile information than the original requires, extract only the needed tiles
-                        sprite_data = sprite_data[ : len(self.sprites[character].data)]
+                if len(sprite_data) < len(self.sprites[character].data):
+                    # if sprite file does not contain every tile (e.g. missing poses) of sprite it is replacing, pad it with zeros
+                    # this will cause the character to go invisible for these poses in-game but does not seem to break anything
+                    padding = [0] * (len(self.sprites[character].data) - len(sprite_data))
+                    sprite_data += padding
+                elif len(sprite_data) > len(self.sprites[character].data):
+                    # sprite has more tile information than the original requires, extract only the needed tiles
+                    sprite_data = sprite_data[: len(self.sprites[character].data)]
 
-                    self.sprites[character].data = sprite_data
+                self.sprites[character].data = sprite_data
 
     def mod_character_portraits(self):
         for index, portrait_sprite_file in enumerate(self.args.portrait_sprite_files):
             if self.args.portrait_ids[index] != DEFAULT_CHARACTER_PORTRAITS[index]:
                 character = PORTRAIT_CHARACTERS[index]
 
-                with open(portrait_sprite_file, "rb") as pfile:
-                    portrait_data = list(pfile.read())
-                    self.portrait_sprites[character].data = portrait_data
+                portrait_data = list(pkgutil.get_data(__name__, portrait_sprite_file))
+                self.portrait_sprites[character].data = portrait_data
 
     def mod(self):
         if self.args.character_sprites:

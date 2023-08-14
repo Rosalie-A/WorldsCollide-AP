@@ -1,9 +1,9 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.c2 as c2
+from ..memory.space import Bank, Reserve, Write
+from ..instruction import asm as asm
+from ..instruction import c2 as c2
 
-from worlds.ff6wc.WorldsCollide.battle.check_dragon_boss import CheckDragonBoss
-from worlds.ff6wc.WorldsCollide.battle.check_objectives import CheckObjectives
+from ..battle.check_dragon_boss import CheckDragonBoss
+from ..battle.check_objectives import CheckObjectives
 
 class _EndChecks:
     def __init__(self):

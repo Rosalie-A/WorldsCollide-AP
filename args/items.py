@@ -2,7 +2,7 @@ def name():
     return "Items"
 
 def parse(parser):
-    from worlds.ff6wc.WorldsCollide.data.characters import Characters
+    from ..data.characters import Characters
     items = parser.add_argument_group("Items")
 
     items_equipable = items.add_mutually_exclusive_group()

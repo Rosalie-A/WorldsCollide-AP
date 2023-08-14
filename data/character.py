@@ -1,4 +1,4 @@
-import worlds.ff6wc.WorldsCollide.data.text as text
+from ..data import text as text
 
 class Character():
     # every 2 seconds while running in battle the character's run value is incremented by a
@@ -34,7 +34,7 @@ class Character():
         self._cant_reequip      = (init_data[21] & 0x10) >> 4
 
     def init_data(self):
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         init_data = [0x00] * Characters.INIT_DATA_SIZE
 
         init_data[0]     = self.init_extra_hp
@@ -62,13 +62,13 @@ class Character():
         return init_data
 
     def name_data(self):
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         data = text.get_bytes(self.name, text.TEXT2)
         data.extend([0xff] * (Characters.NAME_SIZE - len(data)))
         return data
 
     def clear_init_equip(self):
-        from worlds.ff6wc.WorldsCollide.data.items import Items
+        from ..data.items import Items
         self.init_right_hand = Items.EMPTY
         self.init_left_hand = Items.EMPTY
         self.init_body = Items.EMPTY

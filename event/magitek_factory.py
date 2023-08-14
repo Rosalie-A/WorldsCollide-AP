@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
+from ..event.event import *
 
 class MagitekFactory(Event):
     def name(self):
@@ -243,7 +243,7 @@ class MagitekFactory(Event):
         space.copy_from(0x2e2fa6, 0x2e2faf) # ride data and end script
 
     def fixed_battles_mod(self):
-        import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+        from ..instruction import asm as asm
 
         # force front attacks for fixed battles
         # luckily, value chosen for front attack is one shift away from overriding battle song bit so this fits in the original space
@@ -264,7 +264,7 @@ class MagitekFactory(Event):
         )
 
     def number128_battle_mod(self):
-        import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+        from ..instruction import asm as asm
 
         boss_pack_id = self.get_boss("Number 128")
         if boss_pack_id == self.enemies.packs.get_id("Phunbaba 3"):

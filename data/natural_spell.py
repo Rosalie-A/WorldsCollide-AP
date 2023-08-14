@@ -6,7 +6,7 @@ class NaturalSpell:
         self.level = data[1]
 
     def data(self):
-        from worlds.ff6wc.WorldsCollide.data.natural_magic import NaturalMagic
+        from ..data.natural_magic import NaturalMagic
         data = [0x00] * NaturalMagic.SPELL_DATA_SIZE
 
         data[0] = self.spell

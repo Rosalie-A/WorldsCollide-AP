@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES, Bank, Write, Reserve, Allocate, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.c3 as c3
+from ..memory.space import START_ADDRESS_SNES, Bank, Write, Reserve, Allocate, Read
+from ..instruction import asm as asm
+from ..instruction import c3 as c3
 
 class PreGameMenu:
     MENU_NUMBER = 9
@@ -13,7 +13,7 @@ class PreGameMenu:
         self.mod()
 
     def draw_options_mod(self):
-        import worlds.ff6wc.WorldsCollide.data.text as text
+        from ..data import text as text
 
         text_positions = [
             ("New Game", 0x798f),

@@ -1,7 +1,7 @@
-from worlds.ff6wc.WorldsCollide.data.spell import Spell
-from worlds.ff6wc.WorldsCollide.data.spell_names import id_name, name_id
-from worlds.ff6wc.WorldsCollide.data.ability_data import AbilityData
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
+from ..data.spell import Spell
+from ..data.spell_names import id_name, name_id
+from ..data.ability_data import AbilityData
+from ..data.structures import DataArray
 
 class Spells:
     BLACK_MAGIC_COUNT = 24
@@ -53,7 +53,7 @@ class Spells:
     def get_replacement(self, spell_id, exclude):
         ''' get a random spell from the same tier as the given spell_id '''
         import random
-        from worlds.ff6wc.WorldsCollide.data.esper_spell_tiers import tiers
+        from ..data.esper_spell_tiers import tiers
 
         same_tier = next((tier for tier in tiers if spell_id in tier), [])
         replacements = [i for i in same_tier if i not in exclude]
@@ -125,7 +125,7 @@ class Spells:
         self.ability_data.write()
 
     def log(self):
-        from worlds.ff6wc.WorldsCollide.log import section
+        from ..log import section
         
         lcolumn = []
         for spell in self.spells:

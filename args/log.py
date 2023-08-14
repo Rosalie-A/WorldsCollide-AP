@@ -1,4 +1,4 @@
-import worlds.ff6wc.WorldsCollide.args as args
+from .. import args as args
 
 def _log_tab(tab_name, left_groups, right_groups):
     lcolumn = []
