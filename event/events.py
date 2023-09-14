@@ -147,6 +147,10 @@ class Events():
         import random
         reward_slots = self.init_reward_slots(events)
 
+        if args.ap_data:
+            self.choose_archipelago_rewards(reward_slots)
+            self.characters.available_characters = []
+        
         # first choose all the rewards that only have a single type possible
         # this way we don't run out of that reward type before getting to the event
         self.choose_single_possible_type_rewards(reward_slots)
