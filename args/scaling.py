@@ -23,6 +23,9 @@ def parse(parser):
     level_scaling.add_argument("-lst", "--level-scaling-time", default = None, type = float,
                                metavar = ("VALUE"), choices = [x / 10.0 for x in range(5, 55, 5)],
                                help = "Enemies and bosses gain 1 level every %(metavar)s minutes")
+    level_scaling.add_argument("-lsbd", "--level-scaling-bosses-dragons", default = None, type = float,
+                               metavar = ("VALUE"), choices = [x / 10.0 for x in range(5, 105, 5)],
+                               help = "Enemies and bosses gain %(metavar)s levels for each boss and dragon defeated")
 
     hp_mp_scaling = scaling.add_mutually_exclusive_group()
     hp_mp_scaling.add_argument("-hma", "--hp-mp-scaling-average", default = None, type = float,
@@ -43,6 +46,9 @@ def parse(parser):
     hp_mp_scaling.add_argument("-hmt", "--hp-mp-scaling-time", default = None, type = float,
                                metavar = ("VALUE"), choices = [x / 10.0 for x in range(5, 55, 5)],
                                help = "Enemy and boss hp/mp scales every %(metavar)s minutes")
+    hp_mp_scaling.add_argument("-hmbd", "--hp-mp-scaling-bosses-dragons", default = None, type = float,
+                               metavar = ("VALUE"), choices = [x / 10.0 for x in range(5, 105, 5)],
+                               help = "Enemy and boss hp/mp scales %(metavar)s * each boss and dragon defeated")
 
     xp_gp_scaling = scaling.add_mutually_exclusive_group()
     xp_gp_scaling.add_argument("-xga", "--xp-gp-scaling-average", default = None, type = float,
@@ -63,6 +69,9 @@ def parse(parser):
     xp_gp_scaling.add_argument("-xgt", "--xp-gp-scaling-time", default = None, type = float,
                                metavar = ("VALUE"), choices = [x / 10.0 for x in range(5, 55, 5)],
                                help = "Enemy and boss exp/gp scales every %(metavar)s minutes")
+    xp_gp_scaling.add_argument("-xgbd", "--xp-gp-scaling-bosses-dragons", default = None, type = float,
+                               metavar = ("VALUE"), choices = [x / 10.0 for x in range(5, 105, 5)],
+                               help = "Enemy and boss exp/gp scales %(metavar)s * for each boss and dragon defeated")
 
     ability_scaling = scaling.add_mutually_exclusive_group()
     ability_scaling.add_argument("-ase", "--ability-scaling-element", default = None, type = float,
@@ -91,6 +100,8 @@ def process(args):
         args.level_scaling_factor = args.level_scaling_ced
     elif args.level_scaling_checks:
         args.level_scaling_factor = args.level_scaling_checks
+    elif args.level_scaling_bosses_dragons:
+        args.level_scaling_factor = args.level_scaling_bosses_dragons
     elif args.level_scaling_time:
         args.level_scaling_factor = args.level_scaling_time
     else:
@@ -108,6 +119,8 @@ def process(args):
         args.hp_mp_scaling_factor = args.hp_mp_scaling_ced
     elif args.hp_mp_scaling_checks:
         args.hp_mp_scaling_factor = args.hp_mp_scaling_checks
+    elif args.hp_mp_scaling_bosses_dragons:
+        args.hp_mp_scaling_factor = args.hp_mp_scaling_bosses_dragons
     elif args.hp_mp_scaling_time:
         args.hp_mp_scaling_factor = args.hp_mp_scaling_time
     else:
@@ -125,6 +138,8 @@ def process(args):
         args.xp_gp_scaling_factor = args.xp_gp_scaling_ced
     elif args.xp_gp_scaling_checks:
         args.xp_gp_scaling_factor = args.xp_gp_scaling_checks
+    elif args.xp_gp_scaling_bosses_dragons:
+        args.xp_gp_scaling_factor = args.xp_gp_scaling_bosses_dragons
     elif args.xp_gp_scaling_time:
         args.xp_gp_scaling_factor = args.xp_gp_scaling_time
     else:
@@ -153,6 +168,8 @@ def flags(args):
         flags += f" -lsced {args.level_scaling_factor:g}"
     elif args.level_scaling_checks:
         flags += f" -lsc {args.level_scaling_factor:g}"
+    elif args.level_scaling_bosses_dragons:
+        flags += f" -lsbd {args.level_scaling_factor:g}"
     elif args.level_scaling_time:
         flags += f" -lst {args.level_scaling_factor:g}"
 
@@ -166,6 +183,8 @@ def flags(args):
         flags += f" -hmced {args.hp_mp_scaling_factor:g}"
     elif args.hp_mp_scaling_checks:
         flags += f" -hmc {args.hp_mp_scaling_factor:g}"
+    elif args.hp_mp_scaling_bosses_dragons:
+        flags += f" -hmbd {args.hp_mp_scaling_factor:g}"
     elif args.hp_mp_scaling_time:
         flags += f" -hmt {args.hp_mp_scaling_factor:g}"
 
@@ -179,6 +198,8 @@ def flags(args):
         flags += f" -xgced {args.xp_gp_scaling_factor:g}"
     elif args.xp_gp_scaling_checks:
         flags += f" -xgc {args.xp_gp_scaling_factor:g}"
+    elif args.xp_gp_scaling_bosses_dragons:
+        flags += f" -xgbd {args.xp_gp_scaling_factor:g}"
     elif args.xp_gp_scaling_time:
         flags += f" -xgt {args.xp_gp_scaling_factor:g}"
 
@@ -211,12 +232,14 @@ def options(args):
         level_scaling = "Characters + Espers + Dragons"
     elif args.level_scaling_checks:
         level_scaling = "Checks"
+    elif args.level_scaling_bosses_dragons:
+        level_scaling = "Bosses + Dragons"
     elif args.level_scaling_time:
         level_scaling = "Time"
 
-    result.append(("Level Scaling", level_scaling))
+    result.append(("Level Scaling", level_scaling, "level_scaling"))
     if args.level_scaling_factor is not None:
-        result.append(("Level Scaling Factor", f"{args.level_scaling_factor:g}"))
+        result.append(("Level Scaling Factor", f"{args.level_scaling_factor:g}", "level_scaling_factor"))
 
     hp_mp_scaling = "None"
     if args.hp_mp_scaling_average:
@@ -229,12 +252,14 @@ def options(args):
         hp_mp_scaling = "Characters + Espers + Dragons"
     elif args.hp_mp_scaling_checks:
         hp_mp_scaling = "Checks"
+    elif args.hp_mp_scaling_bosses_dragons:
+        hp_mp_scaling = "Bosses + Dragons"
     elif args.hp_mp_scaling_time:
         hp_mp_scaling = "Time"
 
-    result.append(("HP/MP Scaling", hp_mp_scaling))
+    result.append(("HP/MP Scaling", hp_mp_scaling, "hp_mp_scaling"))
     if args.hp_mp_scaling_factor is not None:
-        result.append(("HP/MP Scaling Factor", f"{args.hp_mp_scaling_factor:g}"))
+        result.append(("HP/MP Scaling Factor", f"{args.hp_mp_scaling_factor:g}", "hp_mp_scaling_factor"))
 
     xp_gp_scaling = "None"
     if args.xp_gp_scaling_average:
@@ -247,12 +272,14 @@ def options(args):
         xp_gp_scaling = "Characters + Espers + Dragons"
     elif args.xp_gp_scaling_checks:
         xp_gp_scaling = "Checks"
+    elif args.xp_gp_scaling_bosses_dragons:
+        xp_gp_scaling = "Bosses + Dragons"
     elif args.xp_gp_scaling_time:
         xp_gp_scaling = "Time"
 
-    result.append(("Exp/GP Scaling", xp_gp_scaling))
+    result.append(("Exp/GP Scaling", xp_gp_scaling, "xp_gp_scaling"))
     if args.xp_gp_scaling_factor is not None:
-        result.append(("Exp/GP Scaling Factor", f"{args.xp_gp_scaling_factor:g}"))
+        result.append(("Exp/GP Scaling Factor", f"{args.xp_gp_scaling_factor:g}", "xp_gp_scaling_factor"))
 
     ability_scaling = "None"
     if args.ability_scaling_element:
@@ -260,13 +287,13 @@ def options(args):
     elif args.ability_scaling_random:
         ability_scaling = "Random"
 
-    result.append(("Ability Scaling", ability_scaling))
+    result.append(("Ability Scaling", ability_scaling, "ability_scaling"))
     if args.ability_scaling_factor is not None:
-        result.append(("Ability Scaling Factor", f"{args.ability_scaling_factor:g}"))
+        result.append(("Ability Scaling Factor", f"{args.ability_scaling_factor:g}", "ability_scaling_factor"))
 
-    result.append(("Max Scale Level", args.max_scale_level))
-    result.append(("Scale Eight Dragons", args.scale_eight_dragons))
-    result.append(("Scale Final Battles", args.scale_final_battles))
+    result.append(("Max Scale Level", args.max_scale_level, "max_scale_level"))
+    result.append(("Scale Eight Dragons", args.scale_eight_dragons, "scale_eight_dragons"))
+    result.append(("Scale Final Battles", args.scale_final_battles, "scale_final_battles"))
 
     return result
 
@@ -274,14 +301,15 @@ def menu(args):
     entries = options(args)
 
     for index, entry in enumerate(entries):
-        key, value = entry
+        key, value, unique_name = entry
         try:
             key = key.replace(" Scaling", "")
             value = value.replace("Party Average", "PAverage")
             value = value.replace("Party Highest", "PHighest")
             value = value.replace("Characters + Espers + Dragons", "C + E + D")
             value = value.replace("Characters + Espers", "C + E")
-            entries[index] = (key, value)
+            value = value.replace("Bosses + Dragons", "B + D")
+            entries[index] = (key, value, unique_name)
         except:
             pass
     return (name(), entries)

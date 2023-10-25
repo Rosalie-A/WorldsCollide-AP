@@ -19,6 +19,9 @@ def parse(parser):
     graphics.add_argument("-wmhc", "--world-minimap-high-contrast", action = "store_true",
                               help = "World Minimap made Opaque with Minimap icon changed to higher contrast to improve visibility.")
 
+    graphics.add_argument("-ahtc", "--alternate-healing-text-color", action = "store_true",
+                              help = "Makes healing text blue, to be able to distinguish from damage.")
+
 def process(args):
     from ..graphics.palettes import palettes as palettes
     from ..graphics.portraits import portraits as portraits
@@ -113,6 +116,9 @@ def flags(args):
         flags += " -frm"
     if args.world_minimap_high_contrast:
         flags += " -wmhc"
+    if args.alternate_healing_text_color:
+        flags += " -ahtc"
+
     return flags
 
 def _truncated_name(name):
@@ -126,7 +132,7 @@ def _sprite_palettes_log(args):
     log = ["Sprite Palettes"]
 
     for index, palette, in enumerate(args.palettes):
-        log.append(format_option(f"Palette {index}", _truncated_name(palette)))
+        log.append(format_option(f"Palette {index}", _truncated_name(palette), f"palette_{index}"))
 
     return log
 
@@ -141,12 +147,12 @@ def _other_portraits_sprites_log(args):
         name = other_names[character - Characters.CHARACTER_COUNT]
 
         if character in PORTRAIT_CHARACTERS:
-            log.append(format_option(name, _truncated_name(args.portraits[portrait_index])))
+            log.append(format_option(name, _truncated_name(args.portraits[portrait_index]), f"portraits_{portrait_index}"))
             portrait_index += 1
             name = "" # do not have name show up in front of sprite also
         if character in SPRITE_CHARACTERS:
-            log.append(format_option(name, _truncated_name(args.sprites[sprite_index])))
-            log.append(format_option("", f"Palette {args.sprite_palettes[sprite_index]}"))
+            log.append(format_option(name, _truncated_name(args.sprites[sprite_index]), f"sprite_{sprite_index}"))
+            log.append(format_option("", f"Palette {args.sprite_palettes[sprite_index]}", f"palette_{sprite_index}"))
             sprite_index += 1
 
     return log
@@ -157,9 +163,9 @@ def _character_customization_log(args):
 
     for index in range(Characters.CHARACTER_COUNT):
         log_name = f"{Characters.DEFAULT_NAME[index]:<6} -> {args.names[index]}"
-        log.append(format_option(log_name, _truncated_name(args.portraits[index])))
-        log.append(format_option("", _truncated_name(args.sprites[index])))
-        log.append(format_option("", f"Palette {args.sprite_palettes[index]}"))
+        log.append(format_option(log_name, _truncated_name(args.portraits[index]), f"char_name_{index}"))
+        log.append(format_option("", _truncated_name(args.sprites[index]), f"char_sprite_{index}"))
+        log.append(format_option("", f"Palette {args.sprite_palettes[index]}", f"char_palette_{index}"))
 
     return log
 
@@ -177,9 +183,14 @@ def _other_options_log(args):
     if args.world_minimap_high_contrast:
         world_minimap = "High Contrast"
 
+    healing_text = "Original"
+    if args.alternate_healing_text_color:
+        healing_text = "Blue"
+
     entries = [
-        ("Remove Flashes", remove_flashes),
-        ("World Minimap", world_minimap),
+        ("Remove Flashes", remove_flashes, "remove_flashes"),
+        ("World Minimap", world_minimap, "world_minimap"),
+        ("Healing Text", healing_text, "healing_text"),
     ]
 
     for entry in entries:
