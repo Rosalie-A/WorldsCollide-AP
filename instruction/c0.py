@@ -334,3 +334,96 @@ def _add_item_mod():
     space = Write(Bank.C0, src, "c0 add item")
     return space.start_address
 add_item = _add_item_mod()
+
+def _recruit_character_mod2():
+    from ..data import event_word as event_word
+    characters_available_address = event_word.address(event_word.CHARACTERS_AVAILABLE)
+
+    space = Allocate(Bank.C0, 47, "c0 recruit_character2")
+    if args.start_average_level:
+        # set level to average before recruiting character so new character not included in average
+        space.write(
+            asm.LDA(0x11E5, asm.ABS),                 # a = character argument
+            asm.JSR(average_level, asm.ABS),
+        )
+    space.write(
+        asm.TDC(),
+        asm.LDA(0x11E5, asm.ABS),                     # a = character argument
+        asm.JSR(0xbaed, asm.ABS),                   # x = a mod 8 (bit), y = a // 8 (byte)
+
+        asm.LDA(0x1edc, asm.ABS_Y),                 # a = character recruited byte
+        asm.ORA(power_of_two_table, asm.LNG_X),     # set character recruited bit
+        asm.STA(0x1edc, asm.ABS_Y),                 # store result
+
+        asm.LDA(0x1ede, asm.ABS_Y),                 # a = character available byte
+        asm.ORA(power_of_two_table, asm.LNG_X),     # set character available bit
+        asm.STA(0x1ede, asm.ABS_Y),                 # store result
+
+        asm.INC(characters_available_address, asm.ABS),
+
+        asm.LDA(0x11E5, asm.ABS),                     # a = character argument
+        asm.JSR(character_data_offset, asm.ABS),    # y = character data offset (+0x1600)
+        asm.JSR(update_magic_skills, asm.ABS),      # update magic/skills based on character's level
+        asm.RTL(),
+    )
+    return space.start_address
+recruit_character2 = _recruit_character_mod2()
+
+def _get_esper2():
+    from ..data import event_word as event_word
+    espers_available_address = event_word.address(event_word.ESPERS_FOUND)
+
+    space = Allocate(Bank.C0, 22, "c0 give esper")
+    space.write(
+        asm.TDC(),
+        asm.LDA(0x11E5, asm.ABS),  # a = esper argument
+        asm.JSR(0xbaed, asm.ABS),  # x = a mod 8 (bit), y = a // 8 (byte)
+
+        asm.LDA(0x1a69, asm.ABS_Y),  # a = esper obtained byte
+        asm.ORA(power_of_two_table, asm.LNG_X),  # set esper obtained bit
+        asm.STA(0x1a69, asm.ABS_Y),  # store result
+
+        asm.INC(espers_available_address, asm.ABS),
+
+        asm.RTL(),
+    )
+    return space.start_address
+add_esper2 = _get_esper2()
+
+def _get_item2():
+    space = Allocate(Bank.C0, 62, "c0 give item")
+    space.write(
+        asm.TDC(),
+        asm.LDA(0x11E5, asm.ABS),  # a = item byte
+        asm.STA(0x1A, asm.DIR),
+        asm.LDX(0x00, asm.IMM8),
+        "FIND_NEXT_ITEM",
+        asm.LDA(0x1869, asm.ABS_X),
+        asm.CMP(0x1A, asm.DIR),
+        asm.BEQ("ITEM_EXISTS"),
+        asm.INX(),
+        asm.CPX(0x0100, asm.IMM16),
+        asm.BNE("FIND_NEXT_ITEM"),
+        asm.LDX(0x00, asm.IMM8),
+        "FIND_NEXT_SLOT",
+        asm.LDA(0x1869, asm.ABS_X),
+        asm.CMP(0xFF, asm.IMM8),
+        asm.BEQ("FOUND_SLOT"),
+        asm.INX(),
+        asm.BRA("FIND_NEXT_SLOT"),
+        "FOUND_SLOT",
+        asm.LDA(0x1A, asm.DIR),
+        asm.STA(0x1869, asm.ABS_X),
+        asm.LDA(0x01, asm.IMM8),
+        asm.STA(0x1969, asm.ABS_X),
+        asm.RTL(),
+        "ITEM_EXISTS",
+        asm.LDA(0x1969, asm.ABS_X),
+        asm.CMP(0x63, asm.IMM8),
+        asm.BEQ("EXIT"),
+        asm.INC(0x1969, asm.ABS_X),
+        "EXIT",
+        asm.RTL()
+    )
+    return space.start_address
+add_item2 = _get_item2()

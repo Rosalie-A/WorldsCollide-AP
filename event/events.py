@@ -73,7 +73,7 @@ class Events():
             if self.args.spoiler_log and (event.rewards_log or event.changes_log):
                 log_strings.append(event.log_string())
         space.write(field.Return())
-        #write_event_trigger_function()
+        self.write_event_trigger_function()
 
         if self.args.spoiler_log:
             from worlds.ff6wc.WorldsCollide.log import section
@@ -200,3 +200,108 @@ class Events():
             char_esper_checks += [r for r in event.rewards if r.possible_types == (RewardType.CHARACTER | RewardType.ESPER)]
 
         assert len(char_esper_checks) == CHARACTER_ESPER_ONLY_REWARDS, "Number of char/esper only checks changed - Check usages of CHARACTER_ESPER_ONLY_REWARDS and ensure no breaking changes"
+
+    def write_event_trigger_function(self):
+        from ..memory.space import Reserve, Bank, Write, Read, START_ADDRESS_SNES
+        from ..instruction.event import EVENT_CODE_START
+        from ..instruction import asm as asm
+        from ..instruction import field as field
+
+        trigger_addr = 0x115c  # modify at runtime to trigger events
+
+        src = [
+            field.FlashScreen(field.Flash.GREEN),
+            field.PlaySoundEffect(0xCD),
+            field.RecruitAndSelectParty2(0),
+            field.FadeInScreen(),
+            field.FinishCheck(),
+            field.Return()
+        ]
+        space = Write(Bank.CA, src, "recruit terra")
+        recruit_character = (space.start_address - EVENT_CODE_START).to_bytes(3, "little")
+
+        src = [
+            field.FlashScreen(field.Flash.BLUE),
+            field.PlaySoundEffect(0xCD),
+            field.AddEsper2(0),
+            field.Return(),
+        ]
+        space = Write(Bank.CA, src, "esper trigger")
+        add_esper = (space.start_address - EVENT_CODE_START).to_bytes(3, "little")
+
+        src = [
+            field.FlashScreen(field.Flash.YELLOW),
+            field.PlaySoundEffect(0xCD),
+            field.AddItem2(0),
+            field.Return(),
+        ]
+        space = Write(Bank.CA, src, "item trigger")
+        add_item = (space.start_address - EVENT_CODE_START).to_bytes(3, "little")
+
+        src = [
+            recruit_character,
+            add_esper,
+            add_item
+        ]
+        space = Write(Bank.C0, src, "trigger event table")
+        trigger_event_table = space.start_address
+        trigger_call = field.Call(EVENT_CODE_START)  # dummy call instruction for length/opcode
+
+        # subtract the length of the trigger call to correctly return to event code start after finishing the trigger event
+        return_addr = (START_ADDRESS_SNES + EVENT_CODE_START - len(trigger_call)).to_bytes(3, "little")
+        src = [
+            # wait until not executing any other events
+            asm.LDA(0xe5, asm.DIR),
+            asm.BNE("NO_TRIGGER"),
+            asm.LDA(0xe6, asm.DIR),
+            asm.BNE("NO_TRIGGER"),
+            asm.LDA(0xca, asm.IMM8),
+            asm.CMP(0xe7, asm.DIR),
+            asm.BNE("NO_TRIGGER"),
+
+            # wait for map name
+            asm.LDA(0x08, asm.IMM8),
+            asm.BIT(0x0745, asm.ABS),
+            asm.BNE("NO_TRIGGER"),
+
+            # check/reset trigger byte
+            asm.LDA(trigger_addr, asm.ABS),
+            asm.BEQ("NO_TRIGGER"),
+            asm.DEC(trigger_addr, asm.ABS),
+            asm.LDA(trigger_addr, asm.ABS),
+            asm.ASL(),
+            asm.CLC(),
+            asm.ADC(trigger_addr, asm.ABS),
+            asm.STZ(trigger_addr, asm.ABS),
+            asm.TAX(),
+
+            # return to ca0000 from trigger_event
+            asm.LDA(return_addr[0], asm.IMM8),
+            asm.STA(0xe5, asm.DIR),
+            asm.LDA(return_addr[1], asm.IMM8),
+            asm.STA(0xe6, asm.DIR),
+            asm.LDA(return_addr[2], asm.IMM8),
+            asm.STA(0xe7, asm.DIR),
+
+            # call trigger_event
+            asm.LDA(trigger_event_table + 2, asm.ABS_X),
+            asm.STA(0xed, asm.DIR),
+            asm.LDA(trigger_event_table + 1, asm.ABS_X),
+            asm.STA(0xec, asm.DIR),
+            asm.LDA(trigger_event_table + 0, asm.ABS_X),
+            asm.STA(0xeb, asm.DIR),
+            asm.LDA(trigger_call.opcode, asm.IMM8),
+            asm.STA(0xea, asm.DIR),
+            asm.RTS(),
+
+            "NO_TRIGGER",
+            Read(0x009b37, 0x009b3a),
+            asm.RTS(),
+        ]
+        space = Write(Bank.C0, src, "check trigger event byte and inject if set")
+        trigger_event_check = space.start_address
+
+        space = Reserve(0x009b37, 0x009b3a, "call trigger event check", asm.NOP())
+        space.write(
+            asm.JSR(trigger_event_check, asm.ABS),
+        )
