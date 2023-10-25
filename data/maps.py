@@ -14,7 +14,7 @@ from ..data.map_exit import ShortMapExit, LongMapExit
 from ..data import world_map_event_modifications as world_map_event_modifications
 from ..data.world_map import WorldMap
 
-import instruction.asm as asm
+from ..instruction import asm as asm
 from ..memory.space import Reserve
 
 class Maps():

@@ -58,8 +58,8 @@ def parse(parser):
 
 
 def process(args):
-    from constants.items import good_items, stronger_items, premium_items
-    from constants.items import id_name, name_id
+    from ..constants.items import good_items, stronger_items, premium_items
+    from ..constants.items import id_name, name_id
 
     args._process_min_max("item_equipable_random")
     if args.item_equipable_balanced_random is not None:
@@ -228,7 +228,7 @@ def _format_items_log_entries(item_ids):
 
 
 def menu(args):
-    from menus.flags_reward_items import FlagsRewardItems
+    from ..menus.flags_reward_items import FlagsRewardItems
 
     entries = options(args)
     for index, entry in enumerate(entries):

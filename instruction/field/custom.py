@@ -60,7 +60,7 @@ class RemoveDeath(_Instruction):
 
 class SetEquipmentAndCommands(_Instruction):
     def __init__(self, to_character, from_character):
-        from instruction.c0 import character_data_offset
+        from ...instruction.c0 import character_data_offset
 
         # subset of SetProperties vanilla command (0x40), which only sets equipment, commands, and character ID
         src = [
@@ -270,7 +270,7 @@ class RecruitCharacter2(_Instruction):
         space = Write(Bank.C0, src, "custom recruit_character command 2")
         address = space.start_address
 
-        opcode = 0xfd
+        opcode = 0x4a
         _set_opcode_address(opcode, address)
 
         RecruitCharacter2.__init__ = lambda self, character: super().__init__(opcode, character)

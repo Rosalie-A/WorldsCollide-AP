@@ -210,7 +210,7 @@ class Chests():
         chests_asm.scale_gold(gold_bits, self.gold_contents)
 
     def chest_random_monsters(self, enemy_percent, boss_percent):
-        from data.enemy_battle_groups import event_battle_groups_to_avoid, boss_event_battle_groups, event_battle_group_name, dragon_event_battle_groups, name_event_battle_group
+        from ..data.enemy_battle_groups import event_battle_groups_to_avoid, boss_event_battle_groups, event_battle_group_name, dragon_event_battle_groups, name_event_battle_group
         MIAB_noboss = [a for a in range(256) if a not in event_battle_groups_to_avoid.keys() and a not in event_battle_group_name.keys()]
         if self.args.mix_bosses_dragons:
             MIAB_boss = [a for a in range(256) if a in boss_event_battle_groups.keys() or a in dragon_event_battle_groups.keys()]
@@ -358,7 +358,7 @@ class Chests():
         from ..data.item_names import id_name
         from ..data.item import Item
         from textwrap import wrap
-        from data.enemy_battle_groups import event_battle_group_name
+        from ..data.enemy_battle_groups import event_battle_group_name
 
         lcolumn = []
         if self.args.chest_contents_random_scaled:

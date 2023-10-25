@@ -1,6 +1,6 @@
-from objectives.results._objective_result import *
-from constants.items import HELMETS, EMPTY
-from utils.intersection import intersection
+from ...objectives.results._objective_result import *
+from ...constants.items import HELMETS, EMPTY
+from ...utils.intersection import intersection
 
 class Field(field_result.Result):
     def src(self, item_id):
@@ -18,7 +18,7 @@ class Result(ObjectiveResult):
     NAME = "High Tier Helm"
     def __init__(self):
         import random
-        from data.items import Items
+        from ...data.items import Items
 
         good_helms = intersection(Items.GOOD, HELMETS)
         if len(good_helms) > 0:

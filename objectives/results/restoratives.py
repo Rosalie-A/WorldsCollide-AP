@@ -1,5 +1,5 @@
-from objectives.results._objective_result import *
-from data.item_names import name_id as item_name_id
+from ...objectives.results._objective_result import *
+from ...data.item_names import name_id as item_name_id
 
 RESTORATIVES = ["Tonic", "Potion", "X-Potion", "Tincture", "Ether", "X-Ether", "Elixir", "Megalixir", "Fenix Down",
                 "Revivify", "Antidote", "Eyedrop", "Soft", "Remedy", "Sleeping Bag", "Tent", "Green Cherry",

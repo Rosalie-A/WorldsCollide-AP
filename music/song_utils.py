@@ -1,6 +1,6 @@
-from constants.entities import TERRA, LOCKE, CYAN, SHADOW, EDGAR, SABIN, CELES, STRAGO, RELM, SETZER, MOG, GAU, GOGO, UMARO
-from data.event_bit import TEMP_SONG_OVERRIDE
-from instruction import field
+from ..constants.entities import TERRA, LOCKE, CYAN, SHADOW, EDGAR, SABIN, CELES, STRAGO, RELM, SETZER, MOG, GAU, GOGO, UMARO
+from ..data.event_bit import TEMP_SONG_OVERRIDE
+from ..instruction import field
 
 character_to_song = {
     TERRA: 0x06,
