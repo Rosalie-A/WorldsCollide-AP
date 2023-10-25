@@ -1,12 +1,12 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Bank, START_ADDRESS_SNES, Write
+from ..instruction import asm as asm
+from ..instruction import f0 as f0
+from .. import args as args
 
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
-from worlds.ff6wc.WorldsCollide.constants.gates import character_checks
-import worlds.ff6wc.WorldsCollide.constants.objectives.condition_bits as condition_bits
-import worlds.ff6wc.WorldsCollide.menus.pregame_track_scroll_area as scroll_area
+from ..data import event_bit as event_bit
+from ..constants.gates import character_checks
+from ..constants.objectives import condition_bits as condition_bits
+from ..menus import pregame_track_scroll_area as scroll_area
 
 # 0x0002 is not 0xffff after a battle (bug? c2d450), use 0x1202 instead
 constant_ffff = 0x1202 # always contains value 0xffff
@@ -58,7 +58,7 @@ class Checks(scroll_area.ScrollArea):
             self.line_skip_bits.append((constant_ffff, 0x01))   # never skip
 
     def character_gating_init(self):
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
 
         self.lines = []
         self.line_skip_bits = []

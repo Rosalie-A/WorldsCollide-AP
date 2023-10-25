@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
-import worlds.ff6wc.WorldsCollide.args as args
+from ..event.event import *
+from .. import args as args
 
 class KefkaTower(Event):
     def name(self):
@@ -13,7 +13,7 @@ class KefkaTower(Event):
             field.SetEventBit(npc_bit.POLTRGEIST_STATUE_KEFKA_TOWER),
         )
 
-        import worlds.ff6wc.WorldsCollide.objectives as objectives
+        from .. import objectives as objectives
         self.unlock_final_kefka_result_name = "Unlock Final Kefka"
         if self.unlock_final_kefka_result_name not in objectives.results:
             space.write(
@@ -370,7 +370,7 @@ class KefkaTower(Event):
         # not sure why (stairs?) but this npc only blocks skipping the inferno event tile when entering from the east
         # fortunately this means the npc does not block leaving KT from the west after landing at statues
 
-        from worlds.ff6wc.WorldsCollide.data.npc import NPC
+        from ..data.npc import NPC
         inferno_npc = self.maps.get_npc(0x19a, 0x10)
         invisible_block_npc = NPC()
         invisible_block_npc.x = 30
@@ -403,7 +403,7 @@ class KefkaTower(Event):
         )
 
     def poltergeist_skip_fix(self):
-        from worlds.ff6wc.WorldsCollide.data.npc import NPC
+        from ..data.npc import NPC
         poltergeist_statue_npc = self.maps.get_npc(0x14e, 0x10)
         invisible_block_npc = NPC()
         invisible_block_npc.x = 36
@@ -528,12 +528,12 @@ class KefkaTower(Event):
     def final_scenes_mod(self):
         # remove dialogs that require button press so final scenes automatically start
         space = Reserve(0xa1072, 0xa1074, "kefka tower it's breaking up!", field.NOP())
+        space.write(field.SetEventBit(event_bit.DEFEATED_FINAL_KEFKA))
         space = Reserve(0xa11d3, 0xa11d5, "kefka tower there's no time to lose! airship's just ahead", field.NOP())
         space = Reserve(0xa1205, 0xa1207, "kefka tower terra! you're back!", field.NOP())
         space = Reserve(0xa1231, 0xa1233, "kefka tower come on, everybody! we have to work together!", field.NOP())
         space = Reserve(0xa1240, 0xa1242, "kefka tower terra! what's wrong", field.NOP())
         space = Reserve(0xa1321, 0xa1326, "kefka tower the magicite... the espers...", field.NOP())
-        space.write(asm.LDA(0x01, asm.IMM8), asm.STA(0x7E04, asm.ABS))
         space = Reserve(0xa1330, 0xa1332, "kefka tower you mean terra too?", field.NOP())
         space = Reserve(0xa133e, 0xa1340, "kefka tower come with me. i can lead you out", field.NOP())
 

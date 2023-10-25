@@ -1,10 +1,10 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Bank, Write
+from ..instruction import asm as asm
+from ..instruction import f0 as f0
+from .. import args as args
 
-import worlds.ff6wc.WorldsCollide.objectives as objectives
-import worlds.ff6wc.WorldsCollide.menus.pregame_track_scroll_area as scroll_area
+from .. import objectives as objectives
+from ..menus import pregame_track_scroll_area as scroll_area
 
 class Objectives(scroll_area.ScrollArea):
     MENU_NUMBER = 11
@@ -49,8 +49,8 @@ class Objectives(scroll_area.ScrollArea):
         super().__init__()
 
     def draw_character_mod(self):
-        import worlds.ff6wc.WorldsCollide.objectives as objectives
-        from worlds.ff6wc.WorldsCollide.data.text.text2 import text_value
+        from .. import objectives as objectives
+        from ..data.text.text2 import text_value
 
         if len(objectives) == 0:
             super().draw_character_mod()

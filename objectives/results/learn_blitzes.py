@@ -1,7 +1,7 @@
-from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
+from ...objectives.results._objective_result import *
 
 def _random_blitz_table():
-    from worlds.ff6wc.WorldsCollide.constants.blitzes import id_blitz
+    from ...constants.blitzes import id_blitz
 
     blitz_table = [2 ** index for index in range(len(id_blitz))]
     random.shuffle(blitz_table)
@@ -11,8 +11,8 @@ def _random_blitz_table():
 random_blitz_table, random_blitz_table_size = _random_blitz_table()
 
 def _set_bum_rush_learned():
-    import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
-    import worlds.ff6wc.WorldsCollide.data.npc_bit as npc_bit
+    from ...data import event_bit as event_bit
+    from ...data import npc_bit as npc_bit
 
     # set learned event bit and update duncan npc
     learned_bum_rush_address = event_bit.address(event_bit.LEARNED_BUM_RUSH)

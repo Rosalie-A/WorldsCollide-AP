@@ -1,7 +1,7 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.c2 as c2
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Bank, Reserve, Write
+from ..instruction import asm as asm
+from ..instruction import c2 as c2
+from .. import args as args
 
 class Multipliers():
     def __init__(self):

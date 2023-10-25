@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
-from worlds.ff6wc.WorldsCollide.objectives.results._apply_characters_party import ApplyToParty
-import worlds.ff6wc.WorldsCollide.instruction.field.entity as field_entity
+from ...objectives.results._objective_result import *
+from ...objectives.results._apply_characters_party import ApplyToParty
+from ...instruction.field import entity as field_entity
 
 class Field(field_result.Result):
     def src(self):

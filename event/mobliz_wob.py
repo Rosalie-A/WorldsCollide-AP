@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
-from worlds.ff6wc.WorldsCollide.data.item_names import id_name
-from worlds.ff6wc.WorldsCollide.ff6wcutils.truncated_discrete_distribution import truncated_discrete_distribution
+from ..event.event import *
+from ..data.item_names import id_name
+from ..ff6wcutils.truncated_discrete_distribution import truncated_discrete_distribution
 
 class MoblizWOB(Event):
     def name(self):

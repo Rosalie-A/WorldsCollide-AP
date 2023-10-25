@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.objectives.conditions._objective_condition import *
-from worlds.ff6wc.WorldsCollide.constants.objectives.condition_bits import check_bit
+from ...objectives.conditions._objective_condition import *
+from ...constants.objectives.condition_bits import check_bit
 
 class Condition(ObjectiveCondition):
     NAME = "Check"

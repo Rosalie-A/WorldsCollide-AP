@@ -1,5 +1,5 @@
 def get_sprites():
-    from worlds.ff6wc.WorldsCollide.graphics.sprites.sprites import id_sprite
+    from ..graphics.sprites.sprites import id_sprite
     
     sprites = [{
         'id': sprite_id,

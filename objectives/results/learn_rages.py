@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
+from ...objectives.results._objective_result import *
+from ...instruction import f0 as f0
 
 def _random_rage_table():
-    from worlds.ff6wc.WorldsCollide.constants.rages import id_rage
+    from ...constants.rages import id_rage
 
     rage_table = list(range(len(id_rage)))
     random.shuffle(rage_table)

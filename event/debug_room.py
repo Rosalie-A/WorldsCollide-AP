@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
-from worlds.ff6wc.WorldsCollide.data.npc import NPC
+from ..event.event import *
+from ..data.npc import NPC
 
 class DebugRoom(Event):
     # Using the 3 Scenarios room as our debug map
@@ -52,7 +52,7 @@ class DebugRoom(Event):
 
     def _add_teleport_npc(self, source_map, source_x, source_y, direction, dest_map, dest_x, dest_y):
         # Test code to add a Marshal battle NPC to Blackjack
-        from worlds.ff6wc.WorldsCollide.data.bosses import name_pack
+        from ..data.bosses import name_pack
         src = [
             field.LoadMap(dest_map, direction, True, dest_x, dest_y, fade_in = True),
             field.Return(),

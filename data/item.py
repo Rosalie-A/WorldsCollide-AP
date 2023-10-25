@@ -1,5 +1,5 @@
-import worlds.ff6wc.WorldsCollide.data.text as text
-from worlds.ff6wc.WorldsCollide.data.text.text2 import text_value, value_text
+from ..data import text as text
+from ..data.text.text2 import text_value, value_text
 
 class Item():
     NAME_LENGTH = 13

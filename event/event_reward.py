@@ -1,10 +1,12 @@
 import json
 import os
+import pkgutil
+from pathlib import Path
 from enum import Flag, unique, auto
-import worlds.ff6wc.WorldsCollide.args as args
-import worlds.ff6wc.WorldsCollide.constants.items
-from worlds.ff6wc.WorldsCollide.data.characters import Characters
-import worlds.ff6wc.WorldsCollide.constants as constants
+from .. import args as args
+from ..constants import items
+from ..data.characters import Characters
+from .. import constants as constants
 
 
 @unique
@@ -17,9 +19,9 @@ class RewardType(Flag):
 
 CHARACTER_ESPER_ONLY_REWARDS = 6
 class Reward:
-    if worlds.ff6wc.WorldsCollide.args.ap_data:
-        with open(os.path.dirname(os.path.abspath(__file__)) + "/../../location_equivalences.json") as file:
-            location_equivalencies = json.load(file)
+    if args.ap_data:
+        file = pkgutil.get_data("worlds.ff6wc", "location_equivalences.json").decode('utf-8')
+        location_equivalencies = json.loads(file)
 
     def __init__(self, event, possible_types, ap_name="", ap_index=""):
         self.id = None
@@ -110,5 +112,5 @@ def reward_slot_weights(slot_iterations, iteration):
 def weighted_reward_choice(slot_iterations, iteration):
     weights = reward_slot_weights(slot_iterations, iteration)
 
-    from worlds.ff6wc.WorldsCollide.ff6wcutils.weighted_random import weighted_random
+    from ..ff6wcutils.weighted_random import weighted_random
     return weighted_random(weights)

@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Write, Read
+from ..memory.space import Bank, Reserve, Write, Read
 
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
-import worlds.ff6wc.WorldsCollide.args as args
+from ..instruction import asm as asm
+from ..instruction import f0 as f0
+from .. import args as args
 
 from enum import IntFlag
 

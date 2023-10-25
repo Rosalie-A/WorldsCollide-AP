@@ -1,23 +1,23 @@
-import worlds.ff6wc.WorldsCollide.data.dialogs as dialogs
-import worlds.ff6wc.WorldsCollide.data.spells as spells
-import worlds.ff6wc.WorldsCollide.data.characters as characters
-import worlds.ff6wc.WorldsCollide.data.items as items
-import worlds.ff6wc.WorldsCollide.data.metamorph_groups as metamorph_groups
-import worlds.ff6wc.WorldsCollide.data.maps as maps
-import worlds.ff6wc.WorldsCollide.data.enemies as enemies
-import worlds.ff6wc.WorldsCollide.data.swdtechs as swdtechs
-import worlds.ff6wc.WorldsCollide.data.blitzes as blitzes
-import worlds.ff6wc.WorldsCollide.data.lores as lores
-import worlds.ff6wc.WorldsCollide.data.rages as rages
-import worlds.ff6wc.WorldsCollide.data.dances as dances
-import worlds.ff6wc.WorldsCollide.data.steal as steal
-import worlds.ff6wc.WorldsCollide.data.sketches as sketches
-import worlds.ff6wc.WorldsCollide.data.controls as controls
-import worlds.ff6wc.WorldsCollide.data.magiteks as magiteks
-import worlds.ff6wc.WorldsCollide.data.espers as espers
-import worlds.ff6wc.WorldsCollide.data.shops as shops
-import worlds.ff6wc.WorldsCollide.data.coliseum as coliseum
-import worlds.ff6wc.WorldsCollide.data.title_graphics as title_graphics
+from ..data import dialogs as dialogs
+from ..data import spells as spells
+from ..data import characters as characters
+from ..data import items as items
+from ..data import metamorph_groups as metamorph_groups
+from ..data import maps as maps
+from ..data import enemies as enemies
+from ..data import swdtechs as swdtechs
+from ..data import blitzes as blitzes
+from ..data import lores as lores
+from ..data import rages as rages
+from ..data import dances as dances
+from ..data import steal as steal
+from ..data import sketches as sketches
+from ..data import controls as controls
+from ..data import magiteks as magiteks
+from ..data import espers as espers
+from ..data import shops as shops
+from ..data import coliseum as coliseum
+from ..data import title_graphics as title_graphics
 
 class Data:
     def __init__(self, rom, args):

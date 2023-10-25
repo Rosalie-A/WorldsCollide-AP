@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES, Bank, Reserve, Free, Write, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import START_ADDRESS_SNES, Bank, Reserve, Free, Write, Read
+from ..instruction import asm as asm
 
 def _color_absolute_addition_mod():
-    import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
+    from ..instruction import f0 as f0
 
     # move to f0 to make room in c1
     space = Reserve(0x1fd00, 0x1fd04, "c1 color absolute addition")
@@ -14,7 +14,7 @@ def _color_absolute_addition_mod():
 color_absolute_addition = _color_absolute_addition_mod()
 
 def _color_absolute_subtraction_mod():
-    import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
+    from ..instruction import f0 as f0
 
     # move to f0 to make room in c1
     space = Reserve(0x1fc99, 0x1fc9d, "c1 color absolute subtraction")

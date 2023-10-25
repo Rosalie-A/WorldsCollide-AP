@@ -9,13 +9,13 @@ DEFEATED_DOOM_GAZE = 0x48
 
 BOSS_DEFEATED_START = 0x68 # start at unused 0x1dd6
 BOSS_DEFEATED_BITS = {}
-from worlds.ff6wc.WorldsCollide.data.bosses import normal_formation_name
+from ..data.bosses import normal_formation_name
 for index, formation in enumerate(normal_formation_name):
     BOSS_DEFEATED_BITS[formation] = BOSS_DEFEATED_START + index
 
 DRAGON_DEFEATED_START = BOSS_DEFEATED_START + len(normal_formation_name)
 DRAGON_DEFEATED_BITS = {}
-from worlds.ff6wc.WorldsCollide.data.bosses import dragon_formation_name
+from ..data.bosses import dragon_formation_name
 for index, formation in enumerate(dragon_formation_name):
     DRAGON_DEFEATED_BITS[formation] = DRAGON_DEFEATED_START + index
 

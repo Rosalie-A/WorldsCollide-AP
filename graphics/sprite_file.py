@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.graphics.sprite import Sprite
-from worlds.ff6wc.WorldsCollide.graphics.sprite_tile import SpriteTile
+from ..graphics.sprite import Sprite
+from ..graphics.sprite_tile import SpriteTile
 
 class SpriteFile(Sprite):
     def __init__(self, path, palette):

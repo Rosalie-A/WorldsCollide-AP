@@ -1,5 +1,5 @@
 
-from worlds.ff6wc.WorldsCollide.constants.objectives.results import ResultType
+from ..constants.objectives.results import ResultType
 
 class ObjectiveMetadata:
     def __init__(self, objective: ResultType, group):

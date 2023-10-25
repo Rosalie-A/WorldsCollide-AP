@@ -1,12 +1,12 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Reserve, Write, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import Bank, START_ADDRESS_SNES, Reserve, Write, Read
+from ..instruction import asm as asm
 
-from worlds.ff6wc.WorldsCollide.battle.scaling import scaling
-from worlds.ff6wc.WorldsCollide.battle.formation_flags import FormationFlag, formation_flags_address
+from ..battle.scaling import scaling
+from ..battle.formation_flags import FormationFlag, formation_flags_address
 
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
-import worlds.ff6wc.WorldsCollide.objectives as objectives
-import worlds.ff6wc.WorldsCollide.args as args
+from ..data import event_bit as event_bit
+from .. import objectives as objectives
+from .. import args as args
 
 enemy_level_address = 0x3b18
 

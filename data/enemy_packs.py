@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.data.enemy_pack import EnemyPack4, EnemyPack2
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
-import worlds.ff6wc.WorldsCollide.data.bosses as bosses
+from ..data.enemy_pack import EnemyPack4, EnemyPack2
+from ..data.structures import DataArray
+from ..data import bosses as bosses
 
 class EnemyPacks():
     # the first 256 enemy packs are groups of 4 formations
@@ -146,8 +146,10 @@ class EnemyPacks():
         self.phunbaba3_safety_check(bosses_to_replace)
 
     def randomize_event_bosses(self):
-        import worlds.ff6wc.WorldsCollide.args as args, random, worlds.ff6wc.WorldsCollide.objectives as objectives
-        from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import names as possible_condition_names
+        from .. import args as args
+        import random
+        from .. import objectives as objectives
+        from ..constants.objectives.conditions import names as possible_condition_names
 
         boss_condition_name = "Boss"
         dragon_condition_name = "Dragon"

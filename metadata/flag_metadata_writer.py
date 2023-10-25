@@ -72,7 +72,7 @@ class FlagMetadataWriter:
         return val
 
     def write(self):
-        import worlds.ff6wc.WorldsCollide.args as args
+        from .. import args as args
         import json
         file_name = f"{args.output_file}"
         with open(file_name, "w") as out_file:

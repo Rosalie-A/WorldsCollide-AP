@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.data.dance import Dance
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
+from ..data.dance import Dance
+from ..data.structures import DataArray
 
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate, Write, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import Bank, Reserve, Allocate, Write, Read
+from ..instruction import asm as asm
 
 class Dances:
     DANCE_COUNT = 8
@@ -43,7 +43,7 @@ class Dances:
         self.learners_table_end = self.learners_table + len(self.learners)
 
     def write_is_learner(self):
-        import worlds.ff6wc.WorldsCollide.instruction.c0 as c0
+        from ..instruction import c0 as c0
 
         src = [
             asm.PHP(),
@@ -62,8 +62,8 @@ class Dances:
         self.is_learner_function = space.start_address_snes
 
     def after_battle_check_mod(self):
-        from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES
-        import worlds.ff6wc.WorldsCollide.instruction.c0 as c0
+        from ..memory.space import START_ADDRESS_SNES
+        from ..instruction import c0 as c0
 
         character_available = START_ADDRESS_SNES + c0.character_available
 
@@ -189,8 +189,8 @@ class Dances:
         self.name_data.write()
 
     def log(self):
-        import worlds.ff6wc.WorldsCollide.data.text as text
-        from worlds.ff6wc.WorldsCollide.log import section_entries, format_option
+        from ..data import text as text
+        from ..log import section_entries, format_option
 
         # TODO create abilities class to hold data/names and pass it to dances instead of reading names here
         #      dance abilities are also used by various enemies

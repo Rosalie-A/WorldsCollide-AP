@@ -188,6 +188,7 @@ DEFEATED_INFERNO = 0x0bd
 DEFEATED_DOOM = 0x072
 DEFEATED_GODDESS = 0x073
 DEFEATED_POLTERGEIST = 0x074
+DEFEATED_FINAL_KEFKA = 0x2c1
 
 LEFT_WEIGHT_PUSHED_KEFKA_TOWER = 0x063
 RIGHT_WEIGHT_PUSHED_KEFKA_TOWER = 0x064
@@ -209,7 +210,7 @@ TEMP_SONG_OVERRIDE = 0x1cc
 ENABLE_Y_PARTY_SWITCHING = 0x1ce
 ALWAYS_CLEAR = 0x176 # this event_bit is always clear, used for branching
 
-from worlds.ff6wc.WorldsCollide.constants.objectives import MAX_OBJECTIVES
+from ..constants.objectives import MAX_OBJECTIVES
 for index in range(MAX_OBJECTIVES):
     globals()["OBJECTIVE" + str(index)] = 0xe0 + index
 

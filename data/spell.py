@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.data.ability_data import AbilityData
-import worlds.ff6wc.WorldsCollide.data.text as text
+from ..data.ability_data import AbilityData
+from ..data import text as text
 
 class Spell(AbilityData):
     def __init__(self, id, name_data, ability_data):
@@ -9,7 +9,7 @@ class Spell(AbilityData):
         self.name = text.get_string(name_data, text.TEXT2).rstrip('\0')
 
     def name_data(self):
-        from worlds.ff6wc.WorldsCollide.data.spells import Spells
+        from ..data.spells import Spells
         data = text.get_bytes(self.name, text.TEXT2)
         data.extend([0xff] * (Spells.NAME_SIZE - len(data)))
         return data

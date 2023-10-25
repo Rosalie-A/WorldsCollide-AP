@@ -1,13 +1,13 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Reserve, Allocate, Write, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.c3 as c3
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Bank, START_ADDRESS_SNES, Reserve, Allocate, Write, Read
+from ..instruction import asm as asm
+from ..instruction import c3 as c3
+from .. import args as args
 
-import worlds.ff6wc.WorldsCollide.menus.pregame_track_scroll_area as scroll_area
-import worlds.ff6wc.WorldsCollide.menus.objectives as objectives
-import worlds.ff6wc.WorldsCollide.menus.checks as checks
-import worlds.ff6wc.WorldsCollide.menus.progress as progress
-import worlds.ff6wc.WorldsCollide.menus.flags as flags
+from ..menus import pregame_track_scroll_area as scroll_area
+from ..menus import objectives as objectives
+from ..menus import checks as checks
+from ..menus import progress as progress
+from ..menus import flags as flags
 
 class PreGameTrack:
     # custom fade commands to load hash sprites while fading so sprites do not suddenly appear/disappear
@@ -139,8 +139,8 @@ class PreGameTrack:
         self.decrease_line_height = space.start_address
 
     def draw_labels_mod(self):
-        import worlds.ff6wc.WorldsCollide.version as version
-        import worlds.ff6wc.WorldsCollide.data.text as text
+        from .. import version as version
+        from ..data import text as text
 
         version_string = "v" + version.__version__.split(' ')[0] # remove substrings such as ' (dev)'
         text_positions = [
@@ -578,7 +578,7 @@ class PreGameTrack:
         self.load_sprite_palettes = space.start_address
 
     def refresh_sprites_mod(self):
-        from worlds.ff6wc.WorldsCollide.sprite_hash import HASH_CHARACTERS
+        from ..sprite_hash import HASH_CHARACTERS
 
         x_start = 0x9d
         x_spacing = 0x16
@@ -667,7 +667,7 @@ class PreGameTrack:
                     0x40, 0x04) # 0x420 / 0x20 = 0x22 (tiles 34 and 35) for bottom row
 
         # set sprites/palettes for HASH_CHARACTERS
-        from worlds.ff6wc.WorldsCollide.sprite_hash import HASH_CHARACTERS
+        from ..sprite_hash import HASH_CHARACTERS
         for index, character in enumerate(HASH_CHARACTERS):
             sprite_address = args.sprite_hash[index].sprite_address
             palette = args.sprite_hash[index].palette

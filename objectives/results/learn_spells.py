@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
-import worlds.ff6wc.WorldsCollide.args as args
+from ...objectives.results._objective_result import *
+from ... import args as args
 
 def _random_spell_table():
-    from worlds.ff6wc.WorldsCollide.constants.spells import spell_id
+    from ...constants.spells import spell_id
 
     spell_table = list(range(len(spell_id)))
     
@@ -22,8 +22,8 @@ def _learn_random_spells():
     # input: 8 bit number of random spells to learn with each character
     # output: all characters learn next given number of spells in random_learn_spelL_table, skips spells already known
 
-    from worlds.ff6wc.WorldsCollide.constants.spells import id_spell
-    from worlds.ff6wc.WorldsCollide.constants.entities import id_character
+    from ...constants.spells import id_spell
+    from ...constants.entities import id_character
 
     learned_start_address = 0x1a6e
     character_count = len(id_character) - 2     # characters except gogo/umaro

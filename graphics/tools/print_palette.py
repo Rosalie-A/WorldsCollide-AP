@@ -1,5 +1,5 @@
 def print_palette(path):
-    from worlds.ff6wc.WorldsCollide.graphics.palette_file import PaletteFile
+    from ...graphics.palette_file import PaletteFile
     palette = PaletteFile(path)
 
     print(str(palette))
