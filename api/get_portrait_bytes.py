@@ -1,13 +1,13 @@
 
 def get_portrait_bytes(portrait_id):
-    from worlds.ff6wc.WorldsCollide.graphics.portraits.portraits import get_bin_path, get_pal_path
+    from ..graphics.portraits.portraits import get_bin_path, get_pal_path
 
     return get_rgb_bytes(get_bin_path(portrait_id), get_pal_path(portrait_id))
 
 def get_rgb_bytes(portrait_path, palette_path):
-    from worlds.ff6wc.WorldsCollide.graphics.palette_file import PaletteFile
-    from worlds.ff6wc.WorldsCollide.graphics.sprite_file import SpriteFile
-    from worlds.ff6wc.WorldsCollide.graphics.poses import PORTRAIT
+    from ..graphics.palette_file import PaletteFile
+    from ..graphics.sprite_file import SpriteFile
+    from ..graphics.poses import PORTRAIT
     palette = PaletteFile(palette_path)
 
     sprite = SpriteFile(portrait_path, palette)

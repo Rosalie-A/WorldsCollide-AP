@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Space, Reserve, Allocate, Free, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import Bank, START_ADDRESS_SNES, Space, Reserve, Allocate, Free, Write
+from ..instruction import asm as asm
 
 # Allow Eggers jumps into C3 -- that is, enable calls to JSR routines from other banks
 # Ref: https://www.ff6hacking.com/forums/thread-2301.html

@@ -1,7 +1,7 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Reserve, Write, Read
-from worlds.ff6wc.WorldsCollide.instruction.event import _Instruction, _Branch
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.c0 as c0
+from ...memory.space import Bank, START_ADDRESS_SNES, Reserve, Write, Read
+from ...instruction.event import _Instruction, _Branch
+from ...instruction import asm as asm
+from ...instruction import c0 as c0
 from enum import IntEnum
 
 def _set_opcode_address(opcode, address):
@@ -13,7 +13,7 @@ def _set_opcode_address(opcode, address):
     )
 
 def _add_esper_increment():
-    import worlds.ff6wc.WorldsCollide.data.event_word as event_word
+    from ...data import event_word as event_word
     src = [
         asm.INC(event_word.address(event_word.ESPERS_FOUND), asm.ABS),
         Read(0xadd4, 0xadd6),   # advance event script
@@ -27,7 +27,7 @@ _add_esper_increment()
 
 class RemoveDeath(_Instruction):
     def __init__(self, character):
-        import worlds.ff6wc.WorldsCollide.instruction.field as field
+        from ...instruction import field as field
 
         self.current_status = 0x1614 # character status effects address
         self.death_mask = field.Status.DEATH >> 8
@@ -83,7 +83,7 @@ class ToggleWorlds(_Instruction):
 
 class LoadEsperFound(_Instruction):
     def __init__(self, esper):
-        import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
+        from ...data import event_bit as event_bit
         result_byte = event_bit.address(event_bit.multipurpose(0))
         src = [
             asm.LDA(0xeb, asm.DIR),
@@ -104,7 +104,7 @@ class LoadEsperFound(_Instruction):
 class LoadPartiesWithCharacters(_Instruction):
     ''' Sets bits 0-2 in event word when those parties have characters.'''
     def __init__(self):
-        import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
+        from ...data import event_bit as event_bit
         result_byte = event_bit.address(event_bit.multipurpose(0))
         src = [
             asm.STZ(result_byte, asm.ABS),

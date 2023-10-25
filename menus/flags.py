@@ -1,10 +1,10 @@
-from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES, Bank, Reserve, Allocate, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import START_ADDRESS_SNES, Bank, Reserve, Allocate, Write
+from ..instruction import asm as asm
+from ..instruction import f0 as f0
+from .. import args as args
 
-import worlds.ff6wc.WorldsCollide.menus.pregame_track_scroll_area as scroll_area
-from worlds.ff6wc.WorldsCollide.data.text.text2 import text_value
+from ..menus import pregame_track_scroll_area as scroll_area
+from ..data.text.text2 import text_value
 
 class Flags(scroll_area.ScrollArea):
     MENU_NUMBER = 12

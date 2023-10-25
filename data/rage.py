@@ -6,7 +6,7 @@ class Rage():
         self.attack2 = attack_data[1]
 
     def attack_data(self):
-        from worlds.ff6wc.WorldsCollide.data.rages import Rages
+        from ..data.rages import Rages
         data = [0x00] * Rages.ATTACKS_DATA_SIZE
 
         data[0] = self.attack1

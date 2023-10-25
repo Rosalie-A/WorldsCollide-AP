@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
-import worlds.ff6wc.WorldsCollide.data as data
+from ..event.event import *
+from .. import data as data
 
 class NarsheWOR(Event):
     def name(self):
@@ -108,7 +108,7 @@ class NarsheWOR(Event):
     def weapon_shop_mod(self, dialog_first_choice_text, reward_instructions):
         space = Reserve(0xc0b24, 0xc0b26, "narshe wor i wanted to give you this", field.NOP())
 
-        import worlds.ff6wc.WorldsCollide.data.text
+        from ..data import text
         # item names stored as TEXT2, dialogs are TEXT1
         item_name = data.text.convert(self.items.get_name(self.item), data.text.TEXT1)
         self.dialogs.set_text(1519, dialog_first_choice_text + "<line><choice> Make it “" + item_name + "”<end>")
@@ -153,7 +153,7 @@ class NarsheWOR(Event):
         )
 
     def esper_room_mod(self, esper_item_instructions):
-        from worlds.ff6wc.WorldsCollide.data.npc import NPC
+        from ..data.npc import NPC
         if self.reward1.type == RewardType.CHARACTER:
             sprite_num = self.reward1.id
             palette_num = self.characters.get_palette(self.reward1.id)
@@ -217,7 +217,7 @@ class NarsheWOR(Event):
         magicite_npc.split_sprite = 1
         magicite_npc.direction = direction.DOWN
 
-        import worlds.ff6wc.WorldsCollide.data.text
+        from ..data import text
         item_name = data.text.convert(self.items.get_name(item), data.text.TEXT1) # item names are stored as TEXT2, dialogs are TEXT1
         dialog_text = "This gives off an eerie aura!<line><choice> Leave it “" + item_name + "”"
 
@@ -238,7 +238,7 @@ class NarsheWOR(Event):
         magicite_npc.split_sprite = 0
         magicite_npc.direction = direction.DOWN
 
-        import worlds.ff6wc.WorldsCollide.data.text
+        from ..data import text
         item_name = data.text.convert(self.characters.get_name(character), data.text.TEXT1) # item names are stored as TEXT2, dialogs are TEXT1
         dialog_text = "This gives off an eerie aura!<line><choice> Leave it “" + item_name + "”"
 

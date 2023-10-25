@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.data.menu_character_sprite import MenuCharacterSprite
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray, DataPointers
+from ..data.menu_character_sprite import MenuCharacterSprite
+from ..data.structures import DataArray, DataPointers
 
 # each menu sprite contains data about a pose and how to draw it
 # for the main playable characters (0-13) the menu sprite data alternates betwen standing and hands up (both left facing)
@@ -28,7 +28,7 @@ class MenuCharacterSprites:
             menu_sprite = MenuCharacterSprite(sprite_index, self.oam_data[sprite_index])
             self.sprites.append(menu_sprite)
 
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
 
         self.standing_sprites = []
         for sprite_index in range(Characters.CHARACTER_COUNT):
@@ -48,7 +48,7 @@ class MenuCharacterSprites:
 
         self.standing_sprites[character_id].set_palette(palette_id)
 
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         if character_id < Characters.CHARACTER_COUNT:
             self.victory_sprites[character_id].set_palette(palette_id)
 

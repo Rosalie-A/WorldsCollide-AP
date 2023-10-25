@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Reserve
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Reserve
+from ..instruction import asm as asm
+from .. import args as args
 
 class Sketch:
     def __init__(self):

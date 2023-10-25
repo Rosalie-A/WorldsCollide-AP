@@ -1,5 +1,5 @@
 def main():
-    import args
+    from . import args
     from metadata.flag_metadata_writer import FlagMetadataWriter
     FlagMetadataWriter(args).write()
 

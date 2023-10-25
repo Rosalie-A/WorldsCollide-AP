@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
+from ...objectives.results._objective_result import *
+from ...instruction import f0 as f0
 
 def _random_lore_table():
-    from worlds.ff6wc.WorldsCollide.constants.lores import id_lore
+    from ...constants.lores import id_lore
 
     lore_table = list(range(len(id_lore)))
     random.shuffle(lore_table)

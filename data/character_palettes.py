@@ -1,9 +1,11 @@
-from worlds.ff6wc.WorldsCollide.data.character_palette import CharacterPalette
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
+from ..data.character_palette import CharacterPalette
+from ..data.structures import DataArray
+import pkgutil
 
 SPRITE_PALETTE_COUNT = 7
 DEFAULT_CHARACTER_PALETTES = list(range(SPRITE_PALETTE_COUNT))
 DEFAULT_CHARACTER_SPRITE_PALETTES = [2, 1, 4, 4, 0, 0, 0, 3, 3, 4, 5, 3, 3, 5, 1, 0, 6, 1, 0, 3]
+
 
 class CharacterPalettes:
     # field/battle palette color data
@@ -33,8 +35,10 @@ class CharacterPalettes:
         self.menu_character_sprites = menu_character_sprites
 
         self.field_palette_data = DataArray(self.rom, self.FIELD_DATA_START, self.FIELD_DATA_END, self.FIELD_DATA_SIZE)
-        self.battle_palette_data = DataArray(self.rom, self.BATTLE_DATA_START, self.BATTLE_DATA_END, self.BATTLE_DATA_SIZE)
-        self.portrait_palette_data = DataArray(self.rom, self.PORTRAIT_DATA_START, self.PORTRAIT_DATA_END, self.PORTRAIT_DATA_SIZE)
+        self.battle_palette_data = DataArray(self.rom, self.BATTLE_DATA_START, self.BATTLE_DATA_END,
+                                             self.BATTLE_DATA_SIZE)
+        self.portrait_palette_data = DataArray(self.rom, self.PORTRAIT_DATA_START, self.PORTRAIT_DATA_END,
+                                               self.PORTRAIT_DATA_SIZE)
 
         self.field_palettes = []
         for field_palette_index in range(len(self.field_palette_data)):
@@ -48,7 +52,8 @@ class CharacterPalettes:
 
         self.portrait_palettes = []
         for portrait_palette_index in range(len(self.portrait_palette_data)):
-            portrait_palette = CharacterPalette(portrait_palette_index, self.portrait_palette_data[portrait_palette_index])
+            portrait_palette = CharacterPalette(portrait_palette_index,
+                                                self.portrait_palette_data[portrait_palette_index])
             self.portrait_palettes.append(portrait_palette)
 
         battle_palette_id_count = self.BATTLE_ID_DATA_END - self.BATTLE_ID_DATA_START + 1
@@ -67,22 +72,21 @@ class CharacterPalettes:
         # npcs only have 3 bits for palettes so cannot set their palette >= 8 (except maybe individually in event code)
         # setting field palette 6 to battle palette 6 will change various npcs (most noticably save points)
         # need to check if any other sprites were changed to use palette 6 so the change happens in both field/battle
-        EXTRA_PALETTE = 6 # extra palette available to users for esper terra/npcs which differs between field/battle
+        EXTRA_PALETTE = 6  # extra palette available to users for esper terra/npcs which differs between field/battle
         for sprite_index, palette_index in enumerate(self.args.sprite_palettes):
             if palette_index == EXTRA_PALETTE and DEFAULT_CHARACTER_SPRITE_PALETTES[sprite_index] != EXTRA_PALETTE:
                 modified[palette_index] = True
 
         for palette_index, palette_file in enumerate(self.args.palette_files):
             if modified[palette_index]:
-                with open(palette_file, "rb") as pfile:
-                    palette_data = list(pfile.read())
+                palette_data = list(pkgutil.get_data(__name__, palette_file))
 
-                    self.field_palettes[palette_index].data = palette_data
-                    self.battle_palettes[palette_index].data = palette_data
+                self.field_palettes[palette_index].data = palette_data
+                self.battle_palettes[palette_index].data = palette_data
 
     def mod_character_palettes(self):
-        from worlds.ff6wc.WorldsCollide.data.character_sprites import SPRITE_CHARACTERS
-        from worlds.ff6wc.WorldsCollide.sprite_hash import HASH_CHARACTERS
+        from ..data.character_sprites import SPRITE_CHARACTERS
+        from ..sprite_hash import HASH_CHARACTERS
 
         # NOTE: palettes >= 6 do not work in menus and should not be used for main characters
         for index, palette_id in enumerate(self.args.sprite_palettes):
@@ -96,15 +100,13 @@ class CharacterPalettes:
                 self.menu_character_sprites.set_palette(character, palette_id)
 
     def mod_portrait_palettes(self):
-        from worlds.ff6wc.WorldsCollide.data.character_sprites import PORTRAIT_CHARACTERS, DEFAULT_CHARACTER_PORTRAITS
+        from ..data.character_sprites import PORTRAIT_CHARACTERS, DEFAULT_CHARACTER_PORTRAITS
 
         for index, portrait_palette_file in enumerate(self.args.portrait_palette_files):
             if self.args.portrait_ids[index] != DEFAULT_CHARACTER_PORTRAITS[index]:
                 character = PORTRAIT_CHARACTERS[index]
-
-                with open(portrait_palette_file, "rb") as pfile:
-                    palette_data = list(pfile.read())
-                    self.portrait_palettes[character].data = palette_data
+                palette_data = list(pkgutil.get_data(__name__, portrait_palette_file))
+                self.portrait_palettes[character].data = palette_data
 
     def mod(self):
         if self.args.character_palettes or self.args.character_sprite_palettes:

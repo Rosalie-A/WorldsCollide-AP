@@ -1,5 +1,5 @@
 def get_palette(image):
-    from worlds.ff6wc.WorldsCollide.graphics.palette import Palette
+    from ...graphics.palette import Palette
 
     RGB_CHANNELS = 3
     PALETTE_COLORS = 16
@@ -16,7 +16,7 @@ def get_palette(image):
     return palette
 
 def get_spritesheet_tile_indices(full):
-    import worlds.ff6wc.WorldsCollide.graphics.poses as poses
+    from ...graphics import poses as poses
     MIN_SPRITESHEET_ROWS = 5
     MIN_SPRITESHEET_COLS = 8
     SPRITESHEET_POSES = []
@@ -48,7 +48,7 @@ def get_spritesheet_tile_indices(full):
     return tile_indices
 
 def get_tiles(image):
-    from worlds.ff6wc.WorldsCollide.graphics.sprite_tile import SpriteTile
+    from ...graphics.sprite_tile import SpriteTile
 
     image_color_indices = image.getdata()
 
@@ -107,7 +107,7 @@ def convert(image_path):
     palette = get_palette(image)
     write_palette(output_prefix, palette)
 
-    from worlds.ff6wc.WorldsCollide.graphics.sprite import Sprite
+    from ...graphics.sprite import Sprite
     tiles, tile_indices = get_tiles(image)
     sprite = Sprite(tiles, palette)
     write_sprite(output_prefix, sprite, tile_indices)

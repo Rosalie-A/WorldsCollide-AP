@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.data.blitz import Blitz
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
+from ..data.blitz import Blitz
+from ..data.structures import DataArray
 
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate, Write, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import Bank, Reserve, Allocate, Write, Read
+from ..instruction import asm as asm
 
 class Blitzes:
     LEVELS_START = 0x26f498
@@ -15,7 +15,7 @@ class Blitzes:
 
         self.levels = DataArray(self.rom, self.LEVELS_START, self.LEVELS_END, Blitz.LEVEL_SIZE)
 
-        import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
+        from ..data import event_bit as event_bit
         self.can_learn_byte = 0x1e80 + event_bit.byte(event_bit.CAN_LEARN_BUM_RUSH)
         self.can_learn_bit = 2 ** event_bit.bit(event_bit.CAN_LEARN_BUM_RUSH)
 
@@ -34,7 +34,7 @@ class Blitzes:
         self.learners_table_end = self.learners_table + len(self.learners)
 
     def write_is_learner(self):
-        import worlds.ff6wc.WorldsCollide.instruction.c0 as c0
+        from ..instruction import c0 as c0
 
         src = [
             asm.PHY(),
@@ -48,8 +48,8 @@ class Blitzes:
         self.is_learner_function = space.start_address_snes
 
     def event_check_mod(self):
-        from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES
-        import worlds.ff6wc.WorldsCollide.instruction.c0 as c0
+        from ..memory.space import START_ADDRESS_SNES
+        from ..instruction import c0 as c0
 
         learn_blitzes = 0x0a201
         character_recruited = c0.character_recruited + START_ADDRESS_SNES

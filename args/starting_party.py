@@ -4,7 +4,7 @@ def name():
 def parse(parser):
     starting_party = parser.add_argument_group("Starting Party")
 
-    from worlds.ff6wc.WorldsCollide.data.characters import Characters
+    from ..data.characters import Characters
     character_options = [name.lower() for name in Characters.DEFAULT_NAME]
     character_options.append("random")
     character_options.append("randomngu")

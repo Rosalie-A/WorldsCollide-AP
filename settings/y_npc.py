@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Reserve, Write, Bank, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Reserve, Write, Bank, Read
+from ..instruction import asm as asm
+from .. import args as args
 
 class YNPC:
     def __init__(self):
@@ -31,11 +31,11 @@ class YNPC:
             )
 
     def interact(self):
-        from worlds.ff6wc.WorldsCollide.memory.space import START_ADDRESS_SNES
-        from worlds.ff6wc.WorldsCollide.instruction.field import Y_NPC
+        from ..memory.space import START_ADDRESS_SNES
+        from ..instruction.field import Y_NPC
         y_npc_event_bytes = (Y_NPC + START_ADDRESS_SNES).to_bytes(3, "little")
 
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         src = [
             asm.LDA(0x0d, asm.DIR),     # a = b, y, select, start, up, down, left, right buttson
             asm.AND(0x40, asm.IMM8),    # a = y button pressed?

@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.event.event import *
-import worlds.ff6wc.WorldsCollide.data.npc_bit as npc_bit
-from worlds.ff6wc.WorldsCollide.constants.entities import character_id
-import worlds.ff6wc.WorldsCollide.data.direction
-from worlds.ff6wc.WorldsCollide.data.npc import NPC
+from ..event.event import *
+from ..data import npc_bit as npc_bit
+from ..constants.entities import character_id
+from ..data import direction
+from ..data.npc import NPC
 
 class NarsheMoogleDefense(Event):
     WOB_MAP_ID = 0x33
@@ -176,7 +176,7 @@ class NarsheMoogleDefense(Event):
 
     def marshal_test_mod(self):
         # Test code to add a Marshal battle NPC to Blackjack
-        from worlds.ff6wc.WorldsCollide.data.bosses import name_pack
+        from ..data.bosses import name_pack
         src = [
             field.InvokeBattle(name_pack["Marshal"], 17),
             field.FadeInScreen(),

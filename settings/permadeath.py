@@ -1,7 +1,7 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Allocate, Reserve, Read
-import worlds.ff6wc.WorldsCollide.instruction.field as field
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Bank, Allocate, Reserve, Read
+from ..instruction import field as field
+from ..instruction import asm as asm
+from .. import args as args
 
 class Permadeath:
     def __init__(self):

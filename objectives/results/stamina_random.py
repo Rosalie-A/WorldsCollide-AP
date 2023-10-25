@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.objectives.results._objective_result import *
-from worlds.ff6wc.WorldsCollide.objectives.results._add_sub_stat import add_stat_character, sub_stat_character
+from ...objectives.results._objective_result import *
+from ...objectives.results._add_sub_stat import add_stat_character, sub_stat_character
 
 STAMINA_ADDRESS = 0x161c
 
@@ -47,7 +47,7 @@ class Battle(battle_result.Result):
 class Result(ObjectiveResult):
     NAME = "Stamina Random"
     def __init__(self, min_count, max_count):
-        from worlds.ff6wc.WorldsCollide.constants.entities import id_character, CHARACTER_COUNT
+        from ...constants.entities import id_character, CHARACTER_COUNT
         character = random.randint(0, CHARACTER_COUNT - 1)
         character_name = id_character[character]
 

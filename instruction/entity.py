@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.instruction.event import _Instruction
+from ..instruction.event import _Instruction
 from enum import IntEnum
-from worlds.ff6wc.WorldsCollide import data
+from .. import data
 
 class End(_Instruction):
     def __init__(self):
@@ -23,15 +23,15 @@ class Move(_Instruction):
         self.direction = direction
         self.distance = distance
 
-        import worlds.ff6wc.WorldsCollide.data.direction
+        from ..data import direction as data_direction
         opcode = (distance - 1) * 4
-        if direction == data.direction.UP:
+        if direction == data_direction.UP:
             opcode += 0x80
-        elif direction == data.direction.RIGHT:
+        elif direction == data_direction.RIGHT:
             opcode += 0x81
-        elif direction == data.direction.DOWN:
+        elif direction == data_direction.DOWN:
             opcode += 0x82
-        elif direction == data.direction.LEFT:
+        elif direction == data_direction.LEFT:
             opcode += 0x83
         super().__init__(opcode)
 
@@ -42,14 +42,14 @@ class Turn(_Instruction):
     def __init__(self, direction):
         self.direction = direction
 
-        import worlds.ff6wc.WorldsCollide.data.direction
-        if direction == data.direction.UP:
+        from ..data import direction as data_direction
+        if direction == data_direction.UP:
             super().__init__(0xcc)
-        elif direction == data.direction.RIGHT:
+        elif direction == data_direction.RIGHT:
             super().__init__(0xcd)
-        elif direction == data.direction.DOWN:
+        elif direction == data_direction.DOWN:
             super().__init__(0xce)
-        elif direction == data.direction.LEFT:
+        elif direction == data_direction.LEFT:
             super().__init__(0xcf)
 
     def __str__(self):

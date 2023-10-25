@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Allocate, Write, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import Bank, Allocate, Write, Read
+from ..instruction import asm as asm
 
 def _multiply_mod():
     # 16 bit a = low a * high a

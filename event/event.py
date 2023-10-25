@@ -1,28 +1,30 @@
 import json
 import os
+import pkgutil
+from pathlib import Path
 
-import worlds.ff6wc.WorldsCollide.args as args
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Space, Reserve, Allocate, Free, Write, Read
-import worlds.ff6wc.WorldsCollide.data.direction as direction
+from .. import args as args
+from ..memory.space import Bank, Space, Reserve, Allocate, Free, Write, Read
+from ..data import direction as direction
 
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
-import worlds.ff6wc.WorldsCollide.data.event_word as event_word
-import worlds.ff6wc.WorldsCollide.data.npc_bit as npc_bit
-import worlds.ff6wc.WorldsCollide.data.battle_bit as battle_bit
+from ..data import event_bit as event_bit
+from ..data import event_word as event_word
+from ..data import npc_bit as npc_bit
+from ..data import battle_bit as battle_bit
 
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.field as field
-import worlds.ff6wc.WorldsCollide.instruction.field.entity as field_entity
-import worlds.ff6wc.WorldsCollide.instruction.world as world
-import worlds.ff6wc.WorldsCollide.instruction.vehicle as vehicle
+from ..instruction import asm as asm
+from ..instruction import field as field
+from ..instruction.field import entity as field_entity
+from ..instruction import world as world
+from ..instruction import vehicle as vehicle
 
-from worlds.ff6wc.WorldsCollide.instruction.event import EVENT_CODE_START
-from worlds.ff6wc.WorldsCollide.event.event_reward import RewardType, Reward
+from ..instruction.event import EVENT_CODE_START
+from ..event.event_reward import RewardType, Reward
 
 class Event():
     if args.ap_data:
-        with open(os.path.dirname(os.path.abspath(__file__)) + "/../../location_equivalences.json") as file:
-            location_equivalencies = json.load(file)
+        file = pkgutil.get_data("worlds.ff6wc", "location_equivalences.json").decode('utf-8')
+        location_equivalencies = json.loads(file)
 
     def __init__(self, events, rom, args, dialogs, characters, items, maps, enemies, espers, shops):
         self.events = events

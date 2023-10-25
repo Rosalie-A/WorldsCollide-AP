@@ -1,9 +1,9 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.instruction.field as field
+from ..memory.space import Bank, Write
+from ..instruction import asm as asm
+from ..instruction import field as field
 
-import worlds.ff6wc.WorldsCollide.data.event_word as event_word
-from worlds.ff6wc.WorldsCollide.objectives._cached_function import _CachedFunction
+from ..data import event_word as event_word
+from ..objectives._cached_function import _CachedFunction
 
 class Field(_CachedFunction, field.Call):
     def __init__(self, *args, **kwargs):

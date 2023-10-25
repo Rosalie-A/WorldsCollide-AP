@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.data.text import get_bytes, get_string
+from ...data.text import get_bytes, get_string
 
 class Dialog():
     def __init__(self, id, type, data):

@@ -1,6 +1,6 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Space, Reserve, Allocate, Free, Write
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
-import worlds.ff6wc.WorldsCollide.args as args
+from ..memory.space import Bank, START_ADDRESS_SNES, Space, Reserve, Allocate, Free, Write
+from ..instruction import asm as asm
+from .. import args as args
 
 def _multiply_mod():
     # 16 bit a = high byte of a * low byte of a

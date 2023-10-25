@@ -1,6 +1,6 @@
-import worlds.ff6wc.WorldsCollide.menus.pregame_track_scroll_area as scroll_area
-from worlds.ff6wc.WorldsCollide.data.text.text2 import text_value
-import worlds.ff6wc.WorldsCollide.instruction.f0 as f0
+from ..menus import pregame_track_scroll_area as scroll_area
+from ..data.text.text2 import text_value
+from ..instruction import f0 as f0
 
 class FlagsRemoveLearnableSpells(scroll_area.ScrollArea):
     MENU_NUMBER = 15
@@ -20,7 +20,7 @@ class FlagsRemoveLearnableSpells(scroll_area.ScrollArea):
         super().__init__()
 
     def _format_spells_menu(spell_ids):
-        from worlds.ff6wc.WorldsCollide.constants.spells import id_spell
+        from ..constants.spells import id_spell
         COLUMN_WIDTHS = [8, 8, 8]
         spell_lines = []
 
@@ -43,8 +43,8 @@ class FlagsRemoveLearnableSpells(scroll_area.ScrollArea):
         return spell_lines
 
     def _get_spell_icon(spell_id):
-        from worlds.ff6wc.WorldsCollide.constants.spells import black_magic_ids, gray_magic_ids, white_magic_ids
-        from worlds.ff6wc.WorldsCollide.data.text.text2 import text_value
+        from ..constants.spells import black_magic_ids, gray_magic_ids, white_magic_ids
+        from ..data.text.text2 import text_value
         icon = ''
         if spell_id in black_magic_ids:
             icon = chr(text_value['<black magic icon>'])

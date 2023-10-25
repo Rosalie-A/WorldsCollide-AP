@@ -1,8 +1,8 @@
-from worlds.ff6wc.WorldsCollide.data.natural_spell import NaturalSpell
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
+from ..data.natural_spell import NaturalSpell
+from ..data.structures import DataArray
 
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Allocate
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import Bank, Reserve, Allocate
+from ..instruction import asm as asm
 
 class NaturalMagic:
     TERRA_SPELL_DATA_START = 0x2ce3c0
@@ -40,7 +40,7 @@ class NaturalMagic:
     def event_check_mod(self):
         # modify event code to also check for swdtech/blitz if character can learn natural magic
 
-        from worlds.ff6wc.WorldsCollide.data.spells import Spells
+        from ..data.spells import Spells
 
         def call_check_spell_learn(space, spell_check_address, learner, unique_label):
             space.write(
@@ -114,7 +114,7 @@ class NaturalMagic:
 
     def mod_learners(self):
         import random
-        from worlds.ff6wc.WorldsCollide.data.characters import Characters
+        from ..data.characters import Characters
         possible_learners = list(range(Characters.CHARACTER_COUNT - 2)) # exclude gogo/umaro
 
         if self.args.natural_magic1 == "random":
@@ -206,7 +206,7 @@ class NaturalMagic:
         self.remove_excluded()
 
     def log(self):
-        from worlds.ff6wc.WorldsCollide.log import section, format_option
+        from ..log import section, format_option
 
         lcolumn = [self.learner1_name]
         if self.args.natural_magic1:

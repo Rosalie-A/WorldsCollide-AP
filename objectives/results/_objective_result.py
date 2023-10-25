@@ -1,11 +1,11 @@
-import worlds.ff6wc.WorldsCollide.objectives.results._field_result as field_result
-import worlds.ff6wc.WorldsCollide.objectives.results._battle_result as battle_result
+from ...objectives.results import _field_result as field_result
+from ...objectives.results import _battle_result as battle_result
 
-from worlds.ff6wc.WorldsCollide.constants.objectives.results import name_type
+from ...constants.objectives.results import name_type
 
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, START_ADDRESS_SNES, Write
-import worlds.ff6wc.WorldsCollide.instruction.field as field
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ...memory.space import Bank, START_ADDRESS_SNES, Write
+from ...instruction import field as field
+from ...instruction import asm as asm
 import random
 
 class ObjectiveResult:

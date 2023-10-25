@@ -1,12 +1,12 @@
-import worlds.ff6wc.WorldsCollide.objectives.conditions._field_condition as field_condition
-import worlds.ff6wc.WorldsCollide.objectives.conditions._battle_condition as battle_condition
-import worlds.ff6wc.WorldsCollide.objectives.conditions._menu_condition as menu_condition
+from ...objectives.conditions import _field_condition as field_condition
+from ...objectives.conditions import _battle_condition as battle_condition
+from ...objectives.conditions import _menu_condition as menu_condition
 
-from worlds.ff6wc.WorldsCollide.constants.objectives.conditions import name_type
+from ...constants.objectives.conditions import name_type
 
-import worlds.ff6wc.WorldsCollide.data.event_bit as event_bit
-import worlds.ff6wc.WorldsCollide.data.battle_bit as battle_bit
-import worlds.ff6wc.WorldsCollide.data.event_word as event_word
+from ...data import event_bit as event_bit
+from ...data import battle_bit as battle_bit
+from ...data import event_word as event_word
 
 from enum import Enum
 ConditionType = Enum("ConditionType", "EventWord EventBit BattleBit Character Esper")

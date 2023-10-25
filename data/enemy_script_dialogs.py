@@ -1,4 +1,4 @@
-import worlds.ff6wc.WorldsCollide.data.enemy_script_commands as ai_instr
+from ..data import enemy_script_commands as ai_instr
 
 class EnemyScriptDialogs:
     def __init__(self, args, enemy_scripts):

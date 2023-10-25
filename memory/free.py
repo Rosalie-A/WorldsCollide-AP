@@ -1,4 +1,4 @@
-from worlds.ff6wc.WorldsCollide.memory.space import BANK_SIZE, Free
+from ..memory.space import BANK_SIZE, Free
 
 # https://www.ff6hacking.com/wiki/doku.php?id=ff3:ff3us:doc:asm:rom_map
 # https://www.ff6hacking.com/wiki/doku.php?id=ff3:ff3us:doc:asm:rom_map:unused_space

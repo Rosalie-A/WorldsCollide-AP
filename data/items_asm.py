@@ -1,7 +1,7 @@
-from worlds.ff6wc.WorldsCollide.memory.space import Bank, Reserve, Write, Read
-import worlds.ff6wc.WorldsCollide.instruction.asm as asm
+from ..memory.space import Bank, Reserve, Write, Read
+from ..instruction import asm as asm
 
-from worlds.ff6wc.WorldsCollide.data.item_names import name_id
+from ..data.item_names import name_id
 import random
 
 def stronger_atma_weapon():

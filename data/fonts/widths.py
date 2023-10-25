@@ -1,5 +1,5 @@
-from worlds.ff6wc.WorldsCollide.data.structures import DataArray
-from worlds.ff6wc.WorldsCollide.memory.space import Space
+from ...data.structures import DataArray
+from ...memory.space import Space
 
 class Widths:
     WIDTHS_START = 0x048fc0
@@ -16,7 +16,7 @@ class Widths:
         return self.widths[index][0]
 
     def width(self, string):
-        from worlds.ff6wc.WorldsCollide.data.text.text1 import text_value
+        from ...data.text.text1 import text_value
 
         result = 0
         for character in string:
