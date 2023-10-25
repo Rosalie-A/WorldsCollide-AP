@@ -191,7 +191,7 @@ class Events():
         for event in events:
             char_esper_checks += [r for r in event.rewards if r.possible_types == (RewardType.CHARACTER | RewardType.ESPER)]
 
-        assert len(char_esper_checks) == CHARACTER_ESPER_ONLY_REWARDS, "Number of char/esper only checks changed - Check usages of CHARACTER_ESPER_ONLY_REWARDS and ensure no breaking changes"
+        assert len(char_esper_checks) == CHARACTER_ESPER_ONLY_REWARDS, f"Number of char/esper only checks changed - Check usages of CHARACTER_ESPER_ONLY_REWARDS and ensure no breaking changes. Expected: {CHARACTER_ESPER_ONLY_REWARDS}, Actual: {len(char_esper_checks)}"
 
     def write_event_trigger_function(self):
         from ..memory.space import Reserve, Bank, Write, Read, START_ADDRESS_SNES
