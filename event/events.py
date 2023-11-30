@@ -204,6 +204,7 @@ class Events():
         src = [
             field.FlashScreen(field.Flash.GREEN),
             field.PlaySoundEffect(0xCD),
+            field.Dialog2(0),
             field.RecruitAndSelectParty2(0),
             field.FadeInScreen(),
             field.FinishCheck(),
@@ -215,6 +216,7 @@ class Events():
         src = [
             field.FlashScreen(field.Flash.BLUE),
             field.PlaySoundEffect(0xCD),
+            field.Dialog2(0),
             field.AddEsper2(0),
             field.Return(),
         ]
@@ -224,6 +226,7 @@ class Events():
         src = [
             field.FlashScreen(field.Flash.YELLOW),
             field.PlaySoundEffect(0xCD),
+            field.Dialog2(0),
             field.AddItem2(0),
             field.Return(),
         ]

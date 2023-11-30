@@ -391,39 +391,24 @@ def _get_esper2():
 add_esper2 = _get_esper2()
 
 def _get_item2():
-    space = Allocate(Bank.C0, 62, "c0 give item")
+    space = Allocate(Bank.C0, 12, "c0 give item")
     space.write(
         asm.TDC(),
         asm.LDA(0x11E5, asm.ABS),  # a = item byte
         asm.STA(0x1A, asm.DIR),
-        asm.LDX(0x00, asm.IMM8),
-        "FIND_NEXT_ITEM",
-        asm.LDA(0x1869, asm.ABS_X),
-        asm.CMP(0x1A, asm.DIR),
-        asm.BEQ("ITEM_EXISTS"),
-        asm.INX(),
-        asm.CPX(0x0100, asm.IMM16),
-        asm.BNE("FIND_NEXT_ITEM"),
-        asm.LDX(0x00, asm.IMM8),
-        "FIND_NEXT_SLOT",
-        asm.LDA(0x1869, asm.ABS_X),
-        asm.CMP(0xFF, asm.IMM8),
-        asm.BEQ("FOUND_SLOT"),
-        asm.INX(),
-        asm.BRA("FIND_NEXT_SLOT"),
-        "FOUND_SLOT",
-        asm.LDA(0x1A, asm.DIR),
-        asm.STA(0x1869, asm.ABS_X),
-        asm.LDA(0x01, asm.IMM8),
-        asm.STA(0x1969, asm.ABS_X),
-        asm.RTL(),
-        "ITEM_EXISTS",
-        asm.LDA(0x1969, asm.ABS_X),
-        asm.CMP(0x63, asm.IMM8),
-        asm.BEQ("EXIT"),
-        asm.INC(0x1969, asm.ABS_X),
-        "EXIT",
+        asm.JSR(0xacfc, asm.ABS),
         asm.RTL()
     )
     return space.start_address
 add_item2 = _get_item2()
+
+def _dialog2():
+    space = Allocate(Bank.C0, 12, "c0 show dialog archipelago")
+    space.write(
+        asm.TDC(),
+        asm.LDA(0x11E6, asm.ABS),
+        asm.JSR(0xA479, asm.ABS),
+        asm.RTL()
+    )
+    return space.start_address
+dialog2 = _dialog2()

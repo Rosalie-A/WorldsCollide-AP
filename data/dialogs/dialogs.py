@@ -1,3 +1,5 @@
+import string
+
 from ...data.dialogs.dialog import Dialog
 from ...data.structures import DataList
 from ...memory.space import Space
@@ -185,7 +187,7 @@ class Dialogs():
         self.objectives_mod()
 
         from ... import args
-        if args.npc_dialog_tips:
+        if args.npc_dialog_tips or args.ap_data:
 
             # clear out vanilla dialog to make room for tips
             for lines in range(0,49): # Narshe intro, Terra's flashback, Locke's intro
@@ -555,7 +557,7 @@ class Dialogs():
                 #self.set_text(2379, "I won't budge from this spot until you have recruited <EDGAR>!<end>")
                 self.set_text(2436, "You can enter the Phoenix Cave as long as you have at least 2 characters.<page><LOCKE> also needs to be recruited to get the reward at the end.<end>")
                 self.set_text(2685, "<RELM>'s checks include Esper Mountain near Thamasa in the World of Balance, and right here in Owzer's Mansion in the World of Ruin.<end>")
-
+            self.build_ap_dialogs()
         #### end of NPC dialog tip mod
 
     def write(self):
@@ -584,3 +586,35 @@ class Dialogs():
             dialog.print()
         for dialog in self.multi_line_battle_dialogs:
             dialog.print()
+
+    def build_ap_dialogs(self):
+        from ...data.characters import Characters
+        from ...data.espers import Espers
+        from ...data.item_names import name_id
+        from ... import args as args
+        import os, json
+        string_lookup = dict()
+        i = 0
+        for character_name in Characters.DEFAULT_NAME:
+            while self.dialogs[i].text != '':
+                i += 1
+            string_lookup[character_name.capitalize()] = i
+            self.set_text(i, f"Recruited <{character_name.upper()}>!<end>")
+        for esper_name in Espers.esper_names:
+            while self.dialogs[i].text != "":
+                i += 1
+            self.set_text(i, f"Obtained the Esper {esper_name}.<end>")
+            if esper_name == "Ragnarok":
+                esper_name = "Ragnarok Esper"
+            string_lookup[esper_name] = i
+
+        for item_name in name_id.keys():
+            while self.dialogs[i].text != "":
+                i += 1
+            if item_name == "Ragnarok":
+                item_name = "Ragnarok Sword"
+            self.set_text(i, f"Acquired {item_name}.<end>")
+            string_lookup[item_name] = i
+        output_directory = args.ap_data["output directory"]
+        with open(os.path.join(output_directory, "dialogs.txt"), 'w') as file:
+            json.dump(string_lookup, file, indent=2)

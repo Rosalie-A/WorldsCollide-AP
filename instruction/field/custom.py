@@ -304,10 +304,27 @@ class AddItem2(_Instruction):
         space = Write(Bank.C0, src, "custom add_item command 2")
         address = space.start_address
 
-        opcode = 0xfc
+        opcode = 0x66
         _set_opcode_address(opcode, address)
 
         AddItem2.__init__ = lambda self, item: super().__init__(opcode, item)
+        self.__init__(item)
+
+class Dialog2(_Instruction):
+    def __init__(self, item):
+        dialog2 = START_ADDRESS_SNES + c0.dialog2
+        src = [
+            asm.JSL(dialog2),
+            asm.LDA(0x03, asm.IMM8),        # command size
+            asm.JMP(0x9b5c, asm.ABS),       # next command
+        ]
+        space = Write(Bank.C0, src, "custom add_item command 2")
+        address = space.start_address
+
+        opcode = 0x67
+        _set_opcode_address(opcode, address)
+
+        Dialog2.__init__ = lambda self, item: super().__init__(opcode, item)
         self.__init__(item)
 
 class _InvokeBattleType(_Instruction):
