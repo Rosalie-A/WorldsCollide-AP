@@ -72,5 +72,5 @@ class Tzen(Event):
         wob_dialog = f"For {self.wob_price} GP this is yours.<line><choice> Yes<line><choice> No<end>"
         self.esper_item_mod(wob_dialog, [
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])

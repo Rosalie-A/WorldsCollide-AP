@@ -227,7 +227,7 @@ class NarsheWOR(Event):
 
         self.esper_room_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def weapon_shop_character_mod(self, character):

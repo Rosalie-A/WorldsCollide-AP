@@ -219,5 +219,5 @@ class BurningHouse(Event):
     def item_mod(self, item):
         self.esper_item_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])

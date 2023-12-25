@@ -220,7 +220,7 @@ class DomaWOB(Event):
         ],
         [
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def end_mod(self):

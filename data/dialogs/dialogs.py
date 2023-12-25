@@ -40,6 +40,8 @@ class Dialogs():
     OBJECTIVES = list(range(3084, 3084 + MAX_OBJECTIVES))
     BATTLE_OBJECTIVES = list(range(70, 70 + MAX_OBJECTIVES))
 
+    UNUSED_DIALOGS = []
+
     def __init__(self):
         self.read()
         self.free()
@@ -616,5 +618,8 @@ class Dialogs():
             self.set_text(i, f"Acquired {item_name}.<end>")
             string_lookup[item_name] = i
         output_directory = args.ap_data["output directory"]
+        for i in range(1830, len(self.dialogs)):
+            if self.dialogs[i].text == "":
+                Dialogs.UNUSED_DIALOGS.append(i)
         with open(os.path.join(output_directory, "dialogs.txt"), 'w') as file:
             json.dump(string_lookup, file, indent=2)

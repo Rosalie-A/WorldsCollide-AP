@@ -211,7 +211,7 @@ class ImperialCamp(Event):
             field.LoadMap(0x75, direction.DOWN, default_music = True, x = 8, y = 21, fade_in = True, entrance_event = True),
 
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.FinishCheck(),
             field.Return(),
         )

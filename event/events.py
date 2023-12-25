@@ -190,7 +190,6 @@ class Events():
         char_esper_checks = []
         for event in events:
             char_esper_checks += [r for r in event.rewards if r.possible_types == (RewardType.CHARACTER | RewardType.ESPER)]
-
         assert len(char_esper_checks) == CHARACTER_ESPER_ONLY_REWARDS, f"Number of char/esper only checks changed - Check usages of CHARACTER_ESPER_ONLY_REWARDS and ensure no breaking changes. Expected: {CHARACTER_ESPER_ONLY_REWARDS}, Actual: {len(char_esper_checks)}"
 
     def write_event_trigger_function(self):
@@ -202,11 +201,7 @@ class Events():
         trigger_addr = 0x115c  # modify at runtime to trigger events
 
         src = [
-            field.FlashScreen(field.Flash.GREEN),
-            field.PlaySoundEffect(0xCD),
             field.Dialog2(0),
-            field.RecruitAndSelectParty2(0),
-            field.FadeInScreen(),
             field.FinishCheck(),
             field.Return()
         ]
@@ -214,18 +209,14 @@ class Events():
         recruit_character = (space.start_address - EVENT_CODE_START).to_bytes(3, "little")
 
         src = [
-            field.FlashScreen(field.Flash.BLUE),
-            field.PlaySoundEffect(0xCD),
-            field.Dialog2(0),
             field.AddEsper2(0),
+            field.Dialog2(0),
             field.Return(),
         ]
         space = Write(Bank.CA, src, "esper trigger")
         add_esper = (space.start_address - EVENT_CODE_START).to_bytes(3, "little")
 
         src = [
-            field.FlashScreen(field.Flash.YELLOW),
-            field.PlaySoundEffect(0xCD),
             field.Dialog2(0),
             field.AddItem2(0),
             field.Return(),

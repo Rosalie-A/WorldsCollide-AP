@@ -99,7 +99,7 @@ class AncientCastle(Event):
     def item_mod(self, item):
         space = Reserve(0xc1f76, 0xc1f84, "ancient castle display receive raiden dialog and take odin", field.NOP())
         space.write(
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.AddItem(item, sound_effect = False),
             field.Branch(space.end_address + 1), # skip nops
         )

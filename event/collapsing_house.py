@@ -192,7 +192,7 @@ class CollapsingHouse(Event):
         space = Reserve(0xc5a8d, 0xc5a9c, "collapsing house get item", field.NOP())
         space.write(
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         )
 
     def finish_check_mod(self):

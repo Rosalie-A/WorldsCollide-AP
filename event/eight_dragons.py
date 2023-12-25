@@ -60,7 +60,7 @@ class EightDragons(Event):
             reward = self.item_rewards[index]
             src = [
                 field.AddItem(reward.id),
-                field.Dialog(self.items.get_receive_dialog(reward.id)),
+                #field.Dialog(self.items.get_receive_dialog(reward.id)),
                 field.SetEventBit(dragon.event_bit),
                 field.FinishCheck(),
                 field.Return(),

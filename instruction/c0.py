@@ -407,7 +407,7 @@ def _dialog2():
     space.write(
         asm.TDC(),
         asm.LDA(0x11E6, asm.ABS),
-        asm.JSR(0xA479, asm.ABS),
+        asm.JSR(0xA4C0, asm.ABS),
         asm.RTL()
     )
     return space.start_address

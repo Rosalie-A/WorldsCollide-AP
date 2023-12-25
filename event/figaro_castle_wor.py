@@ -156,7 +156,7 @@ class FigaroCastleWOR(Event):
         self.gerad_npc_mod()
         space = self.esper_item_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def finish_check_mod(self):

@@ -92,7 +92,7 @@ class DoomGaze(Event):
         space = Reserve(0xa00d6, 0xa00d7, "doom gaze flash screen white when receiving esper", field.NOP())
 
         self.receive_reward_mod([
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.AddItem(item, sound_effect = False),
         ])
 

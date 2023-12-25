@@ -137,7 +137,7 @@ class MagitekFactory(Event):
     def ifrit_shiva_item_mod(self, item):
         self.ifrit_shiva_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def ifrit_shiva_battle_mod(self):
@@ -181,7 +181,7 @@ class MagitekFactory(Event):
     def number024_item_mod(self, item):
         self.number024_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def esper_tubes_mod(self):
@@ -331,7 +331,7 @@ class MagitekFactory(Event):
         space = Reserve(0xc819b, 0xc8302, "magitek factory add char and kefka cranes scene", field.NOP())
         space.write(
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.FadeOutScreen(),
             field.WaitForFade(),
             field.Branch(space.end_address + 1),  # skip nops

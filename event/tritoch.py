@@ -73,7 +73,7 @@ class Tritoch(Event):
         space = Reserve(0xc3781, 0xc3781, "tritoch pause before receive dialog", field.NOP())
 
         add_item_instructions = field.AddItem(item, sound_effect = False)
-        receive_item_dialog_id = self.items.get_receive_dialog(item)
+        receive_item_dialog_id = self.items.get_receive_dialog(0)
 
         self.esper_item_mod(add_item_instructions, receive_item_dialog_id)
 

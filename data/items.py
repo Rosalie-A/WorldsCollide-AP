@@ -300,6 +300,8 @@ class Items():
         self.available_dialogs.extend(list(range(1820, 1822)))
         self.available_dialogs.append(1823)
         self.available_dialogs.extend(list(range(1825, 1830)))
+        from .dialogs import dialogs
+        self.available_dialogs.extend(dialogs.Dialogs.UNUSED_DIALOGS)
 
         # generate receive item dialogs for good items
         self.receive_dialogs = {}
@@ -399,7 +401,7 @@ class Items():
 
         # item names are stored as TEXT2, dialogs are TEXT1
         from ..data import text
-        item_name = data.text.convert(self.items[item_id].name, data.text.TEXT1)
+        item_name = text.convert(self.items[item_id].name, text.TEXT1)
 
         self.dialogs.set_text(dialog_id, '<line><     >Received “' + item_name + '”!<end>')
 

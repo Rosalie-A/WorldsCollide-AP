@@ -287,7 +287,7 @@ class AddEsper2(_Instruction):
         space = Write(Bank.C0, src, "custom add_esper command 2")
         address = space.start_address
 
-        opcode = 0xa4
+        opcode = 0xe6
         _set_opcode_address(opcode, address)
 
         AddEsper2.__init__ = lambda self, esper: super().__init__(opcode, esper)

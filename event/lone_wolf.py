@@ -154,7 +154,7 @@ class LoneWolf(Event):
         ],
         [
             field.PlaySoundEffect(141),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def alternative_item_mod(self):
@@ -252,7 +252,7 @@ class LoneWolf(Event):
     def moogle_room_item_mod(self, item):
         return self.moogle_room_esper_item_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def moogle_room_reward_mod(self):

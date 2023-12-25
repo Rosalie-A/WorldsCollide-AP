@@ -223,7 +223,7 @@ class FloatingContinent(Event):
         space = Reserve(0xad9b1, 0xad9ed, "floating continent add esper on ground", field.NOP())
         space.write(
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.DeleteEntity(self.ground_shadow_npc_id),
             field.Branch(space.end_address + 1),
         )
@@ -289,7 +289,7 @@ class FloatingContinent(Event):
     def atma_item_mod(self, item):
         self.atma_esper_item_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def statues_scene_mod(self):
@@ -523,5 +523,5 @@ class FloatingContinent(Event):
             field.RefreshEntities(),
             field.LoadMap(0x06, direction.DOWN, default_music = True, x = 16, y = 6, fade_in = True, entrance_event = True),
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])

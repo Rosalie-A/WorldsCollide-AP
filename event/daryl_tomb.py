@@ -116,7 +116,7 @@ class DarylTomb(Event):
         space = self.esper_item_mod()
         space.write(
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         )
 
     def finish_check_mod(self):

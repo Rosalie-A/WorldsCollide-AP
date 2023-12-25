@@ -205,7 +205,7 @@ class AuctionHouse(Event):
     def receive_check_item_mod(self, start_addr, end_addr, space_description, item):
         src = [
             field.AddItem(item, sound_effect = False),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.SetEventBit(event_bit.WON_AN_AUCTION),
             field.FinishCheck(),
             field.Return(),
@@ -221,7 +221,7 @@ class AuctionHouse(Event):
     def receive_item_mod(self, start_addr, end_addr, space_description, item):
         src = [
             field.AddItem(item, sound_effect = False),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.SetEventBit(event_bit.WON_AN_AUCTION),
             field.CheckObjectives(),
             field.Return(),

@@ -95,11 +95,11 @@ def process(args):
         if a_item_id == 'none':
             args.item_rewards_ids = []
         elif a_item_id == 'standard':
-            args.item_rewards_ids = [name_id[name] for name in good_items]
+            args.item_rewards_ids = [name_id[name] for name in name_id.keys()]
         elif a_item_id == 'stronger':
-            args.item_rewards_ids = [name_id[name] for name in stronger_items]
+            args.item_rewards_ids = [name_id[name] for name in name_id.keys()]
         elif a_item_id == 'premium':
-            args.item_rewards_ids = [name_id[name] for name in premium_items]
+            args.item_rewards_ids = [name_id[name] for name in name_id.keys()]
         else:
             item_ids_lower = {k.lower(): v for k, v in name_id.items()}
             if a_item_id in item_ids_lower:

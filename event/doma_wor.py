@@ -137,7 +137,7 @@ class DomaWOR(Event):
     def stooges_item_mod(self, item):
         self.stooges_esper_item_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])
 
     def mines_mod(self):
@@ -276,7 +276,7 @@ class DomaWOR(Event):
         space = Reserve(0xb99b4, 0xb99d4, "doma wor cyan touches sword", field.NOP())
         space.write(
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.Branch(space.end_address + 1),  # skip nops
         )
 
@@ -347,5 +347,5 @@ class DomaWOR(Event):
 
         self.throne_esper_item_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         ])

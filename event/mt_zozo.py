@@ -248,6 +248,6 @@ class MtZozo(Event):
 
         self.esper_item_mod([
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.HideEntity(self.cliff_cyan_npc_id),
         ])

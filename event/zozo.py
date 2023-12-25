@@ -127,7 +127,7 @@ class Zozo(Event):
 
         src = [
             field.AddItem(item),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
             field.SetEventBit(event_bit.GOT_ZOZO_REWARD),
             field.FinishCheck(),
 

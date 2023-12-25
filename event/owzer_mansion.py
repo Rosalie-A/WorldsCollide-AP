@@ -150,7 +150,7 @@ class OwzerMansion(Event):
         space = Reserve(0xb4de3, 0xb4de7, "owzer mansion get item", field.NOP())
         space.write(
             field.AddItem(item, sound_effect = False),
-            field.Dialog(self.items.get_receive_dialog(item)),
+            #field.Dialog(self.items.get_receive_dialog(item)),
         )
 
         space = Reserve(0xb4dfd, 0xb4e1c, "owzer mansion add relm", field.NOP())
